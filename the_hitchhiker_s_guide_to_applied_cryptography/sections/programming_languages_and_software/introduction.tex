@@ -17,7 +17,9 @@ Different programming languages naturally have distinct characteristics and appr
 		\item \textit{memory integrity}, to provide the possibility to mark specific pieces of data as immutable or constant after initialization while also providing integrity checks;
 	\end{itemize}
 	
-	\exampleBlock{A real-world memory safety vulnerability}{A famous vulnerability related to memory safety is the \textbf{Heartbleed Bug},\footnote{Heartbleed Bug (\url{https://heartbleed.com/ })} a bug in the OpenSSL implementation of the heartbeat extension \cite{rfc6520} for \gls{tls} (\Cref{sec:popular_protocols:tls}). The heartbeat extension was intended to allow for keeping \gls{tls} connections alive even without continuous data transfer. However, the lack of bounds checking allowed attackers to read out of bounds in memory areas highly likely to store sensitive data such as private keys.}
+	\exampleBlock{A real-world memory safety vulnerability}{A famous vulnerability related to memory safety is the \textbf{Heartbleed Bug},\footnote{Heartbleed Bug (\url{https://heartbleed.com/ })} a bug in the OpenSSL implementation of the heartbeat extension \cite{rfc6520} for \gls{tls}.
+	%TODO (\Cref{future_sec:popular_protocols:tls}).
+	The heartbeat extension was intended to allow for keeping \gls{tls} connections alive even without continuous data transfer. However, the lack of bounds checking allowed attackers to read out of bounds in memory areas highly likely to store sensitive data such as private keys.}
 
 	\item \textbf{deterministic behavior}, which expects instructions and runtime routines to behave deterministically (as much as possible) thanks to: 
 	\begin{itemize}

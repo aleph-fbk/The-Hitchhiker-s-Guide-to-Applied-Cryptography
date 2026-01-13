@@ -6,7 +6,8 @@ Below, we briefly present a short list of renowned or modern symmetric cryptogra
 
 \subsubsection{Advanced Encryption Standard}\label{sec:symmetric_cryptography:ciphers:aes}
 
-\gls{aes} is a symmetric block cipher, hence typically used within a mode of operation (\Cref{sec:cryptography_basics:ciphers}): for \gls{aead}, \gls{aes} is typically used with \gls{gcm} or \gls{ccm}. The block size of \gls{aes} is always 128 bits, while there are 3 available key lengths: 128, 192, or 256 bits. The size of the \gls{iv} depends on the mode of operation and it is 96 bits for \gls{gcm} and \gls{ccm}. As a final remark, the security of \gls{aes} is not threatened by quantum (\Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}).
+\gls{aes} is a symmetric block cipher, hence typically used within a mode of operation (\Cref{sec:cryptography_basics:ciphers}): for \gls{aead}, \gls{aes} is typically used with \gls{gcm} or \gls{ccm}. The block size of \gls{aes} is always 128 bits, while there are 3 available key lengths: 128, 192, or 256 bits. The size of the \gls{iv} depends on the mode of operation and it is 96 bits for \gls{gcm} and \gls{ccm}. As a final remark, the security of \gls{aes} is not threatened by quantum.
+%TODO (\Cref{future_sec:post_quantum_cryptography}).
 
 \curiosityBlock{What is the difference between \gls{aes} and Rijndael?}{\gls{aes} is sometimes called \textbf{Rijndael}. However, Rijndael is the name of a family of symmetric block ciphers created by Belgian cryptographers Joan Daemen and Vincent Rijmen which supports 5 block size and key length options (128, 160, 192, 224, 256 bits) and was submitted to the \gls{aes} competition of \gls{nist} in 1998. Conversely, \gls{aes} --- besides the name of the competition --- is the name of the 128-bit‐block variant of Rijndael standardized by \gls{nist} \cite{nist_advanced_2023}. In other words, Rijndael indicates the whole family of ciphers, while \gls{aes} indicates a selected subset of Rijndael's ciphers.}
 
@@ -19,7 +20,9 @@ ChaCha20 is a symmetric stream cipher (\Cref{sec:cryptography_basics:ciphers}) w
 \paragraph*{AES vs. ChaCha20.} \gls{aes} and ChaCha20 have similarities and differences:
 \begin{itemize}
 	\item they both support \textbf{\gls{aead}};
-	\item they are both used in \textbf{\gls{tls} v1.3} \cite{rfc8446} (\Cref{sec:popular_protocols:tls}). However, \gls{aes} is also recommended by \gls{nist} \cite{barker_recommendation_2020_p1}, while \textbf{ChaCha20 is not};
+	\item they are both used in \textbf{\gls{tls} v1.3} \cite{rfc8446}. 
+	%TODO (\Cref{future_sec:popular_protocols:tls}). 
+	However, \gls{aes} is also recommended by \gls{nist} \cite{barker_recommendation_2020_p1}, while \textbf{ChaCha20 is not};
 	\item \gls{aes} is faster than ChaCha20 on devices equipped with \textbf{hardware acceleration for \gls{aes}} (e.g., AES-NI\footnote{Intel Advanced Encryption Standard Instructions (AES-NI) (\url{https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html})} or similar) such as modern desktops and servers. However, it has been established that \textbf{ChaCha20 outperforms \gls{aes} in software-only implementations (around 3× faster)}, as it is possible to infer from recent benchmarks \cite{heiko_benchmarking_2024}.\footnote{Do the ChaCha: better mobile performance with cryptography (\url{https://blog.cloudflare.com/do-the-chacha-better-mobile-performance-with-cryptography/})} Consequently, \gls{aes} is usually preferred in modern desktops and servers, while ChaCha20 is usually preferred in mobile devices equipped with ARM-based CPUs \cite{rfc8439};
 	\item many \gls{aes} implementations (especially those software-only) are vulnerable to \textbf{side-channel attacks} based on timing (\Cref{sec:security_of_cryptographic_algorithms}), while ChaCha20 is not.
 \end{itemize}

@@ -2,7 +2,9 @@
 
 Below, we list the most common categories of attacks within the context of applied cryptography.
 
-\paragraph*{\faCog~Misconfiguration, incorrect usage, and misuse attacks.} This category of attacks exploits weaknesses arising from the improper configuration or use of algorithms rather than flaws inherent in the algorithms themselves or their implementation. This category of attacks includes secret data reuse (e.g., using the same key for multiple purposes or reusing initialization vectors or nonces), low entropy in the generation of (supposedly) random values (\Cref{sec:TEMPORARY_LABEL:randomness}), use of weak keys (\Cref{sec:cryptography_basics:keys}), and improper key management (\Cref{sec:key_management}).
+\paragraph*{\faCog~Misconfiguration, incorrect usage, and misuse attacks.} This category of attacks exploits weaknesses arising from the improper configuration or use of algorithms rather than flaws inherent in the algorithms themselves or their implementation. This category of attacks includes secret data reuse (e.g., using the same key for multiple purposes or reusing initialization vectors or nonces), low entropy in the generation of (supposedly) random values,
+%TODO (\Cref{future_sec:randomness}), 
+use of weak keys (\Cref{sec:cryptography_basics:keys}), and improper key management (\Cref{sec:key_management}).
 
 \paragraph*{\faBug~Incorrect implementation attacks.} This category of attacks exploits vulnerabilities --- due to bugs in the code or non-adherence to the original theoretical specification --- in the implementation of algorithms.
 
@@ -14,7 +16,8 @@ Below, we list the most common categories of attacks within the context of appli
 
 \paragraph*{\faUserSecret~Human factor attacks.} This category of attacks targets individuals rather than weaknesses in algorithms or hardware. This category of attacks includes social engineering (e.g., phishing), coercive attacks (e.g., rubber-hose cryptanalysis), malicious insiders (e.g., evil maid attacks), and also insecure workarounds driven by poor usability.
 
-\paragraph*{\faAtom~Quantum attacks.} This category of attacks relies on quantum computers to efficiently solve mathematical problems that are assumed to be hard for classical computers (\Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}).
+\paragraph*{\faAtom~Quantum attacks.} This category of attacks relies on quantum computers to efficiently solve mathematical problems that are assumed to be hard for classical computers.
+%TODO (\Cref{future_sec:post_quantum_cryptography}).
 
 \paragraph*{\faQuestion~Guessing attacks.} This category of attacks includes approaches based on (sometimes educated) guesses and exhaustive trial-and-error methods. This category of attacks includes \textbf{brute force attacks} (also called \textit{exhaustive key search}) --- systematically attempting all possible secret or private keys until the correct ones are discovered --- \textbf{dictionary attacks} --- systematically attempting a precompiled list of words, phrases, or common passwords (exploiting users' tendencies to choose easily guessable passwords) until the correct ones are discovered --- and \textbf{rainbow table attacks} --- relying on pre-computed tables caching the outputs of a specific \gls{chf} used for conducting pre-image attacks (\Cref{sec:hash_functions:cryptographic_hash_function}).
 

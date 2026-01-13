@@ -18,7 +18,9 @@ The design of cryptographic protocols comprises several steps, which we illustra
 
 \paragraph*{5. Configuration, Implementation, and Deployment.} Lastly, the designers can define a suitable configuration (e.g., cipher suite choices, key lengths, timestamp windows, error‑handling semantics), choose suitable cryptographic libraries, and deploy the cryptographic protocol.
 
-\remarkBlock{Further points of attention}{Besides the aforementioned 5 steps, the secure design of cryptographic protocols needs to take into account key management (\Cref{sec:key_management}), proper randomness sources (\Cref{sec:TEMPORARY_LABEL:randomness}), clear deployment and usage guidelines, and update and deprecation mechanisms.}
+\remarkBlock{Further points of attention}{Besides the aforementioned 5 steps, the secure design of cryptographic protocols needs to take into account key management (\Cref{sec:key_management}), proper randomness sources,
+%TODO (\Cref{future_sec:randomness}), 
+clear deployment and usage guidelines, and update and deprecation mechanisms.}
 
 \subsubsection{Best Practices}\label{sec:security_of_cryptographic_protocols:design:best_practices}
 
@@ -36,7 +38,9 @@ Even years after their deployment, many cryptographic protocols were found to ha
 
 \paragraph*{Channel Binding.} Include context information (e.g., identities of sender and recipient, session identifiers, purpose) in each message --- typically, in \gls{aead} authentication tags (\Cref{sec:symmetric_cryptography:ae:aead}) --- to explicit under what circumstances a message is valid (and useless elsewhere) and thwart impersonation, rebinding, reflection, message insertion, and reordering attacks. In other words, implicit context (e.g., assuming the recipient ``knows'' what a message means based on order) should be avoided. Similarly, it is a best practice to ``chain'' cryptographic computations through the injection of context information (e.g., encrypt data with committing \gls{aead} using a symmetric key established from a combination of asymmetric keys and parties' identifiers).
 
-\exampleBlock{Channel binding in real-world protocols}{Modern cryptographic protocols such as \gls{tls} v1.3 and Signal (\Cref{sec:popular_protocols:tls,sec:popular_protocols:signal}) inject context information in key establishment or in \gls{aead} computations. In fact, channel binding applies also to layered authentication, i.e., whenever a cryptographic protocol runs on top of another (e.g., Signal over \gls{tls}) in a secure channel \cite{rfc5056}.}
+\exampleBlock{Channel binding in real-world protocols}{Modern cryptographic protocols such as \gls{tls} v1.3 and Signal 
+%TODO (\Cref{future_sec:popular_protocols:tls,future_sec:popular_protocols:signal})
+inject context information in key establishment or in \gls{aead} computations. In fact, channel binding applies also to layered authentication, i.e., whenever a cryptographic protocol runs on top of another (e.g., Signal over \gls{tls}) in a secure channel \cite{rfc5056}.}
 
 \paragraph*{\gls{aead}.} If symmetric cryptography is needed, use (committing) \gls{aead} ciphers such as \gls{aes}-\gls{gcm} and ChaCha20-Poly1305 (\Cref{sec:symmetric_cryptography:ciphers:aes,sec:symmetric_cryptography:ciphers:chacha20}) to thwart ciphertext forgery and tampering attacks.
 
@@ -58,11 +62,14 @@ Even years after their deployment, many cryptographic protocols were found to ha
 
 \exampleBlock{\gls{tls} and backward compatibility}{\gls{tls} v1.2 favored backward compatibility with \gls{tls} v1.1 by considering 45 cipher suites --- inheriting serious vulnerabilities --- while the latest \gls{tls} v1.3 favors security by considering 5 cipher suites only and removing insecure options (such as \gls{rsa} key establishment).}
 
-\paragraph*{Crypto-Agility.} Cryptographic protocols must be capable of swapping out cryptographic algorithms without a complete redesign and with minimal disruption. In fact, cryptographic algorithms deemed robust may become weak due to cryptanalytic breakthroughs or new capabilities (e.g., quantum-computing --- see \Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}). Consequently, include versioned algorithm identifiers (possibly standard) and cipher suites negotiation secured against downgrade attacks \cite{chen_considerations_2025} and be algorithm-neutral in design. 
+\paragraph*{Crypto-Agility.} Cryptographic protocols must be capable of swapping out cryptographic algorithms without a complete redesign and with minimal disruption. In fact, cryptographic algorithms deemed robust may become weak due to cryptanalytic breakthroughs or new capabilities (e.g., quantum-computing).
+%TODO --- see \Cref{future_sec:post_quantum_cryptography}).
+Consequently, include versioned algorithm identifiers (possibly standard) and cipher suites negotiation secured against downgrade attacks \cite{chen_considerations_2025} and be algorithm-neutral in design. 
 
 \remarkBlock{Trade-offs between crypto-agility and complexity}{If necessary (e.g., the cryptographic protocol targets a wide generic audience), crypto-agility would prescribe to offer more options for cipher suites to avoid scenarios in which a single cipher gets broken and leaves no alternative. However, this would add further complexity, increase the \gls{tcb} (\Cref{sec:programming_languages_and_software:trusted_computing_base}), and ultimately enlarge the attack surface. As a unique optimal choice does not exist, the designers of a cryptographic protocol should identify the best trade-off between crypto-agility and complexity on a case-by-case basis.}
 
-\paragraph*{Post-Quantum Cryptography.} If expected by the threat model, design protocols to include --- either during the first design or also in the future --- post-quantum cryptographic algorithms (e.g., by planning for larger keys, message sizes, and digital signatures) to thwart ``harvest now, decrypt later'' attacks (\Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}). 
+\paragraph*{Post-Quantum Cryptography.} If expected by the threat model, design protocols to include --- either during the first design or also in the future --- post-quantum cryptographic algorithms (e.g., by planning for larger keys, message sizes, and digital signatures) to thwart ``harvest now, decrypt later'' attacks.
+%TODO (\Cref{future_sec:post_quantum_cryptography}). 
 
 \paragraph*{Standards.} Consider standards (\Cref{sec:standards_and_certifications}) and white papers of reputable organizations (\Cref{sec:appendix:further_resources}) when designing cryptographic protocols to avoid known mistakes and enhance interoperability, security, and unambiguity. Finally, being consistent with standards also helps with compliance.
 
@@ -70,7 +77,9 @@ Even years after their deployment, many cryptographic protocols were found to ha
 
 \paragraph*{Testing and Verification.} Analyze and test the security of cryptographic protocols by conducting attack simulations or using formal methods and verification tools (\Cref{sec:security_of_cryptographic_protocols:security}). If possible, engage in security audits or invite cryptographers to review the design of cryptographic protocols.
 
-\paragraph*{Ratcheting.} Ratcheting mechanisms (\Cref{sec:TEMPORARY_LABEL:cryptographic_ratchets}) ensure that cryptographic protocols can recover from key compromise over time. Often, an attacker who obtains currently used private or secret keys may decrypt all future messages. In this context, ratcheting mechanisms allow cryptographic protocols to self-heal after compromise --- that is, once the attacker is out of the loop, future messages become secure again.
+\paragraph*{Ratcheting.} Ratcheting mechanisms
+%TODO (\Cref{future_sec:cryptographic_ratchets})
+ensure that cryptographic protocols can recover from key compromise over time. Often, an attacker who obtains currently used private or secret keys may decrypt all future messages. In this context, ratcheting mechanisms allow cryptographic protocols to self-heal after compromise --- that is, once the attacker is out of the loop, future messages become secure again.
 
 \paragraph*{Error Handling.} Handle errors due to failures, inconsistent states, and unforeseen situations properly by preventing information leakage and defining clear recovery or abort procedures to ensure predictable and safe behavior. Protocol-level error messages must be uniform and generic, revealing only that an operation failed without exposing details such as whether a decryption failed due to an incorrect padding value, an expired key, or a malformed ciphertext. Error messages in logs may contain more information, but still must not disclose sensitive information (e.g., private or symmetric cryptographic keys).
 
@@ -98,11 +107,15 @@ In order to design secure cryptographic protocols, one should first have an idea
 	
 	\item \textbf{online guessing attacks}: the attacker conducts guessing attacks by actively interacting with a system, e.g., repeatedly attempting to authenticate using a different password or to decrypt some data by guessing a decryption key. Intuitively, online guessing attacks are relatively easy to detect and mitigate (e.g., with lockout policies and rate limiting --- which however may yield \gls{dos} attacks);
 	
-	\item \textbf{offline guessing attacks}: the attacker obtains cryptographically-protected data (e.g., an encrypted file, a password hash) and then attempts to break the cryptographic protection offline via a trial-and-error approach. Offline guessing attacks are often regarded as passive attacks and are effective against cryptographic protocols employing low-entropy sources (\Cref{sec:TEMPORARY_LABEL:randomness}). Brute force, dictionary, and rainbow table attacks are instances of offline guessing attacks (\Cref{sec:cryptographic_security_overview:attacks});
+	\item \textbf{offline guessing attacks}: the attacker obtains cryptographically-protected data (e.g., an encrypted file, a password hash) and then attempts to break the cryptographic protection offline via a trial-and-error approach. Offline guessing attacks are often regarded as passive attacks and are effective against cryptographic protocols employing low-entropy sources.
+	%TODO (\Cref{future_sec:randomness}).
+	Brute force, dictionary, and rainbow table attacks are instances of offline guessing attacks (\Cref{sec:cryptographic_security_overview:attacks});
 	
 	\item \textbf{side-channel attacks}: the attacker relies on leakage of cryptographic computations to infer (portions of) secret data such as seeds, private keys, and internal states. In cryptographic protocols, the most relevant side-channel attacks are remote timing attacks, where the attacker measures how long a party takes to respond (or differences in response times) to infer secret data. Side-channel attacks are thoroughly discussed in \Cref{sec:security_of_cryptographic_algorithms:attacks:sca};
 	
-	\item \textbf{``harvest now, decrypt later'' attacks}: the attacker records encrypted data hoping to decrypt it in the future when more computational power will likely be available (see the Moore's law in \Cref{sec:cryptographic_security_overview:attacks} and, especially, pos-quantum cryptography in \Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}). Note that in the context of ``harvest now, decrypt later'' attacks, forward secrecy does not help in protecting future data.
+	\item \textbf{``harvest now, decrypt later'' attacks}: the attacker records encrypted data hoping to decrypt it in the future when more computational power will likely be available (see the Moore's law in \Cref{sec:cryptographic_security_overview:attacks} and, especially, pos-quantum cryptography).
+	%TODO in \Cref{future_sec:post_quantum_cryptography}). 
+	Note that in the context of ``harvest now, decrypt later'' attacks, forward secrecy does not help in protecting future data.
 	
 	\item \textbf{\gls{kci} attacks}: the \gls{kci} attack assumes that an attacker was able to compromise the long-term private key of a party used in key establishment (e.g., such as \gls{dh} --- see \Cref{sec:diffie_hellman}). A natural consequence is that now the attacker can pretend to be that party when communicating with everyone else. However, in cryptographic protocols suffering from \gls{kci} attacks, the attacker can also pretend to be anyone else when communicating with that party (due to the symmetric nature of \gls{dh}). Preventing \gls{kci} attacks generally involves either an interactive authenticity protocol or digitally signing messages (but forcing then non-repudiation, which may not be a desired security property). A cryptographic protocol suffering from \gls{kci} attacks is Signal;
 	
@@ -110,7 +123,9 @@ In order to design secure cryptographic protocols, one should first have an idea
 	
 	\item \textbf{Truncation attacks}: the attacker drops an arbitrary amount of messages without the communicating parties noticing it.
 	
-	\exampleBlock{A real-world truncation attack}{A recent example of truncation attack is the \gls{ssh} (\Cref{sec:popular_protocols:ssh}) \textbf{Terrapin attack} \cite{baumer_terrapin_2024}:\footnote{Terrapin Attack (\url{https://terrapin-attack.com/})} by carefully adjusting the sequence numbers during the handshake, the attacker can remove an arbitrary amount of messages sent by the client or server at the beginning of the secure channel, downgrading the connection's security by truncating the extension negotiation message (RFC8308 \cite{rfc8308}).}
+	\exampleBlock{A real-world truncation attack}{A recent example of truncation attack is the \gls{ssh}
+	%TODO (\Cref{future_sec:popular_protocols:ssh})
+	\textbf{Terrapin attack} \cite{baumer_terrapin_2024}:\footnote{Terrapin Attack (\url{https://terrapin-attack.com/})} by carefully adjusting the sequence numbers during the handshake, the attacker can remove an arbitrary amount of messages sent by the client or server at the beginning of the secure channel, downgrading the connection's security by truncating the extension negotiation message (RFC8308 \cite{rfc8308}).}
 	
 \end{itemize}
 

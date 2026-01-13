@@ -33,7 +33,11 @@ The Schnorr signature is a digital signature cipher developed by Claus Schnorr i
 
 \subsubsection{Edwards-curve Digital Signature Algorithm}\label{sec:digital_signatures:ciphers:eddsa}
 
-\gls{eddsa} is a digital signature cipher based on elliptic curves in twisted Edwards form (\Cref{sec:mathematical_underpinnings:elliptic_curves}), which offer increased efficiency and security. \gls{eddsa} is based on Schnorr signatures and adds deterministic nonce generation\footnote{The nonce is the hash of a part of the private key and the message} to solve many implementation vulnerabilities (see the Sony PlayStation 3 firmware update signing key\footnote{The Sony PlayStation 3 hack deciphered: what consumer-electronics designers can learn from the failure to protect a billion-dollar product ecosystem - EDN (\url{https://www.edn.com/the-sony-playstation-3-hack-deciphered-what-consumer-electronics-designers-can-learn-from-the-failure-to-protect-a-billion-dollar-product-ecosystem/})}). At the time of writing (2025), \gls{eddsa} is a popular choice for many systems, and especially for securing internet connections --- e.g., \gls{eddsa} is used in Signal (\Cref{sec:popular_protocols:signal}) and \gls{tls} (\Cref{sec:popular_protocols:tls}). Also, \gls{eddsa} has a rigorous mathematical proof of security.
+\gls{eddsa} is a digital signature cipher based on elliptic curves in twisted Edwards form (\Cref{sec:mathematical_underpinnings:elliptic_curves}), which offer increased efficiency and security. \gls{eddsa} is based on Schnorr signatures and adds deterministic nonce generation\footnote{The nonce is the hash of a part of the private key and the message} to solve many implementation vulnerabilities (see the Sony PlayStation 3 firmware update signing key\footnote{The Sony PlayStation 3 hack deciphered: what consumer-electronics designers can learn from the failure to protect a billion-dollar product ecosystem - EDN (\url{https://www.edn.com/the-sony-playstation-3-hack-deciphered-what-consumer-electronics-designers-can-learn-from-the-failure-to-protect-a-billion-dollar-product-ecosystem/})}). At the time of writing (2025), \gls{eddsa} is a popular choice for many systems, and especially for securing internet connections --- e.g., \gls{eddsa} is used in Signal 
+%TODO (\Cref{future_sec:popular_protocols:signal})
+and \gls{tls}.
+%TODO (\Cref{future_sec:popular_protocols:tls}).
+Also, \gls{eddsa} has a rigorous mathematical proof of security.
 
 \gls{eddsa} has been adopted and specified by the following standards:
 \begin{itemize}
