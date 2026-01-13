@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-informational)](./LICENSE)
-![GitHub release](https://img.shields.io/github/v/release/StefanoBerlato/The-Hitchhiker-s-Guide-to-Applied-Cryptography)
-![GitHub release](https://img.shields.io/github/tag/StefanoBerlato/The-Hitchhiker-s-Guide-to-Applied-Cryptography.svg?label=latest%20tag)
+![GitHub release](https://img.shields.io/github/v/release/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography)
+![GitHub release](https://img.shields.io/github/tag/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography.svg?label=latest%20tag)
 
 # The Hitchhiker's Guide to Applied Cryptography
 
@@ -9,7 +9,7 @@ This repository contains *The Hitchhiker's Guide to Applied Cryptography*, a han
 The main purpose of the handbook – available as a PDF (see below) – is to provide a **guided overview of relevant and current concepts in applied cryptography**. Each topic is accompanied by a brief explanation and, where appropriate, pointers to additional resources for deeper study. In other words, the handbook is a **starting point**, curated based on what we consider essential knowledge in this context, without claiming to be exhaustive or fully comprehensive.
 
 > [!NOTE]
-> 📄 [Download here the PDF (v0.1.0)](https://github.com/StefanoBerlato/The-Hitchhiker-s-Guide-to-Applied-Cryptography/releases/download/0.1.0/the_hitchhiker_s_guide_to_applied_cryptography_v0.1.0.pdf)
+> 📄 [Download here the PDF (v0.1.0)](https://github.com/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography/releases/download/0.1.0/the_hitchhiker_s_guide_to_applied_cryptography_v0.1.0.pdf)
 
 ## Table of Contents
 - [How This Handbook is Structured](#how-this-handbook-is-structured)
@@ -31,7 +31,7 @@ Each note can be read independently, though references to related notes (denoted
 While a top-down reading of the handbook is possible, readers can **read any one single note** based on their interests or needs
 
 > [!IMPORTANT]  
-> References to external cryptographic services, libraries, or hardware **do not constitute endorsement**, unless explicitly stated.
+> References to cryptographic services, libraries, or hardware **do not constitute endorsement**, unless explicitly stated.
 
 ---
 

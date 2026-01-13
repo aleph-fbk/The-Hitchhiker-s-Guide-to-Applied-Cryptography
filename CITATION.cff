@@ -5,14 +5,14 @@ message: "If you use this handbook, please cite it using the metadata below."
 authors:
   - name: "ALEPH Research Unit, Center for Cybersecurity, Fondazione Bruno Kessler"
 
-version: "0.4"
-date-released: "2025-11-20"
+version: "0.1"
+date-released: "2026-01-13"
 
 # Uncomment when DOI is assigned:
 # doi: "10.xxxx/xxxxx"
 
-url: "https://github.com/aleph-fbk/noac"
-repository-code: "https://github.com/aleph-fbk/noac"
+url: "https://github.com/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography"
+repository-code: "https://github.com/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography"
 
 abstract: >
   A concise, modular handbook collecting and clearly summarizing key concepts,
