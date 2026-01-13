@@ -1,0 +1,16 @@
+\subsection{Authenticated Encryption}\label{sec:symmetric_cryptography:ae}
+
+By itself, symmetric encryption provides confidentiality only. Differently, \gls{ae} combines symmetric encryption with \glspl{mac} to provide integrity and message authenticity (recall that sender authenticity requires asymmetric cryptography instead --- see \Cref{sec:asymmetric_cryptography}). There exist three main composition approaches for symmetric encryption and \glspl{mac} \cite{goos_authenticated_2000}:
+
+\begin{itemize}
+	\item \textbf{Encrypt-then-\gls{mac}}: provides integrity at the ciphertext level. The \gls{mac} --- being computed over the ciphertext --- does not leak any information on the plaintext. Hence, this is the most ideal composition approach;
+	\warningBlock{Use different keys for encryption and \glspl{mac}}{Distinct and independent symmetric keys should be used for the encryption of the plaintext and for the derivation of the (keyed) \gls{mac}. Otherwise, an attacker might manipulate ciphertext bits in a way that causes predictable changes in the \gls{mac}, potentially leaking information or allowing forgery.}
+	\item \textbf{\gls{mac}-then-Encrypt}: provides integrity at the plaintext level (not at the ciphertext level). Therefore, one needs to decrypt the ciphertext to check whether it was tampered with. The \gls{mac} --- being encrypted --- does not leak any information on the plaintext;
+	\item \textbf{Encrypt-and-\gls{mac}}: provides integrity at the plaintext level (not at the ciphertext level). Therefore, one needs to decrypt the ciphertext to check whether it was tampered with. Also, this composition approach may suffer from \glspl{cca} (\Cref{sec:security_of_cryptographic_algorithms}) on the symmetric encryption algorithm. Finally, the \gls{mac} may leak information on the plaintext --- if not computed by adding further information, e.g., nonces or counters.
+\end{itemize}
+
+\subsubsection{Authenticated Encryption with Associated Data}\label{sec:symmetric_cryptography:ae:aead}
+
+\textbf{\gls{aead}} is a specific instance of \gls{ae} that allows adding \textbf{associated data} --- that is, additional non-confidential information --- to the ciphertext. Associated data is not encrypted, but their integrity is guaranteed by the \gls{mac} (usually, \gls{aead} follows the encrypt-then-\gls{mac} composition approach). The associated data may be used for several reasons, e.g., to add contextual information (e.g., version numbers, nonces) and protect against replay attacks. In other words, an \gls{aead} encryption algorithm receives as input a plaintext, a symmetric key, and the associated data, and outputs a ciphertext and a \gls{mac}. Similarly, an \gls{aead} decryption algorithm receives as input a ciphertext, a symmetric key, a \gls{mac}, and the associated data, and outputs a plaintext (or an error if the \gls{mac} is not verified).
+
+\remarkBlock{Recommended approach to symmetric cryptography}{The use of \gls{aead} is generally recommended over the use of \gls{ae}, which in turn is (highly) recommended over custom non-vetted combinations of simple symmetric encryption and \glspl{mac}.}

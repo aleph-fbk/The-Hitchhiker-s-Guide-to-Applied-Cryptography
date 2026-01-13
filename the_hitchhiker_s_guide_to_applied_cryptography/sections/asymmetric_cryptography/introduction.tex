@@ -1,0 +1,12 @@
+\textbf{Asymmetric cryptography} uses different keys as input to related cryptographic algorithms; usually, asymmetric cryptography involves the use of public-private key pairs --- hence, it is often referred to as \textbf{\gls{pkc}}. Asymmetric cryptography may be used for:
+
+\begin{itemize}
+	\item data encryption (\Cref{sec:asymmetric_cryptography:ciphers}). Typically, public keys are used to encrypt data, while private keys are used to decrypt data;
+	\warningBlock{Do not use asymmetric cryptography for direct data encryption}{There are many reasons why using asymmetric cryptography for direct data encryption is a bad idea (and, in fact, is almost never used in this way). The main reasons are that asymmetric cryptography is generally orders of magnitude (computationally) slower than symmetric cryptography (\Cref{sec:symmetric_cryptography}), can directly encrypt small messages only, and the concatenation of multiple blocks of ciphertexts may entail subtle security concerns. Therefore, asymmetric cryptography is commonly used for establishing symmetric keys (see below).}
+	\item establish symmetric keys between two or more parties over an insecure communication channel (\textbf{key establishment}) through either \gls{dh} (\Cref{sec:diffie_hellman}) or \glspl{kem} (\Cref{sec:key_encapsulation_mechanisms});
+	\item \textbf{digital signatures} (\Cref{sec:digital_signatures}). Typically, private keys are used to create digital signatures, while public keys are used to verify digital signatures.
+\end{itemize}
+
+Asymmetric cryptography can provide confidentiality, integrity (e.g., with digital signatures), sender authenticity (when key pairs used for creating digital signatures are bonded to parties with digital certificates --- see \Cref{sec:binding_keys_to_parties} --- or key pairs are inherently bonded to parties --- see \Cref{sec:identity_based_cryptography,sec:advanced_cryptography:attribute_based_encryption,sec:asymmetric_cryptography:certificateless}) and non-repudiation (\Cref{sec:security_properties}). 
+
+%Advanced applications of asymmetric cryptography are discussed in \Cref{sec:advanced_cryptography}.

@@ -1,0 +1,68 @@
+\subsection{Groups}\label{sec:mathematical_underpinnings:groups}
+
+A group is a pair $(G, \bigcdot)$, where $G$ is a non-empty set while $\bigcdot$ is a binary operation --- that is, a function that takes 2 inputs and returns one output --- that satisfies the following properties:
+
+\begin{itemize}
+	\item \textbf{closure}: the output of the operation $\bigcdot$ is still an element of the set $G$. Formally, for every $x, y \in G$, $\bigcdot(x, y) \in G$. Note that $\bigcdot(x, y)$ is often written as $(x \bigcdot y)$ for simplicity;
+	\item \textbf{associativity}: the order in which multiple occurrences of the operation $\bigcdot$ are applied is irrelevant. Formally, for every $x, y, z \in G$, $(x \bigcdot y) \bigcdot z = x \bigcdot (y \bigcdot z)$ --- in other words, rearranging the parentheses does not change the output;
+	\item \textbf{identity element}: there exists an element $e$ in the set $G$ which, when used as input to the operation $\bigcdot$, always make the operation $\bigcdot$ return the other input as output. Formally, $\exists e \in G : e \bigcdot x = x \bigcdot e = x \forall x \in G$;
+	\item \textbf{inverse element}: for each element used as input to the operation $\bigcdot$, there exists another element that always make the operation $\bigcdot$ return the identity element $e$. Formally, $\exists x^{-1} \in G : x \bigcdot x^{-1} = x^{-1} \bigcdot x = e \forall x \in G$.
+\end{itemize}
+
+Although a group is formally defined as \textbf{the pair} $(G, \bigcdot)$, it is common to abuse notation by using the symbol $G$ to denote the whole group.
+
+\exampleBlock{An example of a group}{The set of integers $\mathbb{Z}$ together with the addition operation $+$ is a group. In fact, any sum between two integers produces an integer as well (closure), parentheses do not matter (associativity), the identity element exists and it is 0, and the inverse element of any integer $a$ is $-a$ (e.g., the inverse of 5 is -5).}
+
+\remarkBlock{Abelian groups}{A group $(G, \bigcdot)$ is called abelian (or commutative) if, besides being a group, the order in which two inputs are provided to the operation $\bigcdot$ is irrelevant. Formally, $x \bigcdot y = y \bigcdot x \forall x, y \in G$.}
+
+In cryptography, groups are often used with moduli to limit the number of elements in the groups themselves. The number of elements in a finite group --- that is, a group with finitely many elements --- is called the group's \textbf{order}, and usually (but not necessarily) coincides with the modulus of the group; note that prime numbers are usually chosen as moduli (in which case, we talk about \textbf{finite prime group}). For instance, the notation $\mathbb{N}\textsubscript{13}$ defines the set of natural numbers $\{0, 1, 2, \cdots, 12\}$, where both the modulus and the group order are equal to 13. Conversely, the notation $\mathbb{N}\textsuperscript{*}\textsubscript{13}$ (where ``$\textsuperscript{*}$'' means to remove the number 0) has modulus $13$ but group order $12$ --- since 0 is not included. Note that there are several notations for defining finite groups, depending on the field (e.g., pure math, number theory, computer science) and the level of formality, as shown in \Cref{table:finite_groups_notation}.
+
+\begin{table}[!b]
+	\centering
+	\small
+	\rowcolors{0}{white}{cloud}
+	\setlength{\tabcolsep}{3pt}
+	\def\arraystretch{1.075}
+	\caption{Common mathematical notations for finite groups}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{c|YY}
+		
+		\toprule
+		
+		\textbf{notation} &
+		\multicolumn{1}{c}{\textbf{meaning}} &
+		\multicolumn{1}{c}{\textbf{notes}} \\
+		
+		\hline
+		
+		$\mathbb{Z}_p$ &
+		integers modulo $p$ &
+		common in group theory/discrete math \\
+		
+		$\mathbb{Z}/p\mathbb{Z}$ &
+		quotient group of integers by $p\mathbb{Z}$ &
+		most standard in algebra/number theory \\
+		
+		$\mathbb{Z}_{/p}$ &
+		similar to $\mathbb{Z}/p\mathbb{Z}$ &
+		less common \\
+		
+		$\mathbb{Z}_p^{\times}$ &
+		multiplicative group of integers mod $p$ &
+		identifies the group ($\mathbb{Z}_p, \times$) \\
+		
+		$\mathbb{Z}_p^+$ &
+		additive group of integers mod $p$ & 
+		identifies the group ($\mathbb{Z}_p, +$) \\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\label{table:finite_groups_notation}
+\end{table}
+
+\remarkBlock{Cyclic finite prime groups}{A finite prime group $(G, \bigcdot)$ of order $p$ is cyclic if, besides being a finite prime group, there exists an element $g \in G$ that can be used to generate the whole set $G$ by repeatedly applying the operation $\bigcdot$ to the element $g$ --- or, equivalently, so that every element $x \in G$ can be written as $x = g \bigcdot y$ for some $y \in G$. Formally, $\exists g \in G : \{ g \cdot 1, g \cdot 2, \ldots, g \cdot (p-1) \} \equiv G$. The element $g$ may be called \textbf{generator}, \textbf{base point} (for elliptic curves), \textbf{primitive element}, or \textbf{primitive root}.}
+
+\exampleBlock{An example of an abelian cyclic finite prime group}{The group ($\mathbb{Z}\textsubscript{5}, +$) is an abelian cyclic finite prime group with generator $1$. In fact, $\mathbb{Z}\textsubscript{5} = \{0, 1, 2, 3, 4\} = \{(1+1+1+1+1), (1), (1+1), (1+1+1), (1+1+1+1)\}$ --- in fact, $0 \ \xrightarrow{+1} \ 1 \ \xrightarrow{+1} \ 2 \ \xrightarrow{+1} \ 3 \ \xrightarrow{+1} \ 4 \ \xrightarrow{+1} \ 0$. Also $3$ is a generator of $\mathbb{Z}\textsubscript{5} = \{(3+3+3+3+3), (3+3), (3+3+3+3), (3), (3+3+3)\}$ --- in fact, $0 \ \xrightarrow{+3} \ 3 \ \xrightarrow{+3} \ 1 \ \xrightarrow{+3} \ 4 \ \xrightarrow{+3} \ 2 \ \xrightarrow{+3} \ 0$. Finally, $0$, $2$, and $4$ are not generators of $\mathbb{Z}\textsubscript{5}$.}
+
+The vast majority of groups used in cryptography --- e.g., for the \gls{dl} problem (\Cref{sec:trapdoor_functions:discrete_logarithm}) --- are abelian finite prime cyclic groups. 

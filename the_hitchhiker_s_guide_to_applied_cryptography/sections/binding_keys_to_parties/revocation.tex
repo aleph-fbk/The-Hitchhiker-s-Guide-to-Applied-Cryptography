@@ -1,0 +1,15 @@
+\subsection{Digital Certificates Revocation}\label{sec:binding_keys_to_parties:revocation}
+
+A certificate can be \textbf{revoked in advance}; common motivations include the fact that the private key corresponding to the public key contained in the certificate has been compromised (or it is deemed so) and the party to which the key pair is binded has misbehaved or has left the system. Common revocation procedures are:
+
+\begin{itemize}
+	\item (root) \glspl{ca} make available and periodically update \textbf{\glspl{crl}} --- that is, lists of (the serial numbers of) revoked certificates --- that can be downloaded by parties and checked locally. This procedure is simple and widely used in \glspl{pki} but also in \gls{wot}. Rather than publishing a full \gls{crl}, \glspl{ca} may also publish \textbf{delta \glspl{crl}} (``delta'' in the sense of ``difference'') which contain incremental changes with respect to a full \gls{crl};
+	\item parties make available \textbf{\glspl{drl}} across multiple servers to improve efficiency and availability. This procedure is usually employed in \gls{wot};
+	\item the \textbf{\gls{ocsp}} \cite{rfc6960}, in which parties can send the serial number of a certificate to an \gls{ocsp} responder (usually run by a root \gls{ca}) which returns a signed answer stating whether the certificate has been revoked in real time. The owner of a certificate may even send the answer of an \gls{ocsp} responder along the certificate itself --- a practice called \textbf{OCSP Stapling} --- so that parties do not have to query the \gls{ocsp} responder; of course, the stapled \gls{ocsp} responder's answer may be valid for a short period only;
+	\item the \textbf{\gls{scvp}} \cite{rfc5055}, in which parties offload the entire validation of a certificate (including the revocation checking) to an \gls{scvp} server;
+	\item \glspl{ca} issue short-lived certificates with very brief validity (e.g., hours or days), thus eliminating the need for revocation in most cases (although incurring in a frequent re-issuance overhead).
+\end{itemize}
+
+Intuitively, each procedure presents a trade-off between efficiency, scalability, privacy (e.g., \gls{ocsp} may leak which websites a party is visiting), and security (e.g., \gls{crl} has low bandwidth consumption but local \glspl{crl} may not always be synchronized, while \gls{ocsp} requires high bandwidth but is always up to date). In any case, as for the key revocation phase in the key management lifecycle (\Cref{sec:key_management:lifecycle:post}), the information that a certificate has been revoked should include at least the identifier of the certificate, the timestamp, and the motivation for the revocation; the latter is particularly useful to allow other parties to determine how to behave toward the revoked certificate. Finally, in case it is not possible to check whether a certificate has been revoked, the best practice is to consider it revoked (or at least require user intervention).
+
+\remarkBlock{Revocation in cryptography}{The above content strictly concerns revocation of digital certificates only; revocation in cryptography is a much larger and multifaceted topic.}

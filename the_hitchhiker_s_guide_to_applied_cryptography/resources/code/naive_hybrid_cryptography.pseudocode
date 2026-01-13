@@ -1,0 +1,9 @@
+ # Sender
+ var sym_key = sym.generate_sym_key()
+ var encrypted_sym_key = asym.encrypt(sym_key, recipient_pub_key)
+ var ciphertext = sym.encrypt(plaintext, sym_key)
+ return (ciphertext, encrypted_sym_key)
+
+ # Recipient
+ var sym_key = asym.decrypt(encrypted_sym_key, recipient_pri_key)
+ var plaintext = sym.decrypt(ciphertext, sym_key)

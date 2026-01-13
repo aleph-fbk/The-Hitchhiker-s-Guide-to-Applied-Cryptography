@@ -1,0 +1,5 @@
+\textbf{Hybrid cryptography} refers to the combined use of distinct asymmetric and symmetric ciphers in a single application or context. Usually, hybrid cryptography is used for the encryption of data either at rest or in transit over an insecure communication channel. Consequently, hybrid cryptography is also called \textit{hybrid encryption}.
+
+At a high level, hybrid cryptography uses asymmetric ciphers to establish symmetric keys (\Cref{sec:key_management:lifecycle:pre} for a definition of key establishment), which are then used as input to symmetric ciphers for data encryption --- thus, symmetric keys are \glspl{dek} (\Cref{sec:cryptography_basics:keys}), although asymmetric keys are not necessarily \gls{kek}.
+
+\remarkBlock{\gls{dh} and \glspl{kem}}{\gls{dh} and standalone \glspl{kem} are not considered hybrid cryptography themselves, rather they are essential building blocks in hybrid cryptography constructions.}

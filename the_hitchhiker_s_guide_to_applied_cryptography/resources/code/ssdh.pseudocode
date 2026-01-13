@@ -1,0 +1,15 @@
+ # Sender
+ function adh_sender(sender_pri_key, recipient_pub_key, context):
+
+   # The use long-term keys provides authenticity
+   var sss = dh(sender_pri_key, recipient_pub_key)
+
+   # it is a best practice to inject contextual information
+   var sym_key = kdf.derive_key(sss || context)
+   return (sym_key)
+
+ # Recipient
+ function adh_recipient(sender_pub_key, recipient_pri_key, context):
+   var sss = dh(recipient_pri_key, sender_pub_key)
+   var sym_key = kdf.derive_key(sss || context)
+   return sym_key

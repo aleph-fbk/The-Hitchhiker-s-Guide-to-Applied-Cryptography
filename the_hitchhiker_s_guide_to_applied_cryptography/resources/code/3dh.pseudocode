@@ -1,0 +1,8 @@
+ # From the sender's point of view
+ function 3dh(sender_pri_key, sender_pub_key, recipient_pub_key, recipient_eph_pub_key):
+   var (sender_eph_pri_key, sender_eph_pub_key) = asym.generate_key_pair()
+   var ees = dh(sender_eph_pri_key, recipient_eph_pub_key)
+   var ses = dh(sender_pri_key, recipient_eph_pub_key)
+   var ess = dh(sender_eph_pri_key, recipient_pub_key)
+   var sym_key = kdf.derive_key(ees || ses || ess || sender_pub_key || sender_eph_pub_key || recipient_pub_key || recipient_eph_pub_key)
+   return sym_key

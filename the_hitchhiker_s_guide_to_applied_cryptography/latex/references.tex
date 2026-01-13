@@ -1,0 +1,20 @@
+\setlength{\bibsep}{2pt plus 0.3ex} % vertical space between items
+\setlength{\bibhang}{0.5em}         % hanging indent (natbib provides this)
+\newgeometry{left=18mm, right=18mm, top=30mm, bottom=30mm} 
+
+\section{References}
+%\vspace{7cm}
+
+\begin{multicols}{2}[\vspace*{7cm}]
+	\begingroup
+	\footnotesize
+	\renewcommand{\bibsection}{}% prevent natbib from adding a heading in col 1
+	\bibliographystyle{plain}
+	\bibliography{references}
+	\endgroup
+\end{multicols}
+
+\newgeometry{left=29mm, right=29mm, top=30mm, bottom=30mm}
+
+\vspace{-1.5mm}
+\newpage

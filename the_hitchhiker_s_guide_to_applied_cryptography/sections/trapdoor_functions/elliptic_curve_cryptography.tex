@@ -1,0 +1,63 @@
+\subsection{Elliptic Curve Cryptography}\label{sec:trapdoor_functions:elliptic_curve_cryptography}
+
+\textbf{\gls{ecc}} refers to asymmetric ciphers (such as ElGamal or \gls{dsa} --- see \Cref{sec:asymmetric_cryptography:ciphers:elgamal,sec:digital_signatures:ciphers:ecdsa}, respectively) using groups based on elliptic curves as the foundation for the \gls{dl} problem \cite{koblitz_elliptic_1987,williams_use_1986}. Hence, \gls{ecc} is not itself an asymmetric cipher, but rather the umbrella term for any cipher employing elliptic curves.
+
+\remarkBlock{Groups based on elliptic curves vs. integers}{Asymmetric ciphers based on elliptic curves (are believed to) guarantee the same level of security with respect to when the same ciphers use groups based on integers \textbf{while having smaller keys} (usually, one order of magnitude). Having smaller keys is relevant, as it implies lower memory and computational requirements. Thus, \gls{ecc} is more suitable for use in resource-constrained environments such as smart cards (\Cref{sec:cryptographic_modules}) --- i.e., without dedicated mathematical co-processors or having limited energy available.}
+
+The trapdoor function in \gls{ecc} is built upon the point addition operation over an elliptic curve $E(K)$ (\Cref{sec:mathematical_underpinnings:elliptic_curves}), where the ``easy part'' is computing point addition operations --- more precisely, summing a point $G$ of the elliptic curve to itself a certain number of times $d$ (where $d$ is between 1 and the group order of $E(K)$) to obtain another point $Q$ --- while the ``hard part'' is inverting them --- more precisely, understand how many times point addition was applied to $G$ to obtain $Q$. More formally, the underlying intuition is the same as of the \gls{dl} problem: given a cyclic group $(E(K), +)$ with a generator $G$ and a point $Q \in E(K)$, is it (believed to be) hard to find the unique integer $d$ such that $G \times d = Q$ --- where $G \times d$ is the $d$-times addition of the point $G$ to itself; computing $G \times d$ is easy, but recovering $d$ from $Q$ --- which is called the \gls{ecdlp}, as it consists in finding $d$ given $Q$ and $G$ --- is hard. Consequently, in \gls{ecc} the pair $(G, Q)$ is usually the public key, while the integer $d$ is usually the private key.
+
+\remarkBlock{Why recovering $d$ is hard}{One may wonder why computing $G \times d = Q$ is easy but computing point addition operations to $G$ repeatedly until obtaining $Q$ as output is hard. Apparently, both computations are the same, as they consist in carrying out point addition operations. However, it is possible to efficiently compute $G \times d$ using the standard ``double-and-add'' algorithm with complexity $O(\log d)$, while finding $d$ given $Q$ requires trying every possible repeated summation of $G$ to itself. As an example, if $d = 34$, then one who knows $d$ can compute $2G = G + G$, $4G = 2G + 2G$, $8G = 4G + 4G$, $16G = 8G + 8G$, $32G = 16G + 16G$, and finally $Q = 34G = 32G + 2G$ (for a total of 6 operations), while one who does not know $d$ would need to compute 33 operations (i.e., $G + G$, $2G + G$, $3G + G$, $\ldots$, $33G + G$). With large $d$, trying every possible repeated summation of $G$ is simply computationally unfeasible.}
+
+\gls{ecc} is used for the same ciphers as the \gls{dl} problem based on integers (\Cref{sec:trapdoor_functions:discrete_logarithm}), that is:
+\begin{itemize}
+	\item the \gls{ecdh} key agreement protocol (\Cref{sec:diffie_hellman});
+	\item the ElGamal cipher for both encryption and digital signatures (\Cref{sec:asymmetric_cryptography:ciphers:elgamal});
+	\item the \gls{ecies} for hybrid encryption (\Cref{sec:hybrid_cryptography:ciphers:ies});	
+	\item many ciphers for digital signatures such as \gls{ecdsa}, \gls{eddsa}, Schnorr signatures, and \gls{bls} signatures (\Cref{sec:digital_signatures:ciphers}).
+\end{itemize}
+
+\warningBlock{The \gls{ecdlp} in \gls{ecc} vs. quantum computing}{Quantum computing can solve any \gls{ecdlp} using the Shor's algorithm \cite{shor_algorithms_1994} in polynomial time (that is, efficiently) --- see \Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}.}
+
+\readBlock{More information on \gls{ecc}}{The book ``Guide to elliptic curve cryptography'' \cite{hankerson_guide_2004} is an excellent resource for a deep dive into \gls{ecc}.}
+
+\subsubsection{Bilinear Pairings}\label{sec:trapdoor_functions:elliptic_curve_cryptography:pairings}
+
+A \textbf{bilinear pairing} is a function that takes 2 inputs and returns 1 output. Typically, the 2 inputs are points on elliptic curves, while the output is an element of a finite field (\Cref{sec:mathematical_underpinnings:fields}).
+
+More formally, a bilinear pairing is a function $e: G_1 \bigtimes G_2 \rightarrow G_T$,\footnote{$G_T$ as the $T$ stands for ``target''.} where $G_1$ and $G_2$ are (usually additive subgroups of points on) elliptic curves while $G_T$ is a finite field --- often, a finite non-prime field; in most cases, $G_1 = G_2$. In this context, a bilinear pairing $e$ has the following properties:
+\begin{itemize}
+	\item \textbf{bilinearity}: adding two inputs before the pairing is the same as pairing the inputs separately and then multiplying the results. Also, multiplying one of the inputs by a number before the pairing is the same as raising the result of the pairing to the power of that number. Informally, addition in $G_1$ or $G_2$ turns into multiplication in $G_T$, while multiplication in $G_1$ or $G_2$ turns into exponentiation in $G_T$. More formally, for all $a, b \in \mathbb{Z}$, $P \in G_1$, and $Q \in G_2$, then $e(aP, bQ) = e(P, Q)^{a \times b}$.\footnote{This in the case $G_1$ and $G_2$ are additive groups, as it is usually the case. If $G_1$ and $G_2$ were multiplicative groups, then $e(P^a, Q^b) = e(P, Q)^{a \times b}$.} Expanding this formula into one argument at a time:
+	\begin{itemize}
+		\item $e(P_1 + P_2, Q) = e(P_1, Q) \times e(P_2, Q)$;
+		\item $e(P, Q_1 + Q_2) = e(P, Q_1) \times e(P, Q_2)$;
+		\item $e(aP, Q) = e(P, Q)^a$;
+		\item $e(P, bQ) = e(P, Q)^b$;
+	\end{itemize}
+	
+	\item \textbf{non-degeneracy}: $e$ is not always trivial: given a point $P \in G_1$ so that $P \neq \mathcal{O}_{G_1}$ (the point at infinity for $G_1$), then there exists at least one $Q \in G_2$ such that $e(P, Q) \neq 1_{G_T}$ --- where $1_{G_T}$ is the identity element in $G_T$ --- and vice versa. In other words, non-degeneracy is meant to stop the completely useless case where $e(P, Q) = 1_{G_T}$ for every $Q \in G_2$ when $P \neq \mathcal{O}_{G_1}$; it is enough that some $Q$ gives a non-$1_{G_T}$ result, because that proves $P$ can produce meaningful output. More formally, $\forall P \in G_1 \setminus \{\mathcal{O}_{G_1}\}, \ \exists Q \in G_2 : e(P, Q) \neq 1_{G_T}$, and symmetrically $\forall Q \in G_2 \setminus \{\mathcal{O}_{G_2}\}, \ \exists P \in G_1 : e(P, Q) \neq 1_{G_T}$;
+	
+	\item \textbf{efficient computability}: there exists an algorithm that computes $e(P, Q)$ efficiently for all $P \in G_1, Q \in G_2$.
+\end{itemize}
+
+\curiosityBlock{Why are they called bilinear pairings?}{``Linear'' because scaling inputs (with addition or multiplication) corresponds to scaling the result (with multiplication or exponentiation), ``bi'' because it is linear in both inputs, ``pairing'' because it takes a pair of elements from two groups $G_1$ and $G_2$ and pairs them to produce something in $G_T$.}
+
+Thanks to the aforementioned properties, bilinear pairings are used for advanced cryptosystems such as \gls{ibe}, \gls{abe}, and \glspl{zkp} (\Cref{sec:identity_based_cryptography,sec:advanced_cryptography:attribute_based_encryption,sec:advanced_cryptography:zero_knowledge_proofs}, respectively). In particular, bilinearity allows for comparing results from two different sides of an equation and checking if they match --- all without revealing the secret numbers used.
+
+\exampleBlock{An example to show why bilinearity is important}{Consider a generic pairing $e: G_1 \bigtimes G_2 \rightarrow G_T$, being $P \in G_1$ and $Q \in G_2$ generators for $G_1$ and $G_2$, respectively; $e$, $P$, and $Q$ are public values. Now, assume two parties $A$ and $B$ --- you can think of them as two parties called ``Alice'' ($A$) and ''Bob'' ($B$) --- have two public values $aP$ and $bQ$, while $a$ and $b$ are private numbers known by $A$ and $B$ only, respectively. If $A$ and $B$ want to check whether $a \stackrel{?}= b$ (modulo group order) without revealing either, $A$ can compute and disclose $e(aP, Q)$ --- by bilinearity, this is $e(P, Q)^a$ --- while $B$ can compute and disclose $e(P, bQ)$ --- by bilinearity, this is $e(P, Q)^b$. Hence, $A$ and $B$ can compare the results: $e(aP, Q) \stackrel{?}= e(P, bQ) \iff e(P, Q)^a \stackrel{?}= e(P, Q)^b \iff a \stackrel{?}= b$. At the end, neither $A$ and $B$ learns the other party's private number, but both can verify whether the private numbers are the same (modulo group order). Note that the private numbers $a$ and $b$ may take different meanings depending on the cryptosystem in which they are used. In general, private numbers are private keys, while public values are public keys or known fixed parameters (\Cref{sec:cryptography_basics:keys}).}
+
+\paragraph*{Bilinear Pairings and \glspl{kga}.} Some pairing-based cryptosystems expect a \gls{kga} who knows a main private key used to generate all other parties' private keys --- such as \gls{ibe} and \gls{abe} --- while other pairing-based cryptosystems do not expect a \gls{kga} --- e.g., \gls{bls} cipher and some \glspl{zkp}.
+
+\exampleBlock{Bilinear pairings for digital signatures}{Consider the signer's private key $a$, the corresponding public key $aG$ (where $G$ is a fixed generator), and the hash of the message to be signed mapped to an elliptic curve point $P$. In this context, the signature would be $aP$ and the verification of the signature would amount at checking whether $e(\text{signature}, G) \stackrel{?}= e(P, \text{public key})$, which is equivalent to $e(aP, G) \stackrel{?}= e(P, aG)$ from which follows that $e(P, G)^a = e(P, G)^a$. This is exactly how the \gls{bls} digital signature cipher works (\Cref{sec:digital_signatures:ciphers:bls}).}
+
+\exampleBlock{Bilinear pairings for data encryption}{Consider a \gls{kga} with a main private key $s$ and the corresponding main public key $sP$ (where $P$ is a fixed generator).\footnote{Note that the main private key $s$ and the corresponding main public key $sP$ have no special mathematical properties; many other key pairs $(s', s'P)$ could exist, but only the key pair bound to the designated \gls{kga} should be trusted by parties. In fact, whoever knows $s$ can derive any private key, and whoever relies on $sP$ assumes it was honestly generated from $s$ without compromise.} The public key of a party $A$ with identity $ID =$ ``Alice'' is denoted with $Q_{ID}$ and anyone can compute it by hashing the identity and mapping the digest to an elliptic curve point $Q_{ID} = H(ID) \in G_1$. Differently, $A$'s private key is denoted with $d_{ID}$ and only the \gls{kga} can compute it as $d_{ID} = s \times Q_{ID}$ and communicate it security with $A$. Now, to encrypt a message $m$ so that only $A$ (and the \gls{kga}) can decrypt it, another party $B$ can pick a random $r$ and compute a shared secret $K = e(Q_{ID}, sP)^r$ to derive a symmetric key to encrypt $m$ (\Cref{sec:symmetric_cryptography}). Then, $B$ sends to $A$ both the ciphertext and $U = rP$. Finally, $A$ can compute $K' = e(d_{ID}, rP)$ which equals $e(s Q_{ID}, rP) = e(Q_{ID}, sP)^r$ by bilinearity, so $K' = K$. In other words, both $A$ and $B$ derive the same key without knowing $s$ or revealing $d_{ID}$. This is exactly how the Boneh---Franklin \gls{ibe} cipher works (\Cref{sec:identity_based_cryptography:ciphers:boneh_franklin}).}
+
+\paragraph*{Popular Bilinear Pairings.} Defining a suitable bilinear pairing implemented concretely over elliptic curves is (very) complex. Therefore, as it happens with elliptic curves, there is a list of popular options defined over pairing-friendly elliptic curves (e.g., BLS12-381 --- see \Cref{sec:mathematical_underpinnings:elliptic_curves}):
+\begin{itemize}
+	\item \textbf{Weil pairing}: one of the earliest pairings defined on elliptic curves;
+	\item \textbf{Tate pairing}: faster to compute than Weil, used in practice in many schemes;
+	\item \textbf{Ate pairing}: an optimization of Tate pairing, even faster;
+	\item \textbf{Optimal Ate pairing}: state-of-the-art speed for certain curves;
+	\item \textbf{R-Ate pairing}: another optimized variation.
+\end{itemize}
+
+

@@ -1,0 +1,29 @@
+\subsection{Ciphers for Symmetric Cryptography}\label{sec:symmetric_cryptography:ciphers}
+
+Below, we briefly present a short list of renowned or modern symmetric cryptography ciphers.
+
+\warningBlock{Old or insecure symmetric ciphers}{There exist many symmetric ciphers such as RC4, DES, and 3DES. The use of such ciphers is discouraged. \gls{aes} and ChaCha20 are currently the most secure symmetric ciphers.}
+
+\subsubsection{Advanced Encryption Standard}\label{sec:symmetric_cryptography:ciphers:aes}
+
+\gls{aes} is a symmetric block cipher, hence typically used within a mode of operation (\Cref{sec:cryptography_basics:ciphers}): for \gls{aead}, \gls{aes} is typically used with \gls{gcm} or \gls{ccm}. The block size of \gls{aes} is always 128 bits, while there are 3 available key lengths: 128, 192, or 256 bits. The size of the \gls{iv} depends on the mode of operation and it is 96 bits for \gls{gcm} and \gls{ccm}. As a final remark, the security of \gls{aes} is not threatened by quantum (\Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}).
+
+\curiosityBlock{What is the difference between \gls{aes} and Rijndael?}{\gls{aes} is sometimes called \textbf{Rijndael}. However, Rijndael is the name of a family of symmetric block ciphers created by Belgian cryptographers Joan Daemen and Vincent Rijmen which supports 5 block size and key length options (128, 160, 192, 224, 256 bits) and was submitted to the \gls{aes} competition of \gls{nist} in 1998. Conversely, \gls{aes} --- besides the name of the competition --- is the name of the 128-bit‐block variant of Rijndael standardized by \gls{nist} \cite{nist_advanced_2023}. In other words, Rijndael indicates the whole family of ciphers, while \gls{aes} indicates a selected subset of Rijndael's ciphers.}
+
+\subsubsection{ChaCha20}\label{sec:symmetric_cryptography:ciphers:chacha20}
+
+ChaCha20 is a symmetric stream cipher (\Cref{sec:cryptography_basics:ciphers}) with a 96-bit \gls{iv} and key length fixed to 256 bits. ChaCha20 is usually used with the Poly1305 hash function (\Cref{sec:hash_functions}) for \gls{aead} \cite{rfc8439}.
+
+\curiosityBlock{The history of ChaCha20}{In 2005, a symmetric cipher named \textbf{Salsa20} was proposed by Daniel J. Bernstein \cite{bernstein_salsa20_2005} with 64-bit \gls{iv} and 64-bit counter.\footnote{Salsa20 produces keystreams in fixed-size blocks of 512 bits. The counter is an integer that increments by 1 for each 512-bit keystream block generated under the same pair of symmetric key and \gls{iv}. Hence, the counter guarantees that within a single encryption operation, every keystream block uses a distinct input to the cipher and prevents two blocks in the same message from producing the same keystream.} A more secure variant of Salsa20 called \textbf{ChaCha20} was proposed by the same Bernstein in 2008 \cite{bernstein_chacha20_2008} --- again with 64-bit \gls{iv} and 64-bit counter. In the same year, Bernstein proposed a variant of Salsa20 called \textbf{XSalsa20} --- where the ``X'' stands for ``extended'', as XSalsa20 extends the length of the \gls{iv} from 64 to 192 bits \cite{bernstein_xsalsa_2008}. In 2015, a reference implementation of ChaCha20 was published by the \gls{ietf} \cite{rfc7539} which, however, changed the 64-bit \gls{iv} and 64-bit counter to a 96-bit \gls{iv} and 32-bit counter (the change is cryptographically irrelevant except for a reduction of the maximum message length that can be encrypted securely to 256 GB). Finally, in 2020 Scott Arciszewski proposed \textbf{XChaCha20} \cite{arciszewski_xchacha_2020}, an extension of the \gls{ietf} version of ChaCha20 with an extended \gls{iv} of 192 bits but still a 32-bit counter.}
+
+\paragraph*{AES vs. ChaCha20.} \gls{aes} and ChaCha20 have similarities and differences:
+\begin{itemize}
+	\item they both support \textbf{\gls{aead}};
+	\item they are both used in \textbf{\gls{tls} v1.3} \cite{rfc8446} (\Cref{sec:popular_protocols:tls}). However, \gls{aes} is also recommended by \gls{nist} \cite{barker_recommendation_2020_p1}, while \textbf{ChaCha20 is not};
+	\item \gls{aes} is faster than ChaCha20 on devices equipped with \textbf{hardware acceleration for \gls{aes}} (e.g., AES-NI\footnote{Intel Advanced Encryption Standard Instructions (AES-NI) (\url{https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html})} or similar) such as modern desktops and servers. However, it has been established that \textbf{ChaCha20 outperforms \gls{aes} in software-only implementations (around 3× faster)}, as it is possible to infer from recent benchmarks \cite{heiko_benchmarking_2024}.\footnote{Do the ChaCha: better mobile performance with cryptography (\url{https://blog.cloudflare.com/do-the-chacha-better-mobile-performance-with-cryptography/})} Consequently, \gls{aes} is usually preferred in modern desktops and servers, while ChaCha20 is usually preferred in mobile devices equipped with ARM-based CPUs \cite{rfc8439};
+	\item many \gls{aes} implementations (especially those software-only) are vulnerable to \textbf{side-channel attacks} based on timing (\Cref{sec:security_of_cryptographic_algorithms}), while ChaCha20 is not.
+\end{itemize}
+
+Ultimately, the choice of which symmetric cipher to use depends on the context.
+
+\warningBlock{Committing vs. non-committing \gls{aead}}{\gls{aead} outputs a ciphertext $c$ and an authentication tag $t$ by encrypting a plaintext $m$ with a key $k$, nonce $n$, and associated data $a$. However, \textbf{basic \gls{aead} may not necessarily guarantee commitment of ($c$, $t$) to ($k$, $n$, $a$, $m$)}. In other words, decrypting $c$ with different key, nonce, or associated data may still work, hence $c$ may decrypt into a different (but still valid) $m' \neq m$ \cite{chan_committing_2022}. Therefore, be sure to always use committing \gls{aead}.}

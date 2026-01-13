@@ -1,0 +1,32 @@
+\usepackage{xspace}	% for the symbols below
+\newcommand{\mb}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\mi}[1]{\ensuremath{\mathit{#1}}}
+
+%\newcommand{\readp}{\ensuremath{\mathsf{Read}}\xspace}
+
+%\newcommand{\Z}{\mathbb{Z}}
+
+%\newcommand{\MacGen}{\ensuremath{\mb{Gen}^\mb{MAC}}\xspace}
+
+%\newcommand{\pseudonym}{\ensuremath{\mi{p}}\xspace}
+
+\newcommand{\cmark}{\textcolor{darkspringgreen}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{alazarin}{\ding{55}}}
+
+\newcommand{\Plaintexts}{\ensuremath{\mathcal{P}}}
+\newcommand{\Ciphertexts}{\ensuremath{\mathcal{C}}}
+\newcommand{\Keys}{\ensuremath{\mathcal{K}}}
+
+\newcommand{\sbnote} [1]{{\small{\bf{\textcolor{black}{$\blacktriangleright$} \textcolor{black}{\fbox{Stefano B.}} \textcolor{alazarin}{\em{#1}}\textcolor{black}{$\blacktriangleleft$}}}}}
+
+
+\newcommand*\emptycirc[1][0.8ex]{\tikz\draw (0,0) circle (#1);} 
+\newcommand*\halfcirc[1][0.8ex]{%
+	\begin{tikzpicture}
+	\draw[fill] (0,0)-- (90:#1) arc (90:270:#1) -- cycle ;
+	\draw (0,0) circle (#1);
+	\end{tikzpicture}}
+\newcommand*\fullcirc[1][0.8ex]{\tikz\fill (0,0) circle (#1);} 
+
+
+\setcounter{secnumdepth}{4}

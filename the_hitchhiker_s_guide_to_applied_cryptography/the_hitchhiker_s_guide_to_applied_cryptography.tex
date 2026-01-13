@@ -1,0 +1,66 @@
+\pdfminorversion=7
+\documentclass[12pt,hidelinks]{article}
+
+\input{latex/packages}
+\input{latex/colors}
+\input{latex/commands}
+\input{latex/geometry}
+\input{latex/acronyms}
+\input{latex/symbols}
+\input{latex/listings}
+
+\begin{document}
+
+	\input{sections/introduction/include}
+	
+	\notes{NOTATION AND PRELIMINARIES}{~}{last revision: 20 Nov 2025}
+	\input{sections/cryptography_basics/include}
+	\input{sections/mathematical_underpinnings/include}
+	\input{sections/trapdoor_functions/include}
+	\input{sections/security_properties/include}
+	
+	\notes{HASH FUNCTIONS}{~}{last revision: 20 Nov 2025}
+	\input{sections/hash_functions/include}
+	
+	\notes{SYMMETRIC CRYPTOGRAPHY}{~}{last revision: 20 Nov 2025}
+	\input{sections/symmetric_cryptography/include}
+	
+	\notes{ASYMMETRIC CRYPTOGRAPHY}{~}{last revision: 20 Nov 2025}
+	\input{sections/asymmetric_cryptography/include}
+	\input{sections/digital_signatures/include}
+	\input{sections/diffie_hellman/include}
+	\input{sections/key_encapsulation_mechanisms/include}
+
+	\notes{HYBRID CRYPTOGRAPHY}{~}{last revision: 20 Nov 2025}
+	\input{sections/hybrid_cryptography/include}
+	
+	\notes{PRAGMATIC ASPECTS}{~}{last revision: 20 Nov 2025}
+	\input{sections/cryptographic_modules/include}
+	\input{sections/key_management/include}
+	\input{sections/binding_keys_to_parties/include}
+	\input{sections/standards_and_certifications/include}
+	
+	\notes{SECURITY}{~}{last revision: 20 Nov 2025}
+	\input{sections/cryptographic_security_overview/include}
+	\input{sections/cryptographic_algorithms_security/include}
+	\input{sections/programming_languages_and_software/include}														
+	\input{sections/cryptographic_protocols_security/include}
+	
+	\begin{notocblock}
+	\notes{FUTURE CONTENT}{~}{last revision: 20 Nov 2025}
+	\input{sections/future_content/include}	
+	\end{notocblock}
+
+
+
+	% TODO
+	\input{sections/TODO}
+
+
+	
+	\input{latex/references}
+
+	\appendix
+	\input{sections/appendix/include}
+	
+\end{document}

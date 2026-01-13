@@ -1,0 +1,66 @@
+A hash function is a function that takes an input of arbitrary length, applies a series of bitwise operations and compression techniques, and returns as output an array of bytes called \textbf{hash} or \textbf{digest} of (usually) fixed size\footnote{Some hash functions --- such as Skein and Keccak/SHA-3 --- may be configured to return outputs of variable length. However, the use of digests of variable size is uncommon}. Hash functions have several uses in computer science (e.g., indexing, error checking) as well as in cryptography (\Cref{sec:hash_functions:cryptographic_hash_function}); in fact, there exist several hash functions designed to meet the requirements of different use cases. Anyway, well-designed hash functions satisfy the following 4 basic properties:
+
+\begin{itemize}
+	\item \textbf{efficiency}: hash functions execute quickly even for large inputs;
+	\warningBlock{There exist inefficient functions resembling hash functions}{\glspl{pbkdf} are very similar to hash functions --- some \glspl{pbkdf} are even built upon hash functions --- but, conversely, \glspl{pbkdf} are designed to require a (often tunable) computational effort to thwart brute force attacks and make them time-consuming and resource-intensive; see \Cref{sec:key_management:lifecycle:pre} for more details on \glspl{pbkdf}.}
+	\item \textbf{uniformity}: digests are or appear to be uniformly distributed within the possible output space. Uniformity is essential to reduce the likelihood of \textit{collisions} --- that is, returning the same digest for two different inputs;
+	\exampleBlock{A real-world analogy for uniformity}{Uniformity is like rolling a fair dice: each face of the dice has equal probability of landing face up.}
+	\item \textbf{determinism}: a given input always produces the same digest;
+	\exampleBlock{A real-world analogy for determinism}{Determinism is like ordering a specific item from a vending machine. The machine should always dispense the same product when pressing the same button.}
+	\item \textbf{avalanche effect}: a tiny change in the input results in a drastically different output. Also, similar inputs should not yield similar digests.
+	\exampleBlock{A real-world analogy for the avalanche effect}{The avalanche effect is like the butterfly effect in urban traffic: a small event, like one car braking slightly on a highway, can cause a chain reaction of slowdowns and traffic congestion kilometers away.}
+\end{itemize}
+
+Hash functions can be used for, e.g., indexing in hash tables, implementing bloom filters, error checking via checksums, and content-defined chunking. We report commonly used hash functions in \Cref{table:common_hash_functions}. However, note that these hash functions should not be used in presence of attackers or malicious users. In fact, when additional security guarantees are needed, \textbf{\glspl{chf}} --- also called \textit{Strong Hash Functions} --- should be used instead (\Cref{sec:hash_functions:cryptographic_hash_function}).
+
+\begin{table}[!b]
+	\centering
+	\small
+	\rowcolors{0}{white}{cloud}
+	\setlength{\tabcolsep}{2pt}
+	\def\arraystretch{1.075}
+	\caption{Common hash functions (\ul{not to be used in cryptographic contexts})}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{c|YYY}
+		
+		\toprule
+		
+		\textbf{hash function} &
+		\multicolumn{1}{c}{\textbf{strengths}} &
+		\multicolumn{1}{c}{\textbf{weaknesses}} &
+		\multicolumn{1}{c}{\textbf{use cases}} \\
+		
+		\hline
+		
+		\multirow{1}{*}{DJB2} &
+		simple &
+		high collision rate &
+		basic hashing \\
+		
+		\multirow{1}{*}{MurmurHash} &
+		fast, good uniformity &
+		hash flooding attacks &
+		database indexing \\
+		
+		\multirow{1}{*}{CRC32} &
+		fast &
+		high collision rate &
+		error-checking, integrity \\
+		
+		\multirow{1}{*}{FNV Hash} &
+		simple, good uniformity &
+		high collision rate &
+		quick hashing \\
+		
+		\multirow{1}{*}{CityHash} &
+		fast, good uniformity &
+		complex &
+		large inputs \\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\label{table:common_hash_functions}
+\end{table}
+
+\curiosityBlock{Why are they called \textit{hash} functions}{The word \textit{hash} comes by way of analogy with its old culinary sense --- that is, to ``chop and mix''. In fact, hash functions ``chop and mix'' the input to produce a digest that bears no obvious resemblance to the input.}

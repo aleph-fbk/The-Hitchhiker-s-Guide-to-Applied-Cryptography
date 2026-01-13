@@ -1,0 +1,99 @@
+\textbf{\gls{dh}} is an instance of key agreement protocol (\Cref{sec:key_management:lifecycle:pre}) which relies on the hardness of the \gls{dl} problem (\Cref{sec:trapdoor_functions:discrete_logarithm}). Two parties, each having a key pair, can use \gls{dh} to derive a common shared secret sequence of bytes (often just called \textbf{shared secret}) over an insecure channel without having to directly exchange (parts of) the shared secret. The shared secret is then fed --- combined with other inputs --- to a \gls{kdf} (\Cref{sec:key_management:lifecycle:pre}) to derive a shared symmetric key (\Cref{sec:symmetric_cryptography}). Being based on the \gls{dl} problem, \gls{dh} involves a multiplicative cyclic group (either based on integers or elliptic curves --- see \Cref{sec:mathematical_underpinnings:elliptic_curves}), a prime modulus $p$, and a generator $g$. The size of the modulus $p$ in bits may vary and is usually one between 2048 and 3072 for integers and 256 or 384 for elliptic curves. A public \gls{dh} key is a value $h = g \bigcdot x$ --- where the operation $\bigcdot$ may be either exponentiation or point addition depending on whether the group is based on integers or elliptic curves, respectively --- while a private \gls{dh} key is the value $x$ (which belongs to the group).
+
+\readBlock{More information on key establishment based on \gls{dl}}{\gls{nist} published a thorough overview and considerations on the recommended use of the \gls{dl} problem for key establishment in \cite{barker_recommendation_2018}.}
+
+The key pairs used by the parties can be either ephemeral or static, resulting in 4 basic modes for \gls{dh} (\Cref{table:dh}):
+
+\begin{itemize}
+	\item \textbf{static-static} --- that is, both parties use long-term keys associated with their identity, e.g., through a \gls{pki} (\Cref{sec:binding_keys_to_parties}). Knowing the other party's public key is required to prevent \gls{mitm} attacks (\Cref{sec:security_of_cryptographic_protocols}). This mode is called \textbf{\gls{adh}} or \textbf{\gls{sdh}} and provides authenticity but not forward secrecy nor protection against replay attacks (unless contextual information is added for the derivation of the symmetric key --- see \Cref{algorithm:ssdh}). Indeed, the two parties always derive the same shared secret if no other values (e.g., a nonce) are used in the key derivation step;
+	\item \textbf{ephemeral-static} --- that is, the sender uses a pair of ephemeral keys, while the recipient uses long-term keys. This mode is called \textbf{semi-ephemeral \gls{dh}}, it is used in \gls{ies} (\Cref{sec:hybrid_cryptography:ciphers:ies}) and provides one-sided authenticity (the sender can verify the authenticity of the recipient) but no forward secrecy in case of recipient's (long-term) key compromise nor protection against replay attacks (unless the recipient remembers all previously seen ephemeral keys using, e.g., cryptographic accumulators);
+	\item \textbf{static-ephemeral} --- that is, the sender uses a pair of long-term keys, while the recipient uses ephemeral keys. This mode is called \textbf{semi-static \gls{dh}}. In this mode, the recipient sends its ephemeral public key to the sender. The sender performs \gls{dh} between the recipient's ephemeral public key and the sender's long-term private key. This mode protects against replay attacks (as it is the recipient that initiates the exchange of messages with a new ephemeral key) and provides one-sided authenticity (the recipient can verify the authenticity of the sender) but not forward secrecy in case of sender's (long-term) key compromise. Finally, this mode protects against \gls{kci} attacks (\Cref{sec:security_of_cryptographic_protocols});
+	\item \textbf{ephemeral-ephemeral} --- that is, both parties use ephemeral keys. This mode is called \textbf{\gls{dhe}} and provides forward secrecy (as ephemeral private keys are immediately disposed, thus we assume that the attacker cannot discover them and parties cannot leak them) but no authenticity (as ephemeral private keys are not associated with the identity of the corresponding party).
+\end{itemize}
+
+\exampleBlock{An example of a static-static \gls{dh} key agreement}{Using the \gls{dl} problem over integers, consider a multiplicative cyclic group with prime modulus 17 and generator 2. Assume the first party $A$ to have long-term private key $\privateKey{A} = 5$ and public key $\publicKey{A} = 15$ --- that is, $g \textasciicircum \privateKey{A} \pmod{p}$ would be $2 \textasciicircum 5 \equiv 15 \pmod{17}$ --- and the second party $B$ to have long-term private key $\privateKey{B} = 7$ and public key $\publicKey{B} = 9$. Hence, assuming each party knows the other party's public key, $A$ can derive the shared secret $\mathbf{k} = \publicKey{B} \textasciicircum \privateKey{A}$ as $9 \textasciicircum 5 \equiv 8 \pmod{17}$, an $B$ can derive the shared secret $\mathbf{k} = \publicKey{A} \textasciicircum \privateKey{B}$ as $15 \textasciicircum 7 \equiv 8 \pmod{17}$. This is possible because both derivations amount at computing $g \textasciicircum \privateKey{B} \textasciicircum \privateKey{A}$.}
+
+\begin{table}[!b]
+	\centering
+	\rowcolors{0}{cloud}{white}
+	\caption{Security properties and protection from attacks in different \gls{dh} modes}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{l|YYYY|YYY}
+		
+		\toprule
+		
+		\rowcolor{white}
+		\multicolumn{1}{c|}{\textbf{\gls{dh} Mode}} &
+		\multicolumn{4}{c|}{\textbf{Security Properties}} &
+		\multicolumn{3}{c}{\textbf{Attacks Protection}} \\
+		
+		\rowcolor{white}		
+		& 
+		{\rotatebox[origin=r]{90}{Sender Authenticity}} & 
+		{\rotatebox[origin=r]{90}{Recipient Authenticity}} & 
+		{\rotatebox[origin=r]{90}{Sender Forward secrecy }} & 
+		{\rotatebox[origin=r]{90}{Recipient Forward secrecy}} & 
+		{\rotatebox[origin=r]{90}{Replay Attack}} & 
+		{\rotatebox[origin=r]{90}{\gls{kci}}} & 
+		{\rotatebox[origin=r]{90}{\gls{mitm}}} \\
+		
+		\hline
+		
+		static-static 		& \cmark 	& \cmark 	& \xmark 	& \xmark 	& \xmark 	& \xmark 	& \cmark 	\\
+		ephemeral-static 	& \xmark 	& \cmark 	& \cmark 	& \xmark 	& \xmark 	& \xmark 	& \xmark 	\\
+		static-ephemeral 	& \cmark 	& \xmark 	& \xmark 	& \cmark 	& \cmark 	& \cmark 	& \xmark 	\\
+		ephemeral-ephemeral & \xmark 	& \xmark 	& \cmark 	& \cmark 	& \cmark 	& \cmark 	& \xmark 	\\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\label{table:dh}
+\end{table}
+
+\remarkBlock{Combining \gls{dh} modes}{It is possible to achieve more security properties by using both ephemeral and long-term key pairs --- thus, combining together (the shared secrets derived from) different \gls{dh} modes. For instance, the combined use of ephemeral-ephemeral, static-ephemeral, and ephemeral-static modes is called \gls{3dh} (\Cref{sec:diffie_hellman:3dh}) and provides mutual authenticity and forward secrecy.}
+
+\lstinputlisting[
+caption=\acrlong{adh},
+label={algorithm:ssdh}, 
+language=Python,
+]{
+	resources/code/ssdh.pseudocode
+}
+
+Finally, note that:
+\begin{itemize}
+	\item \gls{dh} implemented using the \gls{dl} problem based on elliptic curves is called \textbf{\gls{ecdh}};
+	\item \gls{dhe} implemented using the \gls{dl} problem based on elliptic curves is called \textbf{\gls{ecdhe}};
+\end{itemize}
+
+\remarkBlock{\gls{dh} with more than two parties}{\gls{dh} can be generalized for more than two parties. The most straightforward approach is to apply the operation $\bigcdot$ on the chosen generator $g$ for every party's private key once --- in any order. Intuitively, with this approach the complexity increases with the number of parties --- exponentially in the exchange of messages (since every party has to produce an intermediate value for each other party, hence creating a complete graph) and logarithmically in the number of operations (using a divide-and-conquer approach). }
+
+
+\subsection{Triple Diffie-Hellman}\label{sec:diffie_hellman:3dh}
+
+The \textbf{\gls{3dh}} key agreement protocol combines ephemeral and long-term key pairs to derive (three shared secrets that are then fed to a \gls{kdf} to derive) a shared symmetric key \cite{hutchison_modular_2005}. In particular, each of the two parties uses \gls{dh} \textit{three times} --- hence, \textit{triple} \gls{dh} (\Cref{algorithm:3dh}): ($i$) ephemeral-ephemeral, ($ii$) static-ephemeral, and ($iii$) ephemeral-static mode. Afterwards, the \gls{kdf} takes as input the three shared secrets as well as all public keys (so to bind the shared key to the public keys). \gls{3dh} guarantees authenticity --- as long-term keys are used --- and forward secrecy --- as long as parties properly dispose of the ephemeral private keys. Finally, \gls{3dh} protects against \gls{mitm} attacks.
+
+\lstinputlisting[
+caption=Triple Diffie-Hellman, 
+label={algorithm:3dh}, 
+language=Python,
+]{
+	resources/code/3dh.pseudocode
+}
+
+\subsection{Extended Triple Diffie-Hellman}\label{sec:diffie_hellman:x3dh}
+
+The \gls{x3dh} key agreement protocol --- used in Signal (\Cref{sec:popular_protocols:signal}) --- is an extension of \gls{3dh} designed for allowing two (or more) parties to \textit{asynchronously} establish a shared symmetric key \cite{marlinspike_x3dh_2016}. \gls{x3dh} adds to \gls{3dh} the concept of \textbf{signed prekeys} and an (optional) fourth \gls{dh} calculation with \textbf{one-time prekeys} (\Cref{algorithm:x3dh}); asynchronicity is achieved through the upload of cryptographic material to a server prior the execution of \gls{x3dh}.
+
+\curiosityBlock{Why are they called \textit{signed prekeys} and \textit{one-time prekeys}?}{Prekeys are so called because they can be seen as keys that are published (to the server) before --- that is, \textit{prior} --- starting the \gls{x3dh} key agreement protocol. Signed prekeys are so called because they are signed by their owner to guarantee authenticity (that is, binding them to the identity of their owner), while one-time prekeys are so called because they can be used in one run of the \gls{x3dh} key agreement protocol only and then deleted.
+}
+
+The use of ephemeral one-time prekeys provides forward secrecy (recall the discussion in \Cref{sec:diffie_hellman}) and prevents replay attacks --- indeed, without the use of an ephemeral one-time prekey, the two parties would derive the same shared symmetric key at each run of the \gls{x3dh} protocol. In both cases, it is recommended that the post-\gls{x3dh} communication protocol negotiates a new symmetric key based on fresh random input (e.g., see cryptographic ratchets in \Cref{sec:TEMPORARY_LABEL:cryptographic_ratchets}). Finally, all parties are supposed to regularly replenish the set of ephemeral one-time public prekeys stored in the server. Whenever no ephemeral one-time public prekey is available, the use of ephemeral signed prekeys provides similar but weaker security properties with respect to ephemeral one-time prekeys. Indeed, ephemeral signed prekeys (along with the corresponding signatures) are renewed at some interval only (e.g., once every week).
+
+\lstinputlisting[
+caption=Extended Triple Diffie-Hellman, 
+label={algorithm:x3dh}, 
+language=Python,
+]{
+	resources/code/x3dh.pseudocode
+}

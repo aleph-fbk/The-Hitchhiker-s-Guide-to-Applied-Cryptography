@@ -1,0 +1,8 @@
+A \textbf{cryptographic protocol} is a protocol employing cryptography within the exchange of messages among two or more parties --- and, possibly, also cryptographic computations local to each party (\Cref{sec:cryptography_basics:protocols} for more details). Depending on the underlying scenario, cryptographic protocols may be designed to provide different security properties such as confidentiality, integrity, and authenticity (\Cref{sec:security_properties} for a more complete list).
+
+However, cryptographic protocols may fail to provide the desired security properties for a variety of reasons, the main ones being:
+\begin{itemize}
+	\item the use of inadequate cryptographic algorithms (either misconfigured, misused, or outdated) --- this is discussed more in detail in \Cref{sec:hash_functions:cryptographic_hash_function,sec:symmetric_cryptography:ciphers,sec:asymmetric_cryptography:ciphers,sec:digital_signatures:ciphers} where we list cryptographic algorithms for hash functions, symmetric cryptography, and asymmetric cryptography;
+	\item vulnerabilities in the implementation of the cryptographic protocol itself or in the employed cryptographic algorithms or libraries (\Cref{sec:security_of_cryptographic_algorithms}) or in the programming language used to implement them (\Cref{sec:programming_languages_and_software});
+	\item flaws in the design of the cryptographic protocol --- \textbf{this is the focus of the current note}.
+\end{itemize}

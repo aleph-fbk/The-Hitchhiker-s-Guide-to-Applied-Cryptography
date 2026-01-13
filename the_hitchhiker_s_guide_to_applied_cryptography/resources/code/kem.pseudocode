@@ -1,0 +1,12 @@
+ # Sender
+ function kem_encapsulate(recipient_pub_key):
+   var encapsulated_key = rand.generate_secure()
+   var encrypted_encapsulated_key = asym.encrypt(encapsulated_key, recipient_pub_key)
+   var sym_key = kdf.derive_key(encapsulated_key)
+   return (sym_key, encrypted_encapsulated_key)
+
+ # Recipient
+ function kem_decapsulate(encrypted_encapsulated_key, recipient_pri_key):
+   var encapsulated_key = asym.decrypt(encrypted_encapsulated_key, recipient_pri_key)
+   var sym_key = kdf.derive_key(encapsulated_key)
+   return sym_key

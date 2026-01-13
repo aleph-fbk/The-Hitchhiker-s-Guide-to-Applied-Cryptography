@@ -1,0 +1,16 @@
+\subsection{Discrete Logarithm}\label{sec:trapdoor_functions:discrete_logarithm}
+
+The \textbf{\gls{dl} problem} is a trapdoor function where the ``easy part'' is computing exponentiations while the ``hard part'' is inverting them by computing discrete logarithms. The \gls{dl} problem is intrinsically a problem only in groups --- which in this case are often derived from fields as it happens for elliptic curves (\Cref{sec:mathematical_underpinnings:elliptic_curves}). More formally, given a cyclic group $(G, \bigcdot)$ with a generator $g$ and an element $h$ in $G$, is it (believed to be) hard to find the unique integer $x$ such that $g \bigcdot x = h$; computing $g \bigcdot x$ is easy, but recovering $x$ from $h$ --- that is, computing the discrete logarithm --- is hard. The cyclic group $(G, \bigcdot)$ may be built on top of integers (where the operation is the exponentiation) or elliptic curves (where the operation is point addition).
+
+The \gls{dl} problem based on integers is the trapdoor function underlying:
+\begin{itemize}
+	\item the \gls{dh} key agreement protocol (\Cref{sec:diffie_hellman});
+	\item the ElGamal cipher for both encryption and digital signatures (\Cref{sec:asymmetric_cryptography:ciphers:elgamal});
+	\item the \gls{ies} for hybrid encryption (\Cref{sec:hybrid_cryptography:ciphers:ies});	
+	\item the \gls{dsa} for digital signatures (\Cref{sec:digital_signatures:ciphers}).
+\end{itemize}
+
+\exampleBlock{\gls{dl} example}{Consider the finite prime field $\mathbb{F}_{11}$ and, in particular, its multiplicative group of nonzero elements (i.e., $(\mathbb{F}\textsuperscript{*}\textsubscript{11}, \times)$) and the generator $g = 2$. In this context, it is easy to compute $2 ^ 5 = 32 \equiv 10 \pmod{11}$. However, given $g = 2$ and $h = 10$, it is difficult to understand that $10 \equiv 2 ^ 5 \pmod{11}$. In fact, the simplest approach to compute discrete logarithms consists of trial-and-error computations --- quick for a group with modulus $11$, but infeasible for larger groups.}
+
+\warningBlock{The \gls{dl} problem vs. quantum computing}{Quantum computing can solve any \gls{dl} problem using the Shor's algorithm \cite{shor_algorithms_1994} in polynomial time (that is, efficiently) --- see \Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}.}
+

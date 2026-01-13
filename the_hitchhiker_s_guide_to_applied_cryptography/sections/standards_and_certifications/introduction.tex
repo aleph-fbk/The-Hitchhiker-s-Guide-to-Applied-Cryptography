@@ -1,0 +1,57 @@
+Below, we report a list (of categories) of standards and certifications most relevant to security in applied cryptography:
+
+\begin{itemize}
+	
+	\item \textbf{general cryptographic standards}:
+	\begin{itemize}
+			\item \textit{\gls{fips} 140-3 \cite{nist_security_2019}}, which defines security requirements for (software- and) hardware-based cryptographic modules (\Cref{sec:cryptographic_modules}) on 4 increasing levels of security --- with level 4 being the highest --- including testing for side-channel and fault injection attacks (\Cref{sec:security_of_cryptographic_algorithms:attacks});
+			\item \textit{ISO/IEC 15408 (Common Criteria\footnote{Common Criteria (\url{https://www.commoncriteriaportal.org/index.cfm})}) \cite{iso_information_2022}}, which proposes a security assurance framework for evaluating cryptosystems by defining protection profiles and 7 security assurance levels --- ranging from EAL1 to EAL7, with EAL7 being the highest --- which often address physical attack resilience (e.g., side-channel and fault injection);
+			\item \textit{ISO/IEC 19790 \cite{iso_information_2012}} which, similarly to \gls{fips} 140-3, concerns security and testing requirements for cryptographic modules covering aspects such as module interfaces, roles, services, authentication, and side-channel and fault injection attacks;
+		\end{itemize} 
+	
+	\item \textbf{cryptographic standards specific to side-channel and fault injection attacks}:
+	\begin{itemize}
+			\item \textit{ISO/IEC 17825 \cite{iso_17825_2024}}, which discusses testing methods for the mitigation of non-invasive side-channel attacks;
+			\item \textit{ISO/IEC 20085 \cite{iso_20085_2019}}, which evaluates methods for the physical security of cryptographic modules;
+		\end{itemize}
+	
+	\item \textbf{cryptographic standards specific to data remanence}:
+	\begin{itemize}
+			\item \textit{\gls{nist} SP 800-88 \cite{kissel_guidelines_2014}}, which presents guidelines for media sanitization and specifies methods to prevent data remanence in cryptographic hardware (\Cref{sec:security_of_cryptographic_algorithms:attacks:dra});
+			\item \textit{ISO/IEC 27040 \cite{iso_27040_2024}}, which presents storage security standards addressing residual data risks and secure wiping methods.
+		\end{itemize}
+	
+\end{itemize}
+
+Furthermore, we highlight that there exist certification programs providing a standardized approach for testing and validating the security of cryptographic algorithm implementations:
+\begin{itemize}
+	\item the \gls{nist} \gls{cavp};\footnote{Cryptographic Algorithm Validation Program | CSRC (\url{https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program})}
+	\item the EMVCo Security Evaluation program for financial applications\footnote{EMVCo Security Evaluation Process (\url{https://www.emvco.com/resources/emvco-security-evaluation-process/})};
+	\item the PSA Certified;\footnote{PSA Certified (\url{https://www.psacertified.org/})}
+	\item the GlobalPlatform certification schemes (e.g., SESIP).\footnote{GlobalPlatform Certification Schemes (\url{https://globalplatform.org/globalplatform-certification-schemes/})}
+\end{itemize}
+
+
+Nation organizations relevant to the topic of standards and certifications of the security of cryptographic algorithm implementation are 
+\begin{itemize}
+	\item the \gls{annsi}\footnote{French Cybersecurity Agency (ANSSI) (\url{https://cyber.gouv.fr/en})} --- the French National Cybersecurity Agency;
+	\item the \gls{bsi}\footnote{Federal Office for Information Security (\url{https://www.bsi.bund.de/EN/Home/home_node.html})} --- the German Federal Office for Information Security;
+	\item the \gls{acn}\footnote{ACN (\url{https://www.acn.gov.it})} --- the Italian National Cybersecurity Agency;
+	\item the \gls{nist}\footnote{National Institute of Standards and Technology (\url{https://www.nist.gov/})} and the \gls{nsa}\footnote{National Security Agency | Central Security Service (\url{https://www.nsa.gov/})} --- organizations in the United States.
+\end{itemize}
+
+\warningBlock{Trustworthiness of standardization bodies}{Trust in standards and certifications derives from their technical merits as well as the underlying standardization bodies and countries. In other words, always verify which organization authored and reviewed a standard or certification --- and remain alert to political or commercial influences \cite{menezes_challenges_2021}.}
+
+Further organizations relevant to cryptography are 
+\begin{itemize}
+	\item \gls{iacr}\footnote{The International Association for Cryptologic Research (\url{https://www.iacr.org/})} --- a non-profit scientific organization for research in cryptology;
+	\item \gls{ietf}\footnote{IETF | Internet Engineering Task Force (\url{https://www.ietf.org/})} --- a standards development organization for the Internet;
+	\item \gls{enisa}\footnote{Home | ENISA (\url{https://www.enisa.europa.eu/})} --- the European Union's agency for cybersecurity;
+	\item \gls{owasp}\footnote{OWASP Foundation, the Open Source Foundation for Application Security | OWASP Foundation (\url{https://owasp.org/})} --- a nonprofit foundation that works to improve the security of software.
+\end{itemize}
+	
+Finally, further standards may need to be considered depending on the country and the underlying scenario, e.g., the \gls{pcidss}\footnote{PCI Data Security Standard (PCI DSS) (\url{https://www.pcisecuritystandards.org/standards/pci-dss/})} for financial services, the \gls{hipaa}\footnote{HIPAA Home | HHS.gov (\url{https://www.hhs.gov/hipaa/index.html})} for healthcare services in the US, and the \gls{gdpr}\footnote{GDPR compliance (\url{https://gdpr.eu/})} for privacy in Europe.
+
+\remarkBlock{On the timeliness of standards and certifications}{Standards and certifications take time (i.e., years) to be written and updated, while developments in cryptography are frequent. Hence, be sure to refer to up-to-date standards and --- in any case --- always check their content is still relevant. Moreover, beware that there may be perception gaps and differences in priorities between the designers and the practitioners of standards \cite{kumar_demystifying_2025}.}
+
+\warningBlock{Watch out for conflicts}{Standards may sometimes conflict with each other. For instance, as of 2025, IETF RFC 8446 \cite{rfc8446} --- which defines \gls{tls} v1.3 (\Cref{sec:popular_protocols:tls}) --- considers ChaCha20-Poly1305 (\Cref{sec:symmetric_cryptography:ciphers:chacha20}) secure, while the \gls{nist} does not (yet).}

@@ -1,0 +1,12 @@
+\subsection{Cryptographic Protocols}\label{sec:cryptography_basics:protocols}
+
+A \textbf{cryptographic protocol} describes an exchange of messages among two or more \textbf{parties} --- and, possibly, also cryptographic computations local to each party --- which involves the use of some cryptographic algorithms; parties involved in a cryptographic protocol are often also called \textit{agents} or \textit{principals}. The definition of a cryptographic protocol includes at least the following:
+
+\begin{itemize}
+	\item \textbf{syntax}: messages have well-defined format comprising specific fields;
+	\item \textbf{semantics}: each field in the format of a message has a well-defined meaning;
+	\item \textbf{temporization} (synchronization): messages have well-defined flows;
+	\item \textbf{cryptographic algorithms}: used to provide security properties (\Cref{sec:security_properties}).
+\end{itemize}
+
+Please refer to \Cref{sec:security_of_cryptographic_protocols} for details on the secure design of cryptographic protocols.

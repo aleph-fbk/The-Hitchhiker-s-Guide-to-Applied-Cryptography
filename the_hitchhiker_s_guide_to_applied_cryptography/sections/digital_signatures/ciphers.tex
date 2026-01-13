@@ -1,0 +1,54 @@
+\subsection{Ciphers for Digital Signatures}\label{sec:digital_signatures:ciphers}
+
+Below, we briefly present a short list of renowned or modern digital signature ciphers.
+
+\warningBlock{Old or insecure digital signature ciphers}{The use of \gls{dsa} and \gls{rsa} for creating digital signatures is discouraged, as more secure or efficient alternatives are available.}
+
+\subsubsection{Elliptic Curve Digital Signature Algorithm}\label{sec:digital_signatures:ciphers:ecdsa}
+
+\gls{ecdsa} is a digital signature cipher based on elliptic curves (\Cref{sec:mathematical_underpinnings:elliptic_curves}). Intuitively, \gls{ecdsa} is an adaptation of an older (and now insecure) digital signature cipher, \gls{dsa}, to the usage with elliptic curves. The choice of elliptic curve determines the security and the efficiency (in terms of both computational costs and key length) of \gls{ecdsa}. 
+
+\warningBlock{\gls{ecdsa} and malleability}{\gls{ecdsa} has partial malleability: it is possible to manipulate a digital signature to derive a different digital signature for the same data and public key --- see \Cref{sec:security_properties}. If not addressed with proper mitigations, such partial malleability may represent a subtle vulnerability for specific applications.}
+
+\gls{ecdsa} has been adopted and specified by the following standards:
+\begin{itemize}
+	\item the X9.62-1998 standard \cite{ansi_ecdsa_1998} (revised in 2005 and later) by the \gls{ansi} provides a specification of \gls{ecdsa}, its parameters, and ASN.1 object identifiers;
+	\item the FIPS 186-5 standard \cite{nist_ecdsa_2023} by the \gls{nist} approves and places additional requirements on \gls{ecdsa} (e.g., recommend specific curves for federal use). In particular, this standard proposes an \gls{ecdsa} variant (called deterministic or RFC6979) employing a hash function to prevent misuse of the nonce used during the creation of a digital signature. The variant concerns only the creation of digital signatures, hence it is compatible with vanilla \gls{ecdsa};
+	\item the 14888 standard \cite{iso_ecdsa_2006} by the \gls{iso}/\gls{iec} includes \gls{ecdsa} and specifies key generation, signing, and verification processes;
+	\item the 1363-2000 standard \cite{ieee_ecdsa_2000} by the \gls{ieee} specifies \gls{ecdsa} as one of several digital signature ciphers.
+\end{itemize}
+
+\remarkBlock{Special features of \gls{ecdsa}}{Normally, the verification of a digital signature expects 3 inputs: the public key, the digital signature, and the data over which the digital signature was created (\Cref{figure:digital_signature_creation_and_verification}). However, in \gls{ecdsa} it is possible to recover a public key from a digital signature and the data (that is, the digital signature and the data allow for recovering the public key). This feature is usually exploited (e.g., in Bitcoin) to reduce the amount of bytes transmitted within a system where public keys are already known.}
+
+\subsubsection{Schnorr Signature}\label{sec:digital_signatures:ciphers:schnorr}
+
+The Schnorr signature is a digital signature cipher developed by Claus Schnorr in 1990 and based on either integers or (most often) elliptic curves; despite being robust and efficient, the Schnorr signature has seen limited adoption due to a patent which lasted until 2010 \cite{schnorr_method_1990}. The Schnorr signature shares the same elliptic curves as \gls{ecdsa} (hence, an \gls{ecdsa} key pair can ideally be used for Schnorr signatures, and vice versa) and the security considerations on the nonce. However, differently from \gls{ecdsa}, the Schnorr signature has a rigorous mathematical proof of security.
+
+\remarkBlock{Special features of Schnorr signatures}{The Schnorr signature has a few variants that enable special features, the main ones being:
+	\begin{itemize}
+		\item \textbf{fast batch verification}, that is, it is possible to verify multiple signatures in a single computation;
+		\item \textbf{signature aggregation}, that is, multiple signatures of the same data made with different private keys can be aggregated into a single signature.
+	\end{itemize}
+}
+
+\subsubsection{Edwards-curve Digital Signature Algorithm}\label{sec:digital_signatures:ciphers:eddsa}
+
+\gls{eddsa} is a digital signature cipher based on elliptic curves in twisted Edwards form (\Cref{sec:mathematical_underpinnings:elliptic_curves}), which offer increased efficiency and security. \gls{eddsa} is based on Schnorr signatures and adds deterministic nonce generation\footnote{The nonce is the hash of a part of the private key and the message} to solve many implementation vulnerabilities (see the Sony PlayStation 3 firmware update signing key\footnote{The Sony PlayStation 3 hack deciphered: what consumer-electronics designers can learn from the failure to protect a billion-dollar product ecosystem - EDN (\url{https://www.edn.com/the-sony-playstation-3-hack-deciphered-what-consumer-electronics-designers-can-learn-from-the-failure-to-protect-a-billion-dollar-product-ecosystem/})}). At the time of writing (2025), \gls{eddsa} is a popular choice for many systems, and especially for securing internet connections --- e.g., \gls{eddsa} is used in Signal (\Cref{sec:popular_protocols:signal}) and \gls{tls} (\Cref{sec:popular_protocols:tls}). Also, \gls{eddsa} has a rigorous mathematical proof of security.
+
+\gls{eddsa} has been adopted and specified by the following standards:
+\begin{itemize}
+	\item the FIPS 186-5 standard \cite{nist_ecdsa_2023} by the \gls{nist} (which also standardizes \gls{ecdsa});
+	\item the RFC 8032 \cite{rfc8032}.
+\end{itemize}
+
+\remarkBlock{Special features of \gls{eddsa}}{Like Schnorr signatures, \gls{eddsa} allows for \textbf{fast batch verification}.}
+
+\paragraph*{Extensions of the Edwards-curve Digital Signature Algorithm.} \gls{eddsa} was extended with \gls{xeddsa} and \gls{vxeddsa} by Trevor Perrin in the Signal protocol documentation in 2017.\footnote{\url{https://signal.org/docs/specifications/xeddsa/}} In brief, \gls{xeddsa} involves using the same private key for both creating digital signatures and for the \gls{dh} exchange (\Cref{sec:diffie_hellman}); more in detail, \gls{xeddsa} provides \gls{eddsa}-compatible signatures using the same key pair format as X25519. \gls{vxeddsa} extends \gls{xeddsa} and transforms it into a \gls{vrf}, a function that, for any input and a private key, produces a (pseudo)random output and a proof that such an output was correctly computed. Hence, anyone with the corresponding public key can verify the proof without learning the secret key. Differently from hash functions (\Cref{sec:hash_functions}), a \gls{vrf} guarantees both unpredictability (i.e., no one can guess the output before seeing it) and verifiability (i.e., no one can forge a proof for a bogus output). \glspl{vrf} are often used in services that need public and auditable randomness.
+
+\warningBlock{\gls{xeddsa} and \gls{vxeddsa} and the key separation principle}{\gls{xeddsa} and \gls{vxeddsa} purposely trade the ideal of key separation principle (\Cref{sec:security_of_cryptographic_protocols}) for a pragmatic design, but only after a very careful trade-off and design analysis. As benefits, reusing the same key reduces code complexity, key management overhead, attack surface, and storage requirements, at the cost of an ``all-or-nothing'' risk model.}
+
+\subsubsection{Boneh-Lynn-Shacham Signature}\label{sec:digital_signatures:ciphers:bls}
+
+The \gls{bls} signature is a digital signature cipher based on special elliptic curves that support a particular operation, called pairing (\Cref{sec:trapdoor_functions:elliptic_curve_cryptography:pairings}). The pairing operation is computationally expensive but enables short keys or short signatures and special signature creation algorithms. Also the \gls{bls} signature has a rigorous mathematical proof of security. 
+
+\remarkBlock{Special features of \gls{bls} signatures}{Like Schnorr signatures, \gls{bls} signatures allow for \textbf{fast batch verification} and \textbf{signature aggregation}. Moreover, \gls{bls} signatures support \textbf{threshold signatures} with fairly simple protocols. A threshold signature is a special digital signature where the private key is not held by a single party but rather split among a number $n$ different parties, and a number $t$ of these parties (where $t \leq n$) is required to collaborate to produce a digital signature.}

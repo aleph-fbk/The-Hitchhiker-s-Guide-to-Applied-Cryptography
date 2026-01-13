@@ -1,0 +1,12 @@
+\textbf{Symmetric cryptography} uses the same key --- or keys trivially derivable from each other --- as input to related cryptographic algorithms. Symmetric cryptography is commonly used on data at rest or in transit over an insecure communication channel for:
+
+\begin{itemize}
+	\item data encryption (\Cref{sec:symmetric_cryptography:ciphers});
+	\item creation of \glspl{mac} (\Cref{sec:symmetric_cryptography:mac}).
+\end{itemize}
+
+Symmetric cryptography can provide confidentiality, integrity, and message authenticity; however, symmetric cryptography cannot provide sender authenticity or non-repudiation (\Cref{sec:security_properties}). The combination of data encryption and \glspl{mac} is called \textbf{\gls{ae}} (\Cref{sec:symmetric_cryptography:ae}).
+
+\remarkBlock{Performance with respect to asymmetric cryptography}{
+	Symmetric cryptography is generally orders of magnitude (computationally) faster than asymmetric cryptography (\Cref{sec:asymmetric_cryptography}).
+}

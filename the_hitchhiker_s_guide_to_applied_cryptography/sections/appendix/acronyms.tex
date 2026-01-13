@@ -1,0 +1,19 @@
+\newgeometry{left=18mm, right=18mm, top=30mm, bottom=30mm} 
+
+\section{Acronyms}\label{sec:appendix:acronyms}
+\addcontentsline{toc}{section}{\protect\numberline{}Acronyms}
+%\vspace{6cm}
+
+\begin{multicols}{2}[\vspace*{7cm}]
+	\begingroup
+	\footnotesize
+	\glsaddall
+	\renewcommand*{\glossarysection}[2][]{}
+	\printglossary[type=\acronymtype, title=]
+	\endgroup
+\end{multicols}
+
+\newgeometry{left=29mm, right=29mm, top=30mm, bottom=30mm}
+
+\vspace{-1.5mm}
+\newpage

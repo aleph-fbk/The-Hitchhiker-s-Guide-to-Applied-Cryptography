@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "The Hitchhiker's Guide to Applied Cryptography"
+message: "If you use this handbook, please cite it using the metadata below."
+
+authors:
+  - name: "ALEPH Research Unit, Center for Cybersecurity, Fondazione Bruno Kessler"
+
+version: "0.4"
+date-released: "2025-11-20"
+
+# Uncomment when DOI is assigned:
+# doi: "10.xxxx/xxxxx"
+
+url: "https://github.com/aleph-fbk/noac"
+repository-code: "https://github.com/aleph-fbk/noac"
+
+abstract: >
+  A concise, modular handbook collecting and clearly summarizing key concepts,
+  constructions, security considerations, and practical aspects of applied
+  cryptography. Each note is self-contained and designed for quick reference,
+  offering high-level intuition without extensive mathematical formalism.
+
+keywords:
+  - cryptography
+  - applied cryptography
+  - security engineering
+  - cybersecurity
+  - handbook
+  - reference
+  - concise notes

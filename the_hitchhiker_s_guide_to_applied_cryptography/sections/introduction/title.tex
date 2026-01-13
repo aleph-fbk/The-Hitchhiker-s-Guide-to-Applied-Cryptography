@@ -1,0 +1,126 @@
+\begin{titlepage}
+	\centering
+	\begin{tikzpicture}[remember picture,overlay]
+		%%%%%%%%%%%%%%%%%%%% Background %%%%%%%%%%%%%%%%%%%%%%%%
+		\fill[frontPageColor] (current page.south west) rectangle (current page.north east);
+		
+		
+		\foreach \i in {2.5,...,22}
+		{
+			\node[rounded corners,frontPageColor!75,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.west)+(2.5,-5)$) {} ;
+		}
+		
+		%%%%%%%%%%%%%%%%%%%% Background Polygon %%%%%%%%%%%%%%%%%%%% 
+		\foreach \i in {0.5,...,22}
+		{
+			\node[rounded corners,frontPageColor!80,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.north west)+(2.5,0)$) {} ;
+		}
+		
+		\foreach \i in {0.5,...,22}
+		{
+			\node[rounded corners,frontPageColor!90,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.north east)+(0,-9.5)$) {} ;
+		}
+		
+		
+		\foreach \i in {21,...,2}
+		{
+			\node[frontPageColor!85,rounded corners,draw,regular polygon,regular polygon sides=6, minimum size=\i cm,ultra thick] at ($(current page.south east)+(-0.2,-0.45)$) {} ;
+		}
+		
+		
+		%%%%%%%%%%%%%%%%%%%% Title of the Report %%%%%%%%%%%%%%%%%%%% 
+		\node[align=center,frontPageColor!5,minimum width=0.625*\paperwidth,minimum height=3cm, rounded corners] at ($(current page.north)+(0,-8)$)
+		{
+			{\fontsize{30}{30} \selectfont \bfseries APPLIED CRYPTOGRAPHY}
+		};
+		\node[align=center,frontPageColor!5,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-9.25)$)
+		{
+			{v0.1.0 --- \today}
+		};
+		
+		%%%%%%%%%%%%%%%%%%%% Subtitle %%%%%%%%%%%%%%%%%%%% 
+		\node[align=center,frontPageColor!10,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-6.5)$)
+		{
+			{\fontsize{20.75}{30} \textit{The Hitchhiker's Guide to}}
+		};
+		
+		%%%%%%%%%%%%%%%%%%%% Author Name %%%%%%%%%%%%%%%%%%%% 
+		\node[align=center,frontPageColor!5,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-26.40)$)
+		{
+			{\large Applied Cryptography (ALEPH) Research Unit}
+		};		
+		\node[align=center,frontPageColor!5,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-27.15)$)
+		{
+			{\large Center for Cybersecurity --- \textit{Fondazione Bruno Kessler}}
+		};
+		\node[align=center,frontPageColor!5,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-27.90)$)
+		{
+			{{\large Trento, Italy}\quad\href{https://aleph.fbk.eu}{\texttt{\textcolor{white}{https://aleph.fbk.eu}}}}
+		};
+		
+		%%%%%%%%%%%%%%%%%%%% Year %%%%%%%%%%%%%%%%%%%% 
+		%		\node[rounded corners,fill=frontPageColor!70,text =frontPageColor!5,regular polygon,regular polygon sides=6, minimum size=2.5 cm,inner sep=0,ultra thick] at ($(current page.west)+(2.5,-5)$) {\LARGE \bfseries \the\year{}};
+		
+		\node[rounded corners,fill=frontPageColor!95,text =frontPageColor!5,regular polygon,regular polygon sides=6, minimum size=2.5 cm,inner sep=0,ultra thick] at ($(current page.west)+(2.5,-5)$) {\includegraphics[width=0.1\linewidth]{resources/img/aleph_logo_white.png}};
+		
+		
+	\end{tikzpicture}
+\end{titlepage}
+{\clearpage}
+
+
+
+
+
+%TITLEPAGE WITH WHITE THEME BACKGROUND
+%\begin{titlepage}
+%	
+%	\BgThispage
+%	\centering\textsc{}
+%	\begin{tikzpicture}[remember picture,overlay]
+%		
+%		%%%%%%%%%%%%%%%%%%%% Title of the Report %%%%%%%%%%%%%%%%%%%%
+%		\node[align=center,frontPageColor!95,minimum width=0.625*\paperwidth,minimum height=3cm, rounded corners] at ($(current page.north)+(0,-7)$)
+%		{
+%			{\fontsize{30}{30} \selectfont \bfseries APPLIED CRYPTOGRAPHY}
+%		};
+%		
+%		\node[align=center,frontPageColor!95,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-8.25)$)
+%		{
+%			{v0.1.0 --- \today}
+%		};
+%		
+%		%%%%%%%%%%%%%%%%%%%% Subtitle %%%%%%%%%%%%%%%%%%%%
+%		\node[align=center,frontPageColor!90,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-5.5)$)
+%		{
+%			{\fontsize{20.75}{30} \textit{The Hitchhiker's Guide to}}
+%		};
+%		
+%		%%%%%%%%%%%%%%%%%%%% Author Name %%%%%%%%%%%%%%%%%%%%
+%		\node[align=center,frontPageColor!95,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-26.40)$)
+%		{
+%			{\large Applied Cryptography (ALEPH) Research Unit}
+%		};
+%		
+%		\node[align=center,frontPageColor!95,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-27.15)$)
+%		{
+%			{\large Center for Cybersecurity --- \textit{Fondazione Bruno Kessler}}
+%		};
+%		
+%		\node[align=center,frontPageColor!95,minimum width=0.625*\paperwidth,minimum height=2cm, rounded corners] at ($(current page.north)+(0,-27.90)$)
+%		{
+%			{{\large Trento, Italy}\quad\href{https://aleph.fbk.eu}{\texttt{\textcolor{frontPageColor!95}{https://aleph.fbk.eu}}}}
+%		};
+%		
+%		%%%%%%%%%%%%%%%%%%%% Year / Logo %%%%%%%%%%%%%%%%%%%%
+%		%\node[]
+%		%at ($(current page.south)+(0,+5.25)$)
+%		%{\includegraphics[width=0.065\linewidth]{resources/img/aleph_logo_white.png}};
+%		\node[]
+%		at ($(current page.south)+(0,+5.25)$)
+%		{\includegraphics[trim={0cm 1.5cm 14.25cm 0.5cm},clip,width=0.085\linewidth]{resources/img/aleph_logo_white.png}};
+%		
+%	\end{tikzpicture}
+%\end{titlepage}
+%
+%{\clearpage}

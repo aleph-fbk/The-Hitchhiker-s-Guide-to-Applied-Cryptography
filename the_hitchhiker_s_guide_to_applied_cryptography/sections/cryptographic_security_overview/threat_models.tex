@@ -1,0 +1,20 @@
+\subsection{Threat Modeling}\label{sec:cryptographic_security_overview:threat_model}
+
+The fundamental step for discussing security concerns within applied cryptography is the definition of a \textbf{threat model}.
+
+\remarkBlock{Definition of threat modeling}{Threat modeling is a critical (usually iterative) process common to many cyber-physical systems --- not only cryptography. A threat model defines the system under consideration, its security assumptions (e.g., presence of shared public parameters, trusted bulletin boards, or a \gls{pki} --- see \Cref{sec:binding_keys_to_parties}), and characteristics and capabilities of attackers in the context of the system, the components thereof, and their interactions. The ultimate objective of a threat model is to \textbf{identify potential threats and the associated risk} (e.g., likelihood and impact), \textbf{propose and prioritize mitigations} (\Cref{sec:security_of_cryptographic_algorithms:best_practices,sec:programming_languages_and_software,sec:security_of_cryptographic_algorithms:best_practices:hardware}), and \textbf{verify} that the proposed mitigations do address the identified threats (\Cref{sec:security_of_cryptographic_algorithms:best_practices:hardware}).}
+
+The following categorization identifies high-level characteristics and capabilities of attackers in the context of applied cryptography:
+
+\begin{itemize}
+	\item \textbf{passive vs. active attackers}: passive attackers eavesdrop on communication or monitor the behavior of systems without altering them or the data contained therein, while active attackers can interfere with communications and systems by injecting, modifying, or deleting messages and data, or by manipulating their behavior to achieve their objectives;
+	\item \textbf{remote vs. local attackers}: remote attackers operate from a distance and can interact with the system through well-defined interfaces over network communications only (e.g., either internet or intranet), while local attackers stay in close physical proximity to or directly within systems;
+	\item \textbf{single-trace vs. multi-trace attackers}: single-trace attackers may rely on a single trace or instance of cryptographic computations to extract secret data, while multi-trace attackers can exploit patterns or correlations over multiple traces or instances to improve their chances of success or refine their results;
+	\item \textbf{external vs. internal attackers}: external attackers conduct attacks and impersonate authenticated parties from outside the system, while internal attackers (sometimes called \textit{malicious insiders}) are authenticated or compromised parties that, either maliciously or accidentally, endanger security from within the system.
+\end{itemize}
+
+The latest threat models in applied cryptography have been considering hybrid attackers (i.e., combining multiple capabilities and categories of attacks --- see \Cref{sec:cryptographic_security_overview:attacks}) \cite{azees_eaap_2017} and, especially, attackers relying on machine learning and artificial intelligence consistently \cite{timon_non_2019,hettwer_applications_2020,golder_practical_2019,debayan_x_2019}.
+
+\remarkBlock{Established threat models}{Renown and widely used threat models are available for analyzing the security of protocols (\Cref{sec:security_of_cryptographic_protocols}). Conversely, to the best of our knowledge, there are no established threat models for analyzing the security of algorithm implementation --- net of the aforementioned categorization (\Cref{sec:security_of_cryptographic_algorithms}).}
+
+\readBlock{More information on threat modeling in cryptography}{A thorough survey on the topic of threat modeling in cryptography is available in \cite{do_role_2019}.}

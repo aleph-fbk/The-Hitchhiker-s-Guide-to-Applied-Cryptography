@@ -1,0 +1,33 @@
+\subsection{Public Key Infrastructure}\label{sec:binding_keys_to_parties:pki}
+
+The \gls{pki} is a (mostly) centralized trust model comprising hardware, software, parties, policies, documents and workflows supporting the management --- in terms of creation, issuance, distribution, usage, storage, and revocation --- of digital certificates.
+
+\remarkBlock{Certificates in \gls{pki}}{The most widely adopted format for certificates in \glspl{pki} is the X.509 standard \cite{rfc5280} --- see \url{https://www.itu.int/rec/T-REC-X.509} --- a very complex format that yielded several implementation errors in the past (e.g., see \url{https://www.imperialviolet.org/2014/02/22/applebug.html}.)}
+
+\subsubsection{Registration Authorities}\label{sec:binding_keys_to_parties:pki:ra}
+
+The creation of a party's certificate in a \gls{pki} is subject to the verification of the party's possession of the private key (\Cref{sec:binding_keys_to_parties:digital_certificate}) --- as well as the correctness of further attributes that will added to the certificate --- by a \textbf{\gls{ra}}. Such a verification may be manual or automated, more or less rigorous, take more or less time, and be more or less expensive depending on the level of assurance required for the certificate. For instance, industry guidelines commonly distinguish among extended validation certificate (high assurance), organization validation certificate (medium assurance), and domain validation certificate (low assurance).
+
+\remarkBlock{Domain validation certificates in the real world}{RFC8555 \cite{rfc8555} specifies the \gls{acme} for the automatic provisioning of domain validation certificates for websites, and the Let's Encrypt nonprofit organization implements \gls{acme} for free use --- see \url{https://letsencrypt.org/}}
+
+\subsubsection{Certificate Authorities}\label{sec:binding_keys_to_parties:pki:ca}
+
+The actual creation and issuing of certificates in a \gls{pki} is carried out by \textbf{\glspl{ca}} --- usually a well-known organization or governing body. A \gls{ca} may possess one or more key pairs which may (or may not) be endorsed by other \glspl{ca}. We can distinguish among the following types of \glspl{ca}:
+
+\begin{itemize}
+	\item \textbf{subordinate \gls{ca}}: a \gls{ca} using its key pair to issues certificates to parties. The key pair of a subordinate \gls{ca} is endorsed by an intermediate or root \gls{ca};
+	\item \textbf{intermediate \gls{ca}}: a \gls{ca} using its key pair to issues certificates to intermediate or subordinate \glspl{ca}. The key pair of an intermediate \gls{ca} is endorsed by an intermediate or root \gls{ca};
+	\item \textbf{root \gls{ca}}: a \gls{ca} using its key pair to issues certificates to intermediate or subordinate \glspl{ca}. The key pair of a root \gls{ca} is not endorsed by any other \gls{ca}.
+\end{itemize}
+
+\remarkBlock{Certificates of root \glspl{ca}}{Certificates of root \glspl{ca} are normal certificates which are pre-installed in operating systems and browsers as roots of trust (see \url{https://certifi.io/}). Although it is usually the case, these certificates do not need (and sometimes are not) self-signed. However, it may happen that the certificate of a root \gls{ca} is signed by another root \gls{ca} --- usually for migration reasons.}
+
+Typically, a \gls{pki} has few root \glspl{ca} and many intermediate and subordinate \glspl{ca} for added security and scalability.
+
+\readBlock{An initiative against maliciously or mistakenly issued certificates}{In the past, it happened that root \glspl{ca} were compromised or mistakenly issued certificates to ``wrong'' parties. Hence, a consortium of organizations (e.g., Google, Apple, Cloudflare) launched the \textit{Certificate Transparency} ecosystem to make the issuance of website certificates transparent and verifiable and monitor and audit existing certificates through several independent logs --- see \url{https://certificate.transparency.dev/}.}
+	
+\subsubsection{Validation Authorities}\label{sec:binding_keys_to_parties:pki:va}
+
+The \gls{va} in a \gls{pki} is responsible for answering inquiries by parties about the real time validity of certificates.
+
+\remarkBlock{Centralized vs. decentralized \gls{pki}}{Albeit inherently hierarchical, a \gls{pki} may be more or less centralized depending on the number of root \glspl{ca} and their relationships. In general, a more centralized \gls{pki} --- which is usually the case --- simplifies certificate management and has a clear trust chain, at the cost of introducing \glspl{spof}, low scalability, and limited flexibility. Conversely, a more decentralized \gls{pki} has few or none \glspl{spof} and great scalability and flexibility, at the cost of greater complexity and consequently security concerns.}

@@ -1,0 +1,31 @@
+\subsection{Ciphers for Hybrid Cryptography}\label{sec:hybrid_cryptography:ciphers}
+
+Below, we briefly present a short list of renowned or modern hybrid cryptography constructions. At a high level, a hybrid cryptography construction may be based either on \gls{dh} (\Cref{sec:diffie_hellman}) or \glspl{kem} (\Cref{sec:key_encapsulation_mechanisms}). However, as said in \Cref{sec:key_encapsulation_mechanisms}, semi-ephemeral \gls{dh} is practically equivalent to a \gls{kem}.
+
+\warningBlock{The simplest (and insecure) approach to hybrid cryptography}{A naive approach to hybrid cryptography consists in encrypting a given plaintext with a (fresh and securely randomly generated) symmetric key, which in turn is encrypted with the recipient's public key (\Cref{algorithm:naive_hybrid_cryptography}). Intuitively, this approach --- which may be seen as a simplified version of a \gls{kem} --- does not allow for including contextual information, may require padding (hence introduce vulnerabilities), and does not expect using \glspl{kdf}.}
+
+\lstinputlisting[
+caption=Naive Hybrid Encryption, 
+label={algorithm:naive_hybrid_cryptography}, 
+language=Python,
+]{
+	resources/code/naive_hybrid_cryptography.pseudocode
+}
+
+
+\subsubsection{Integrated Encryption Scheme}\label{sec:hybrid_cryptography:ciphers:ies}
+
+The \textbf{\gls{ies}} is built on top of \gls{dh} (\Cref{sec:diffie_hellman}) --- hence, the \gls{dl} problem (\Cref{sec:trapdoor_functions:discrete_logarithm}). For this reason, \gls{ies} is also called \textit{\gls{dhies}}. We can identify two instances of \gls{ies}: \textbf{\gls{dlies}} --- when integers are used for the \gls{dl} problem --- and \textbf{\gls{ecies}} --- when elliptic curves are used for the \gls{dl} problem.
+
+In both cases, \gls{ies} consists of (usually) two parties carrying out the \gls{dh} key agreement protocol and then using the shared secret to derive symmetric keys for communication (one key for symmetric encryption and a different key for computing \glspl{mac}). Typically, \gls{ies} expects semi-ephemeral \gls{dh} (i.e., ephemeral-static \gls{dh} mode), where the sender uses a pair of ephemeral keys while the recipient uses long-term keys --- hence, a straightforward \gls{kem}.
+
+\curiosityBlock{Why is it called \textit{integrated}?}{\gls{ies} includes the word ``integrated'' as it integrates \gls{dh}, a \gls{kdf}, a symmetric cipher, and a \gls{mac}.}
+
+\gls{ies} is described in, among others, \cite{rfc5903,ansi_ies_2011,ieee_ies_2004}.
+
+
+\subsubsection{Data Encapsulation Mechanisms}\label{sec:hybrid_cryptography:ciphers:kem_dem}
+
+The use of a symmetric cipher (\Cref{sec:symmetric_cryptography:ciphers}) on the symmetric key derived from a \gls{kem} to encrypt data is called \textbf{\gls{dem}}. Hence, the \gls{kem}-\gls{dem} paradigm is considered a hybrid cryptography construction.
+
+\remarkBlock{\gls{kem}-\gls{dem} and post-quantum cryptography}{Many modern hybrid cryptography constructions rely on the \gls{kem}-\gls{dem} paradigm, especially in post-quantum cryptography (\Cref{sec:TEMPORARY_LABEL:post_quantum_cryptography}).}

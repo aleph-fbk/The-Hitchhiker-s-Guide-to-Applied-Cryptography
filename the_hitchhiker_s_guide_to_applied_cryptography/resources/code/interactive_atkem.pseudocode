@@ -1,0 +1,31 @@
+ # Sender
+ function interactive_atkem_generate_sym_key(sender_pri_key, signed_recipient_eph_pub_key):
+   var dek_key = sym.generate_sym_key()
+   var state = (dek_key, sender_pri_key, signed_recipient_eph_pub_key)
+   return (dek_key, state)
+
+ function interactive_atkem_encapsulate_key(state, tag):
+   var (dek_key, sender_pri_key, signed_recipient_eph_pub_key) = state
+   var (sender_eph_pri_key, sender_eph_pub_key) = asym.generate_key_pair()
+   var ess = dh(sender_eph_pri_key, signed_recipient_eph_pub_key)
+   var sss = dh(sender_pri_key, signed_recipient_eph_pub_key)
+   var kek_key = kdf.derive_key(ess || sss || sender_eph_pub_key || tag)
+   var wrapped_key = sym.encrypt(dek_key, kek_key)
+   return (wrapped_key, sender_eph_pub_key)
+
+ function interactive_atkem_encapsulate(plaintext, sender_pri_key, signed_recipient_eph_pub_key)
+   var (dek_key, state) = interactive_atkem_generate_sym_key(sender_pri_key, signed_recipient_eph_pub_key)
+   var ciphertext = sym.encrypt(plaintext, dek_key)
+   val tag = ciphertext
+   var (wrapped_key, sender_eph_pub_key) = interactive_atkem_encapsulate_key(state, tag)
+   var encapsulated_key = wrapped_key || sender_eph_pub_key
+   return (ciphertext, tag, encapsulated_key)
+
+ # Recipient
+ function interactive_atkem_decapsulate(sender_pub_key, recipient_pri_key, encapsulated_key, tag):
+   var (wrapped_key, sender_eph_pub_key) = encapsulated_key 
+   var ess = dh(recipient_eph_pri_key, sender_eph_pub_key)
+   var sss = dh(recipient_eph_pri_key, sender_pub_key)
+   var kek_key = kdf.derive_key(ess || sss || sender_eph_pub_key || tag)
+   var dek_key = sym.decrypt(wrapped_key, kek_key)
+   return dek_key

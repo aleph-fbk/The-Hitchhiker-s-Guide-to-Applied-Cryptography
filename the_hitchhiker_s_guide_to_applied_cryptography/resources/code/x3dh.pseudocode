@@ -1,0 +1,44 @@
+ # Step 1 - the recipient (recip) uploads cryptographic material to the server
+ function setup(recip_pub_key, recip_pri_key, number_of_one_time_prekeys):
+   var recip_pub_one_time_prekeys = []
+   for i in range(1..number_of_one_time_prekeys):
+     # The recipient stores recip_pri_one_time_prekey locally
+     var (recip_pri_one_time_prekey, recip_pub_one_time_prekey) = asym.generate_key_pair()
+     recip_pub_one_time_prekeys.add(recip_pub_one_time_prekey)
+   
+   # The recipient stores recip_pri_signed_prekey locally
+   var (recip_pri_signed_prekey, recip_pub_signed_prekey) = asym.generate_key_pair()
+   var signature_recip_pub_signed_prekey = asym.sign(recip_pub_signed_prekey, recip_pri_key)
+
+   upload(recip_pub_key, recip_pub_signed_prekey, signature_recip_pub_signed_prekey, recip_pub_one_time_prekeys) 
+
+ # Step 2 - the sender (send) sends the first message
+ function first_send(send_pub_key, send_pri_key, first_message):
+   # The server allows the send to download one of the recip's one-time prekeys, if
+   # one exists, and then delete it. Otherwise, recip_pub_one_time_prekey would be null
+   var (recip_pub_key, recip_pub_signed_prekey, signature_recip_pub_signed_prekey, recip_pub_one_time_prekey) = download()
+
+   asym.verify(recip_pub_signed_prekey, signature_recip_pub_signed_prekey, recip_pub_key)
+
+   var (send_eph_pri_key, send_eph_pub_key) = asym.generate_key_pair()
+   var ses = dh(send_pri_key, recip_pub_signed_prekey)
+   var ess = dh(send_eph_pri_key, recip_pub_key)
+   var ees = dh(send_eph_pri_key, recip_pub_signed_prekey)
+   var eos = dh(send_eph_pri_key, recip_pub_one_time_prekey)
+   var sym_key = kdf.derive_key(ses || ess || ees || eos)
+
+   var ad = send_pub_key || recip_pub_key
+   var first_ciphertext = aead.encrypt(sym_key, ad, first_message)
+   send(send_pub_key, send_eph_pub_key, recip_pub_one_time_prekey, first_ciphertext) 
+
+ # Step 3 - the recipient receives the first message
+ function first_receive(recip_pub_key, send_pub_key, send_eph_pub_key, first_ciphertext):
+   # The recipient retrieves recip_pri_key, recip_pri_signed_prekey, and recip_pri_one_time_prekey
+   var ses = dh(send_pub_key, recip_pri_signed_prekey)
+   var ess = dh(send_eph_pub_key, recip_pri_key)
+   var ees = dh(send_eph_pub_key, recip_pri_signed_prekey)
+   var eos = dh(send_eph_pub_key, recip_pri_one_time_prekey)
+   var sym_key = kdf.derive_key(ses || ess || ees || eos)
+
+   var ad = send_pub_key || recip_pub_key
+   var first_message = aead.decrypt(sym_key, ad, first_ciphertext)

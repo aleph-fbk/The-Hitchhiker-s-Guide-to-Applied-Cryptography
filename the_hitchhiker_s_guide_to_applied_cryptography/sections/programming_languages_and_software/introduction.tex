@@ -1,0 +1,143 @@
+Below, we discuss the impact that the choice of the programming language (\Cref{sec:programming_languages_and_software:languages}) --- and, consequently, compiler (or interpreter) and configuration options (\Cref{sec:programming_languages_and_software:compilers}) --- may potentially have on the security of the implementation of cryptographic algorithms. In other words, we investigate how the choice of the programming language and compiler or interpreter can reduce or amplify the risk of an attack (\Cref{sec:security_of_cryptographic_algorithms:attacks}) or inherently provide --- or makes more difficult to implement --- a security best practice (\Cref{sec:security_of_cryptographic_algorithms:best_practices}).
+
+
+\subsection{Programming Languages for Security}\label{sec:programming_languages_and_software:languages}
+
+Different programming languages naturally have distinct characteristics and approaches to memory management, code optimization, and execution strategies. Hence, each programming language balances efficiency, usability, security, and abstraction differently according to the intended target audience, purpose, and applications. When considering the implementation of cryptographic algorithms specifically, we identify the following aspects as relevant to security:
+
+\begin{itemize}
+	
+	\item \textbf{memory safety}, which comprises mechanisms and practices that a programming language adopts by design to ensure proper and secure management of secret data and prevent memory corruption vulnerabilities such as:
+	\begin{itemize}
+		\item \textit{automatic bounds checking}, to prevents buffer overflows (both in read and in write) by ensuring that array and memory accesses are within valid bounds;
+		\item \textit{null safety}, to eliminate the risk of dereferencing null pointers;
+		\item \textit{ownership and borrowing}, to enforce clear memory ownership rules to avoid use-after-free and double-free errors;
+		\item \textit{type safety}, to ensure that variables are used only in ways consistent with their declared types, reducing the risk of unintended behavior;
+		\item \textit{memory zeroization}, to wipe or overwrite data explicitly (\Cref{sec:security_of_cryptographic_algorithms:best_practices:zeroization});
+		\item \textit{memory integrity}, to provide the possibility to mark specific pieces of data as immutable or constant after initialization while also providing integrity checks;
+	\end{itemize}
+	
+	\exampleBlock{A real-world memory safety vulnerability}{A famous vulnerability related to memory safety is the \textbf{Heartbleed Bug},\footnote{Heartbleed Bug (\url{https://heartbleed.com/ })} a bug in the OpenSSL implementation of the heartbeat extension \cite{rfc6520} for \gls{tls} (\Cref{sec:popular_protocols:tls}). The heartbeat extension was intended to allow for keeping \gls{tls} connections alive even without continuous data transfer. However, the lack of bounds checking allowed attackers to read out of bounds in memory areas highly likely to store sensitive data such as private keys.}
+
+	\item \textbf{deterministic behavior}, which expects instructions and runtime routines to behave deterministically (as much as possible) thanks to: 
+	\begin{itemize}
+		\item \textit{language complete specification}, to ensure no edge case leads to non-deterministic behaviors;
+		\item \textit{constant-time}, to make the execution time of instructions in libraries and algorithms --- like comparisons and arithmetic operations --- constant regardless of their input (\Cref{sec:security_of_cryptographic_algorithms:best_practices:constant});
+		\item \textit{predictable memory management}, to eliminate runtime routines --- like garbage collection --- that may introduce timing variability and random behavior;
+		\item \textit{secure error handling}, to handle runtime errors securely without leaking sensitive information and avoid unintended behavior from uncaught or mishandled exceptions and signals;
+		\item \textit{cross-platform consistency}, to guarantee that the source code behaves the same across different platforms, preventing platform-specific vulnerabilities and abstracting platform-specific hardware features;
+	\end{itemize}
+	
+	\item \textbf{concurrency safety}, which ensures consistency and integrity of operations and data in concurrent environments (e.g., through atomicity and prevention of race conditions, respectively);
+	
+	\item \textbf{safe defaults}, which encourage developers to use secure defaults and require explicit declarations (i.e., opt-in) for employing new or untested features or practices that bypass security mechanisms, ensuring conscious use;
+	
+	\item \textbf{ecosystem and community support}, which allows developers to use off-the-shelf robust, vetted and well-documented libraries, tools, and frameworks for cryptographic development.
+\end{itemize}
+
+We now analyze how mainstream and popular programming languages relate to the aforementioned security aspects and report our findings in \Cref{table:programming_languages_security}.
+
+\begin{table}[!b]
+	\centering
+	\small
+	\setlength{\tabcolsep}{1.75pt}
+	\def\arraystretch{1.075}
+	\rowcolors{0}{cloud}{white}
+	\caption{Security aspects of languages for the implementation of cryptographic algorithms}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{l|YYYYYYY}
+		
+		\toprule
+		
+		\rowcolor{white}
+		~ &
+		\multicolumn{7}{c}{\textbf{Programming Language}} \\
+		
+		\multicolumn{1}{c|}{\multirow{-2}{*}{\textbf{Aspect}}} &
+		\multicolumn{1}{c}{\textbf{C/C++}} &
+		\multicolumn{1}{c}{\textbf{Java}} &
+		\multicolumn{1}{c}{\textbf{Kotlin}} &
+		\multicolumn{1}{c}{\textbf{Python}} &
+		\multicolumn{1}{c}{\textbf{Rust}} &
+		\multicolumn{1}{c}{\textbf{JS}} &
+		\multicolumn{1}{c}{\textbf{Go}} \\
+		
+		\hline
+		%									   C/C++    Java     Kotlin   Python   Rust     JS       Go
+		automatic bounds checking			& \ecirc & \fcirc & \fcirc & \fcirc & \fcirc & \ecirc & \fcirc \\
+		null safety							& \ecirc & \ecirc & \fcirc & \hcirc & \fcirc & \ecirc & \fcirc \\
+		ownership and borrowing				& \ecirc & \ecirc & \ecirc & \ecirc & \fcirc & \ecirc & \ecirc \\
+		type safety							& \hcirc & \hcirc & \hcirc & \fcirc & \fcirc & \fcirc & \fcirc \\
+		memory zeroization					& \ecirc & \ecirc & \ecirc & \ecirc & \fcirc & \ecirc & \ecirc \\
+		memory integrity					& \ecirc & \hcirc & \hcirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		language complete specification		& \ecirc & \fcirc & \fcirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		constant-time						& \ecirc & \hcirc & \hcirc & \ecirc & \fcirc & \ecirc & \hcirc \\
+		predictable memory management		& \ecirc & \ecirc & \ecirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		secure error handling				& \ecirc & \hcirc & \fcirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		cross-platform consistency			& \hcirc & \fcirc & \fcirc & \fcirc & \fcirc & \fcirc & \fcirc \\
+		concurrency safety					& \ecirc & \fcirc & \fcirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		safe defaults						& \ecirc & \hcirc & \fcirc & \ecirc & \fcirc & \ecirc & \fcirc \\
+		ecosystem and community support		& \fcirc & \fcirc & \fcirc & \fcirc & \hcirc & \fcirc & \hcirc \\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\label{table:programming_languages_security}
+\end{table}
+		
+\paragraph*{C and C++.} C and C++ are widely popular --- almost dominant --- for implementing cryptographic algorithms due to their widespread adoption, efficiency, and low-level control which allows for fine-tuning and optimizing implementations (especially important in resource-constrained environments). In fact, many well-known cryptographic libraries such as OpenSSL,\footnote{OpenSSL (\url{https://www.openssl.org/})} libgcrypt,\footnote{Libgcrypt (\url{https://gnupg.org/software/libgcrypt/index.html})} and NaCl\footnote{NaCl (\url{https://nacl.cr.yp.to/})} are written in C and C++. \textbf{On the other hand}, C and C++ are inherently less secure than other programming languages. First, C and C++ lack built-in mechanisms for memory safety: manual memory management, buffer overflow, dangling (null) pointers, and use-after-free have often been the source of serious vulnerabilities. Moreover, undefined behavior present in many cases in the languages specification\footnote{Undefined behavior - cppreference.com (\url{https://en.cppreference.com/w/cpp/language/ub})} lead to non-deterministic behavior. Furthermore, developers often need to handle synchronization manually through locks, semaphores, and mutexes, and uninitialized variables and unsafe typecasting are common --- although C++ provides stronger type safety than C. Finally, many functions in libraries and algorithms (e.g., \texttt{memcmp()}\footnote{memcmp - cppreference.com (\url{https://en.cppreference.com/w/c/string/byte/memcmp})}) are not constant-time.
+
+\readBlock{More information on how to program in C securely}{Jean Philippe Aumasson's ``Cryptocoding'' --- available at the link \url{https://github.com/veorq/cryptocoding} --- is a neat collection of best practices with code examples for C.}
+
+\paragraph*{Java.} With respect to C and C++, Java offers safer memory management thanks to bounds checking, strong type safety, and automatic garbage collection which significantly reduces the risk of memory corruption attacks --- but also \textbf{thwarts predictable memory management} (also, null pointer exceptions are a common concern in Java). Moreover, Java provides a rich set of tools for safe multi-threading and concurrency, such as synchronized blocks and thread-safe collections. Finally, we note that Java inherently provides strong cross-platform capabilities --- by relying on the \gls{jvm} --- and includes a structured approach to the provisioning of cryptographic functions thanks to the \gls{jca}.
+
+\paragraph*{Kotlin.} Building on top of Java, Kotlin introduces immutable data classes and null safety as core language features, thereby \textbf{improving memory safety and integrity} and preventing null pointer dereferences. Moreover, Kotlin enhances secure error handling and provides a modern approach to handling concurrency safely and efficiently through coroutines. Finally, Kotlin benefits from the Java ecosystem while building its own growing community and libraries.
+
+\paragraph*{Python.} Excellent in educational contexts and for rapid prototyping due to its simplicity and abstraction, Python typically relies on libraries implemented in lower-level languages (e.g., C) for cryptographic functions. For instance, both cryptography.io\footnote{pyca/cryptography (\url{https://cryptography.io/})} and M2Crypto\footnote{GitHub - mcepl/M2Crypto: OpenSSL for Python (both 2.x and 3.x) (generated by SWIG) (\url{https://github.com/mcepl/M2Crypto})} act like wrappers over OpenSSL. Also PyCryptodome\footnote{GitHub - Legrandin/pycryptodome: A self-contained cryptographic library for Python (\url{https://github.com/Legrandin/pycryptodome})} --- which explicitly aims to implement cryptographic algorithms in pure Python --- relies on C for some cryptographic constructions, e.g., block ciphers (\Cref{sec:cryptography_basics:ciphers}). In fact, \textbf{the high abstraction of Python makes it difficult} to achieve fine-grained control over timing and memory, both of which are critical for implementing cryptographic algorithms securely. Then, concurrency safety is limited by the \gls{gil}, reducing exposure to concurrency issues but also limiting performance. Finally, Python has a large ecosystem with numerous libraries and frameworks to rely upon.
+
+\paragraph*{Rust.} Prioritizing memory safety without sacrificing low-level control and performance, Rust is \textbf{an increasingly popular (and sensible) candidate for implementing cryptographic algorithms}. The ownership and borrowing model\footnote{What is Ownership? - The Rust Programming Language (\url{https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html})} --- albeit complex to learn --- ensures memory safety at compile time, preventing vulnerabilities such as buffer overflows, use-after-free, and double-free errors. At the same time, developers may rely on language core features, libraries, and functions (e.g., \texttt{subtle}, \texttt{constant\_time\_eq}) to improve the constant-time quality of the code. Moreover, Rust provides mechanisms for memory zeroization (e.g., \texttt{zeroize}) and type safety. Finally, while smaller than other languages, Rust's ecosystem is rapidly expanding with security-focused libraries and increasing support for cryptographic tools.\footnote{GitHub - rust-secure-code/projects: Contains a list of security related Rust projects (\url{https://github.com/rust-secure-code/projects})}
+
+\paragraph*{JS.} Until a few years ago (\~2023), web applications typically relied directly on \gls{js} for the provisioning of cryptographic algorithms required for client-server interaction. For instance, the popular CryptoJS library\footnote{ GitHub - brix/crypto-js: JavaScript library of crypto standards (\url{https://github.com/brix/crypto-js})} implements many cryptographic algorithms directly in \gls{js}. Nonetheless, the same developers of CryptoJS remark that modern browsers employ native cryptographic libraries which should be preferred over \gls{js} (to the point that active development of CryptoJS has even been discontinued). The built‑in \textbf{Web Crypto \gls{api}}\footnote{Web Crypto API - Web APIs | MDN (\url{https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API})} is nowadays the standard used in \gls{js}.
+
+\paragraph*{Go.} Known for its simplicity, performance, and built-in concurrency support (i.e., \texttt{goroutines}), Go is also an \textbf{ideal candidate for the implementation of cryptographic algorithms}. In fact, Go provides memory safety by including automatic bounds checking and type safety. On the other hand, Go uses garbage collection which mitigates memory corruption attacks but prevents predictable memory management. Finally, security practices are encouraged by default, but some manual effort is required for developing constant-time code.
+
+\paragraph*{Conclusion.} While efficiency often dominates the discussion about the implementation of cryptographic algorithms, security should be highly regarded as well: \Cref{table:programming_languages_security} shows how C and C++, Java, and Python are not ideal, Kotlin may be a fairly good choice, JS may be the only option for web applications, and Go and Rust are by far the best choices.
+
+\remarkBlock{Other factors to consider for an educated choice}{Further factors that developers should consider for making an educated choice regarding what programming language to use for implementing cryptographic algorithms are:
+	\begin{itemize}	
+		\item \textbf{further programming languages}: some popular programming languages (e.g., Ruby, Perl) were not analyzed in \Cref{table:programming_languages_security} and may be considered by developers;
+		\item \textbf{developers' expertise}: intuitively, developers must be familiar with a programming language to use it proficiently;
+		\item \textbf{development environment}: the availability of advanced \glspl{ide}, debuggers, linters, and testing frameworks may improve the quality --- and, consequently, the security --- of the code;
+		\item \textbf{legacy systems and integration}: the need to develop code which is compatible with other (possibly legacy) systems and software may favor the adoption of a programming language over another;
+		\item \textbf{long-term viability}: an ideal programming language should be subject to active development, proper (i.e., stable and predictable) updates, and be guaranteed long-term support by major technological organizations;
+		\item \textbf{target application}: the environment, devices (e.g., embedded systems, mobile devices), and purposes for which the code should be developed must be considered when choosing the programming language.
+\end{itemize}}
+
+\warningBlock{Lack of literature concerning programming languages for security}{Although some researchers have investigated the (in)security of specific characteristics of specific programming languages in the implementation of cryptographic algorithms --- i.e., with a very focused scope--- to the best of our knowledge a comprehensive analysis is missing in the literature. For an empirical investigation on the subject of the relationship between security and programming languages in the wild (not only concerning cryptography) we refer the reader to \cite{croft_empirical_2022}.}
+
+
+\subsection{Compilers and Interpreters Options for Security}\label{sec:programming_languages_and_software:compilers}
+
+Even though a suitable programming language is selected (\Cref{sec:programming_languages_and_software:languages}) and all attacks (\Cref{sec:security_of_cryptographic_algorithms:attacks}) relevant to the considered threat model (\Cref{sec:cryptographic_security_overview:threat_model}) have been properly addressed through the adoption of security best practices (\Cref{sec:security_of_cryptographic_algorithms:best_practices}), compilers and interpreters --- also according to their configuration options --- may play a decisive role in fostering (or, more often, undoing) security. For instance, mainstream C compilers usually apply aggressive optimizations that can inadvertently break constant-time cryptography \cite{simon_what_2018}. A (very recent and) more detailed and thorough investigation on the topic of how compilers may (or, better, often) break constant-time implementations can be found in \cite{schneider_breaking_2024}. 
+
+In general, it is difficult to control (or anticipate) the behavior of compilers and interpreters. Moreover, configuration options either heavily rely on developer expertise or do not always allow developers to express requirements concerning, e.g., code optimization, as they would. In other words, \textbf{it is advisable to choose a programming language whose compiler or interpreter (e.g., one among those available) impacts code structure as little as possible}, and then use specific approaches and tools (\Cref{sec:security_of_cryptographic_algorithms:best_practices:test}) to verify and validate the security of cryptographic algorithm implementation.
+
+
+\subsection{Trusted Computing Base}\label{sec:programming_languages_and_software:trusted_computing_base}
+
+The \gls{tcb} of a system (e.g., an application, a cryptographic module) is the minimal subset of hardware, firmware, and software constituting the system --- as well as their configuration --- \textbf{that must function correctly and remain uncompromised for the system's security guarantees to hold}. In other words, misbehaviors and vulnerabilities in a system's \gls{tcb} directly impact the system's security, while errors and vulnerabilities in the remaining system's hardware, firmware, and software do not impact its security (although they might affect functionality or availability).
+
+\exampleBlock{A real-world analogy for \gls{tcb}}{Consider as a system the front door of a house: the \gls{tcb} may comprise the lock mechanism (e.g., the tumbler, bolt, and casing), the lock key, and the door frame, while the doorknob, the welcome mat, and all decorations are not part of the \gls{tcb}.}
+
+Clearly identifying the \gls{tcb} of a system allows for narrowing down the scope, complexity, and cost of security analysis and testing. Similarly, minimizing the size of the \gls{tcb} is fundamental to reduce the attack surface of a system. Intuitively, \textbf{cryptographic algorithms are (almost) always included in the \gls{tcb}}.
+
+\remarkBlock{The concept of attack surface}{The attack surface of a system is the sum total of all the points or interfaces --- such as \glspl{api} and their parameters, open network ports, files reads, lines of code and third-party libraries --- through which attacker can attempt to compromise the system or extract data. Obviously, a small attack surface is preferable.}
+
+Security properties particularly relevant to a \gls{tcb} are:
+\begin{itemize}
+	\item \textbf{tamper-evidence}: reliable indicators (e.g., flags, logs, alerts, safe‑fail modes) should make it clear whether the \gls{tcb} of a system was compromised. Concretely, this can be achieved, e.g., through digital signatures (\Cref{sec:digital_signatures}), \glspl{mac} (\Cref{sec:symmetric_cryptography:mac}), and features of hardware-based cryptographic modules such as secure boot (\Cref{sec:cryptographic_modules});
+	\item \textbf{auditability}: any qualified evaluator --- e.g., the system's developers themselves, external authorized auditors, or the broader community in open-source projects --- should be able to inspect each component of a \gls{tcb} to verify it was correctly written, compiled, and is running as intended. Naturally, the greater the transparency of a \gls{tcb} --- net of inherently complexities (e.g., in hardware designs and firmware) --- the higher the confidence in its security;
+	\item \textbf{measurability}: means should be available to produce measurements of a \gls{tcb} and ensure it corresponds to the intended definition. The remote attestation capability of \gls{tee} (\Cref{sec:cryptographic_modules:tee}) is an example of such means, as the comparison of the digest (\Cref{sec:hash_functions}) of the \gls{tcb} of an open-source software instance against the digest computed by the developers.
+\end{itemize}
+
+\warningBlock{Beyond \gls{tcb}: the supply chain}{Even though a system has a small, verified, and robust \gls{tcb}, there still are security concerns to be well-aware of. In particular, although a good \gls{tcb} may provide confidence on the security of a system, \textbf{without a secure supply chain such confidence is simply delusive}. In system security, the supply chain of a system comprises processes, tools, and relationships by which the components of the system --- software, firmware, and hardware (\Cref{sec:cryptographic_modules:software}) --- are developed, built, delivered, and updated. A supply chain is deemed secure if every component originates from a trusted source, was not tampered with, and is properly versioned and signed. Otherwise, a good \gls{tcb} may anyway end up containing undocumented features, malicious code, and backdoors (e.g., injected during the build process). In this sense, a famous speech was delivered by Ken Thomson during his Turing Award lecture in 1984 and published in his article ``Reflections on Trusting Trust'' \cite{thompson_reflections_1984}, which discusses the possibility of including self-replicating backdoors into compilers so to propagate them, invisibly embedded, into all programs compiled with it (including the next versions of the same compiler). Unfortunately, ensuring the security of a supply chain is a daunting task, and trustworthiness is often assumed rather than verified. The Intel \gls{tsc}\footnote{Transparent Supply Chain (\url{https://www.intel.com/content/www/us/en/security/security-practices/transparent-supply-chain.html})} is an example of an attempt of securing the supply chain concerning selected Intel products by providing visibility and traceability of hardware components, firmware, and systems, and using \glspl{tpm} (\Cref{sec:cryptographic_modules:tpm}) for secure booting and measurements' comparison.}

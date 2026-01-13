@@ -1,0 +1,28 @@
+\lstdefinestyle{pseudocode}{
+    belowcaptionskip=0.25\baselineskip,
+    breaklines=true,
+    frame=none,
+    numbers=none,
+    keepspaces=true,
+    columns=flexible,
+    basicstyle=\scriptsize\ttfamily,
+    keywordstyle=\bfseries\color{magenta},
+    commentstyle=\color{gray}, %\itshape
+    identifierstyle=\color{black},
+    backgroundcolor=\color{gray!10!white},
+    escapeinside={(*@}{@*)},
+   	numberstyle=\tiny\color{gray},
+    numbers=left,                    
+    numbersep=5pt,
+}
+\lstset{style=pseudocode}
+\lstset{emph={  
+		var, sym, asym, upload, download, send, generate_sym_key, encrypt, decrypt, function, generate_secure, rand, kdf, derive_key, kem_encapsulate, kem_decapsulate, dh, ecdh_akem_encapsulate, ecdh_akem_decapsulate, ecdh, mkem_encapsulate, add, mkem_decapsulate, tkem_encapsulate, tkem, tkem_decapsulate, decapsulate_key, encapsulate_key, atkem_generate_sym_key, atkem_encapsulate_key, atkem_encapsulate, atkem_decapsulate, interactive_atkem_generate_sym_key, interactive_atkem_encapsulate_key, generate_asym_key_pair, interactive_atkem_encapsulate, interactive_atkem_decapsulate
+	},emphstyle={\bfseries\color{darkspringgreen}}%
+}
+
+
+
+\captionsetup[lstlisting]{font={footnotesize}}
+\renewcommand\lstlistingname{Algorithm}
+\crefname{listing}{algorithm}{algorithms}

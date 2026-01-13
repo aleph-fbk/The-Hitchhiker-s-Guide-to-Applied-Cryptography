@@ -1,0 +1,76 @@
+\subsection{Cryptographic Hash Functions}\label{sec:hash_functions:cryptographic_hash_function}
+
+A \gls{chf} --- which, in a broader sense, can be seen as a cryptographic algorithm --- is a hash function possessing 3 further security properties desirable for cryptographic use in addition to efficiency, uniformity, determinism, and the avalanche effect:
+
+\begin{itemize}
+	\item \textbf{pre-image resistance}: a \gls{chf} is a (supposedly) one-way function (\Cref{sec:trapdoor_functions}), meaning that it is computationally infeasible to find an input --- which, in this context, is also called \textit{pre-image} --- producing a specific predetermined digest;
+	\exampleBlock{A real-world analogy for pre-image resistance}{It is easy to shred a piece of paper into tiny fragments but it is difficult to reconstruct a piece of paper from the fragments.}
+	\item \textbf{second pre-image resistance} (also called \textit{weak collision resistance}): given an input and the corresponding digest, it is computationally infeasible to find another input producing the same digest;
+	\exampleBlock{A real-world analogy for second pre-image resistance}{It is difficult to find a fingerprint that unlocks a biometric scanner registered to someone else's finger.}
+	\item \textbf{collision resistance (also called \textit{strong collision resistance})}: it is computationally infeasible to find two inputs producing the same digest.
+	\exampleBlock{A real-world analogy for collision resistance}{It is difficult to find two different persons with the same fingerprint.}
+\end{itemize}
+
+\gls{chf} can be used to provide integrity (\Cref{sec:security_properties}), usually by using a private or secret key to create or \textit{sign} --- that is, encrypt --- the digest of a ciphertext (see \glspl{hmac} in \Cref{sec:symmetric_cryptography:hmac} and digital signatures in \Cref{sec:digital_signatures}). \glspl{chf} are also used in \glspl{kdf} (\Cref{sec:key_management:lifecycle:pre}). We report commonly used \glspl{chf} in \Cref{table:common_cryptographic_hash_functions}.
+
+\remarkBlock{Internal functioning of \gls{chf}}{Older \glspl{chf} --- such as MD5, SHA-1, and SHA-2 --- are based on the \textbf{Merkle–Damgård construction} proposed by Ralph Merkle in 1979 \cite{merkle_secrecy_1979}. Instead, the newer SHA-3 is based on a sponge construction (so called because it works in two steps: first \textit{absorb} the whole input by dividing it in blocks and \texttt{xor}-ing them, then \textit{squeeze} the output). Finally, BLAKE2 is based on (a variant of) the ChaCha20 stream cipher (\Cref{sec:symmetric_cryptography:ciphers:chacha20}).}
+
+\curiosityBlock{What is the difference between SHA-3 and Keccak?}{SHA-3 is sometimes called \textbf{Keccak}. However, Keccak is the name of a family of \glspl{chf} created by Guido Bertoni, Joan Daemen, Michaël Peeters and Gilles Van Assche which was submitted to the SHA-3 competition of \gls{nist} in 2007. Conversely, SHA-3 --- besides the name of the competition --- is the name of the Keccak variants standardized by \gls{nist} \cite{nist_sha3_2015}. In other words, Keccak indicates the whole family of \glspl{chf}, while SHA-3 indicates a selected subset of Keccak's \glspl{chf}.}
+
+\begin{table}[!b]
+	\centering
+	\small
+	\rowcolors{0}{white}{cloud}
+	\setlength{\tabcolsep}{3pt}
+	\def\arraystretch{1.075}
+	\caption{Common \acrfullpl{chf}}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{c|YY}
+		
+		\toprule
+		
+		\textbf{hash function} &
+		\multicolumn{1}{c}{\textbf{strengths}} &
+		\multicolumn{1}{c}{\textbf{weaknesses}} \\
+		
+		\hline
+		
+		\multirow{1}{*}{MD5} &
+		very fast, simple &
+		insecure (collisions were found)$\textsuperscript{a}$ \\
+		
+		\multirow{1}{*}{SHA-1} &
+		fast, simple &
+		insecure (collisions were found)$\textsuperscript{b}$ \\
+		
+		\multirow{1}{*}{SHA-2} &
+		mostly secure, widely used &
+		length extension attacks \\
+		
+		\multirow{1}{*}{SHA-3} &
+		very secure, newer than SHA-2 &
+		slower than SHA-2, less adopted \\
+		
+		\multirow{1}{*}{BLAKE2$\textsuperscript{c}$} &
+		very secure, faster than SHA-2 &
+		less adopted than SHA-2 \\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\begin{flushleft}
+		{\scriptsize\textsuperscript{$\textsuperscript{a}$} Peter Selinger: MD5 Collision Demo (\url{https://www.mscs.dal.ca/~selinger/md5collision/})}
+		
+		{\scriptsize\textsuperscript{$\textsuperscript{b}$} SHAttered (\url{https://shattered.io/})}
+		
+		{\scriptsize\textsuperscript{$\textsuperscript{b}$} BLAKE2 was announced in 2012 on top of BLAKE, but there is also BLAKE3 that was announced in 2020 on top of BLAKE2.}
+	\end{flushleft}
+	\label{table:common_cryptographic_hash_functions}
+\end{table}
+
+
+\subsubsection{Keyed Cryptographic Hash Functions}\label{sec:hash_functions:cryptographic_hash_function:keyed}
+
+A keyed \gls{chf} is an instance of \gls{chf} that --- besides data --- takes as input also a (usually symmetric) key which is used to produce the digest. The underlying intuition is that two parties knowing the key may exchange a message and its digest (created with a keyed \gls{chf}) as to ensure its integrity. Keyed \gls{chf} are a broad category that encompasses various constructions beyond just \glspl{hmac} (\Cref{sec:symmetric_cryptography:hmac}); indeed, keyed \gls{chf} does not necessarily provide (ciphertext) authenticity (\Cref{sec:security_properties}).
+
+\warningBlock{Length extension attack}{\glspl{chf} based on the Merkle–Damgård construction (e.g., MD5, SHA-1, and SHA-2) may suffer from the \textbf{length extension attack}: if an attacker knows the digest $H(m_1)$ of an unknown message $m_1$ and the length $\mathit{len(m_1)}$ of $m_1$, then the attacker can compute the digest of an extended message ($m_1 \parallel m_2$) --- for an attacker-chosen $m_2$ --- without knowing $m_1$. This attack is an issue for keyed \glspl{chf}, as it implies that \textbf{an attacker can include extra information to $m_1$ and still produce a valid digest without knowing the key}. hence violating data integrity. The length extension attack is possible on \glspl{chf} based on the Merkle–Damgård construction because ($i$) these \gls{chf} process input data into fixed‐size blocks sequentially and each block updates the \gls{chf}s' internal state --- essentially, the output digest is just the latest internal state --- hence appending new blocks is possible by continuing the hashing process starting from the digest (i.e., the last internal state) and ($ii$) padding is completely predictable once the attacker knows $\mathit{len(m_1)}$. Note that \gls{hmac} are not affected by the length extension attack --- even when built upon \gls{chf} based on the Merkle–Damgård construction.}
