@@ -4,16 +4,16 @@
 
 # The Hitchhiker's Guide to Applied Cryptography
 
-This repository contains *The Hitchhiker's Guide to Applied Cryptography*, a handbook on the subject of applied cryptography written by the Applied Cryptography (**ALEPH**) research unit of the **Center for Cybersecurity** at **Fondazione Bruno Kessler**.
+This repository contains *The Hitchhiker's Guide to Applied Cryptography*, a guidebook on the subject of applied cryptography written by the Applied Cryptography (**ALEPH**) research unit of the **Center for Cybersecurity** at **Fondazione Bruno Kessler**.
 
-The main purpose of the handbook – available as a PDF (see below) – is to provide a **guided overview of relevant and current concepts in applied cryptography**. Each topic is accompanied by a brief explanation and, where appropriate, pointers to additional resources for deeper study. In other words, the handbook is a **starting point**, curated based on what we consider essential knowledge in this context, without claiming to be exhaustive or fully comprehensive.
+The guidebook – available as a PDF (see below) – provides an **intentionally concise and straight-to-the-point overview of relevant and current concepts in applied cryptography**. In other words, the guidebook is a **starting point** for curious practitioners of cryptography looking for working knowledge – without delving too far into its theoretical foundations.
 
 > [!NOTE]
-> 📄 [Download here the PDF (v0.1.0)](https://github.com/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography/releases/download/0.1.0/the_hitchhiker_s_guide_to_applied_cryptography_v0.1.0.pdf)
+> 📄 [Download here the PDF (v0.1.1)](https://github.com/aleph-fbk/The-Hitchhiker-s-Guide-to-Applied-Cryptography/releases/download/0.1.1/the_hitchhiker_s_guide_to_applied_cryptography_v0.1.1.pdf)
 
 ## Table of Contents
-- [How This Handbook is Structured](#how-this-handbook-is-structured)
-- [What This Handbook Is Not](#what-this-handbook-is-not)
+- [How This Guidebook is Structured](#how-this-guidebook-is-structured)
+- [What This Guidebook Is Not](#what-this-guidebook-is-not)
 - [Intended Audience](#intended-audience)
 - [Contributing](#contributing)
 - [Changelog](#changelog)
@@ -24,21 +24,20 @@ The main purpose of the handbook – available as a PDF (see below) – is to pr
 
 ---
 
-## How This Handbook is Structured
+## How This Guidebook is Structured
 
-The handbook is **structured as a series of self-contained notes**. 
-Each note can be read independently, though references to related notes (denoted with `§`) or more detailed sources are included where useful.
-While a top-down reading of the handbook is possible, readers can **read any one single note** based on their interests or needs
+The guidebook is **structured as a series of bite-sized self-contained notes** – no need to read it cover to cover. 
+In fact, each note can be read independently, though references to related notes (denoted with ``§`) or more detailed sources are included where useful.
 
 > [!IMPORTANT]  
 > References to cryptographic services, libraries, or hardware **do not constitute endorsement**, unless explicitly stated.
 
 ---
 
-## What This Handbook Is Not
+## What This Guidebook Is Not
 
-The handbook is **not** a textbook, an encyclopedia, or a dictionary. Similarly, the handbook is by no means a horizontally complete or vertically exhaustive treatment of all facets of (especially theoretical) cryptography. 
-In particular, to maintain brevity and focus, **the handbook intentionally minimizes**:
+The guidebook is **not** a textbook, an encyclopedia, or a dictionary. Similarly, the guidebook is by no means a horizontally complete or vertically exhaustive treatment of all facets of (especially theoretical) cryptography. 
+In particular, to maintain brevity and focus, **the guidebook intentionally minimizes**:
 
 - mathematical details;
 - formal proofs;
@@ -50,13 +49,13 @@ Instead, the emphasis is on practical understanding, conceptual clarity, and poi
 
 ## Intended Audience
 
-The handbook is primarily aimed at readers who:
+The guidebook is primarily aimed at readers who:
 
 - seek a **practical understanding** of cryptography without delving (too much) into its theoretical foundations;
 - need a **reference companion** to standard cryptographic literature;
 - want a high-level overview of various **cryptographic components and their relationships**.
 
-While prior familiarity with cryptography is helpful, the handbook is designed to remain accessible to readers with a general background in computer science or cybersecurity.
+While prior familiarity with cryptography is helpful, the guidebook is designed to remain accessible to readers with a general background in computer science or cybersecurity.
 
 ---
 
@@ -64,7 +63,7 @@ While prior familiarity with cryptography is helpful, the handbook is designed t
 
 This is a living document, and ****contributions are welcome****.
 
-Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to contribute corrections, suggestions, or new notes to the handbook.
+Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to contribute corrections, suggestions, or new notes to the guidebook.
 
 ---
 

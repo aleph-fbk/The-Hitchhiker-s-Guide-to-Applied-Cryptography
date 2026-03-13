@@ -1,6 +1,6 @@
 # Contributing to The Hitchhiker's Guide to Applied Cryptography
 
-Thank you for your interest in improving *The Hitchhiker's Guide to Applied Cryptography* handbook.
+Thank you for your interest in improving *The Hitchhiker's Guide to Applied Cryptography* guidebook.
 
 Contributions of all forms — corrections, clarifications, additional references, wording improvements, or structural suggestions — are welcome.
 
@@ -44,7 +44,7 @@ If a topic is missing and fits the scope of *applied* cryptography, feel free to
 
 ## Style and Scope Guidelines
 
-To maintain coherence across the handbook, note that:
+To maintain coherence across the guidebook, note that:
 
 - notes should remain **concise**, **self-contained**, and **pragmatic**;
 - deep theoretical proofs or extensive mathematical derivations should be avoided;
@@ -59,7 +59,7 @@ To maintain coherence across the handbook, note that:
 ## Attribution
 
 If you contribute content drawn from an existing source, please include proper bibliographic information.
-If any attribution in the handbook is incomplete or incorrect, please report it — this will be corrected promptly.
+If any attribution in the guidebook is incomplete or incorrect, please report it — this will be corrected promptly.
 
 ---
 
@@ -71,7 +71,7 @@ Please keep communication respectful, constructive, and aligned with the collabo
 
 ## Licensing
 
-By contributing, you agree that your contribution will be released under the same license as the rest of the handbook (see `LICENSE`).
+By contributing, you agree that your contribution will be released under the same license as the rest of the guidebook (see `LICENSE`).
 
 If you have questions about licensing before contributing, feel free to ask.
 

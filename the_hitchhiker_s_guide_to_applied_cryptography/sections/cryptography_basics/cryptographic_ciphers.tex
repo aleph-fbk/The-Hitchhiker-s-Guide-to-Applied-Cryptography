@@ -23,7 +23,7 @@ sequence of bytes used as additional input to the algorithms of a cipher to achi
 
 A cipher comprising algorithms operating on fixed-length blocks of data --- one block at a time --- is called \textbf{block cipher}. Conversely, a cipher comprising algorithms operating on one bit of data at a time is called \textbf{stream cipher}.
 
-\paragraph*{Block Ciphers.} A block cipher is a (keyed pseudo)random permutation family on the mappings between plaintexts and ciphertexts (if a block cipher is a true random permutation, then it is a perfect cipher). Block ciphers are slower but deemed theoretically more secure than stream ciphers. Usually, block ciphers take as input a key which is reused on each block of data. An example of a well-known and widely used block cipher is \gls{aes} (\Cref{sec:symmetric_cryptography:ciphers}). 
+\paragraph*{Block Ciphers.} A block cipher is a (keyed pseudo)random permutation family on the mappings between plaintexts and ciphertexts. In simpler words, block ciphers usually take as input a key that is --- often combined with an \gls{iv} and then --- used to select a permutation over the set of fixed-size plaintext blocks and apply it to obtain a ciphertext block of the same size (if a block cipher is a true random permutation, then it is a perfect cipher). Block ciphers are slower but deemed theoretically more secure than stream ciphers. Usually, block ciphers take as input a key which is reused on each block of data. An example of a well-known and widely used block cipher is \gls{aes} (\Cref{sec:symmetric_cryptography:ciphers}). 
 
 \curiosityBlock{Do asymmetric ciphers qualify as block ciphers?}{Although it is true that asymmetric cryptography (\Cref{sec:asymmetric_cryptography}) usually operates on fixed-length blocks of data, asymmetric ciphers are not considered block ciphers, as they do not match the standard definition of the term --- that is, a (keyed pseudo)random permutation. Moreover, an asymmetric cipher should not be used over a piece of data larger than the size of the cipher's block; in case this happens, the use of hybrid cryptography is preferred (\Cref{sec:hybrid_cryptography}).}
 
@@ -48,6 +48,6 @@ Block ciphers have a \textbf{mode of operation} which specifies how to combine m
 	\end{center}
 \end{figure}
 
-\paragraph*{Stream Ciphers.} Differently from block ciphers, stream ciphers are usually faster but deemed theoretically less secure than block ciphers. Usually, stream ciphers take as input a key that is --- often combined with an \gls{iv} and then --- used to generate an (ideally infinite pseudo)random keystream. Ultimately, the keystream is used for performing (several) bit-wise operations on the plaintext, hence obtaining the ciphertext
-%TODO (\Cref{future_sec:randomness}
-for more details on randomness in cryptography). An example of a well-known and widely used stream cipher is Salsa20/ChaCha20 (\Cref{sec:symmetric_cryptography:ciphers}). 
+\paragraph*{Stream Ciphers.} Differently from block ciphers, stream ciphers are usually faster but deemed theoretically less secure than block ciphers. Usually, stream ciphers take as input a key that is --- often combined with an \gls{iv} and then --- used to generate an (ideally infinite pseudo)random keystream. Ultimately, the keystream is used for performing (several) bit-wise operations on the plaintext, hence obtaining the ciphertext.
+%TODO (\Cref{future_sec:randomness} for more details on randomness in cryptography). 
+An example of a well-known and widely used stream cipher is Salsa20/ChaCha20 (\Cref{sec:symmetric_cryptography:ciphers}). 

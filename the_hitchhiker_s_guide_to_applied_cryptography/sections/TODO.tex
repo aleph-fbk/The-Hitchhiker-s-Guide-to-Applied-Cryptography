@@ -2,11 +2,7 @@
 \section{TODO}
 \vspace{7.5cm}
 
-\sbnote{For the glossary, double-check your definitions with those you find in Section 2.1 in https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf}
 
-\sbnote{add this security property
-	unlinkability: "for two observed values, the adversary cannot distinguish between a protocol execution in which they belong to the same user and a protocol execution in which they belong to two different users."
-}
 
 \url{https://www.cybok.org/media/downloads/Formal_Methods_for_Security_v1.0.0.pdf}
 \url{https://cryptobook.nakov.com/asymmetric-key-ciphers/ecies-public-key-encryption}
@@ -15,16 +11,9 @@
 \url{https://berry.win.tue.nl/CryptographicProtocols/LectureNotes.pdf}
 \url{https://asecuritysite.com/}
 \url{https://cryptography101.ca/}
-
+\url{https://neuromancer.sk/std/}
 
 * to symmetric encryption, add lightweight nist crypto ciphers like ascon aead 128 and https://eprint.iacr.org/2024/1618
-
-
-
-
-aggiungi "accountability" nel hanbook
-
-
 
 \sbnote{TODO In \Cref{sec:diffie_hellman}}:
 * \sbnote{investigate \gls{kci}, \gls{uks} and replay attacks against 3DH? investigate also deniability (also for standard DH modes)?}
@@ -37,16 +26,9 @@ For X3DH, say that ``The use of long-term keys prevents \gls{uks} attacks --- as
 
 
 
-
 take material from CC deliverables (except the ones you authored, e.g., DA3/CSC-D*, those you already did), link: \url{https://drive.google.com/drive/folders/1VIRFKrMnmkf_lCf8Dei1Y7XQm2jq3QPv?usp=drive_link}
 
-
 see \url{https://www.decifris.it/koine/vol4}
-
-
-
-
-
 
 
 
@@ -71,7 +53,6 @@ qui sotto commentati, link a materiale forse utile (in teoria su security of cry
 %	- Allows a third party called proxy to alter a ciphertext which has been encrypted for one user so that it may be decrypted by another user.
 
 %introduced by blaze_divertible_1998
-
 
 \subsubsection{Post-Quantum Cryptography}\label{future_sec:post_quantum_cryptography}
 %Examples of such attacks are Shor's Algorithm --- for solving problems related to prime factorization and discrete logarithms --- and Grover's Algorithm --- for accelerating brute force attacks on symmetric cryptography;
@@ -729,7 +710,7 @@ Blog
 %* Chosen Plaintext Consulting's blog.\footnote{\url{https://www.chosenplaintext.ca/blog/}}
 %* Latacora.\footnote{\url{https://www.latacora.com/blog/}}
 %* https://www.telsy.com/it/home/
-
+%* https://blog.cr.yp.to/
 
 %* https://gist.github.com/tqbf/be58d2d39690c3b366ad
 %* https://gist.github.com/atoponce/07d8d4c833873be2f68c34f9afc5a78a
@@ -898,6 +879,63 @@ se è disponbile il DOI, aggiorna la reference \cite{kumar_demystifying_2025}
 
 
 
+* add transparency logs into popular applications examples
+
+wireguard VPN
+% vedi nel progetto CC la deliverable R3-CSC-D1-def
+
+
+
+\sbnote{MAY be RELEVANT FOR SIDE-CHANNEL \url{https://eprint.iacr.org/2025/1130.pdf}}
+
+
+
+
+
+%\begin{notocblock}
+%\notes{FUTURE CONTENT}{~}{last revision: 13 Jan 2026}
+\vspace{7.5cm}
+
+Future versions of this guidebook --- or a new different guidebook --- will hopefully include content on the following topics (and more).
+
+\subsubsection{Identity-based Cryptography}\label{future_sec:identity_based_cryptography}
+\subsubsection{Ciphers for Identity-based Cryptography}\label{future_sec:identity_based_cryptography:ciphers}
+\subsubsection{Boneh---Franklin}\label{future_sec:identity_based_cryptography:ciphers:boneh_franklin}
+\subsubsection{Attribute-based Encryption}\label{future_sec:advanced_cryptography:attribute_based_encryption}
+\subsubsection{Certificateless Cryptography}\label{future_sec:asymmetric_cryptography:certificateless}
+\subsubsection{Functional Encryption}\label{future_sec:advanced_cryptography:functional_encryption}
+\subsubsection{Homomorphic Encryption}\label{future_sec:advanced_cryptography:homomorphic_encryption}
+\subsubsection{Secure Multi-Party Computation}\label{future_sec:advanced_cryptography:secure_multi_party_computation}
+\subsubsection{Searchable Encryption}\label{future_sec:advanced_cryptography:searchable_encryption}
+\subsubsection{Zero Knowledge Proofs}\label{future_sec:advanced_cryptography:zero_knowledge_proofs}
+
+\subsection{Popular Cryptographic Protocols}\label{future_sec:popular_cryptographic_protocols}
+\subsubsection{Transport Layer Security}\label{future_sec:popular_protocols:tls}
+\subsubsection{The Signal Protocol}\label{future_sec:popular_protocols:signal}
+\subsubsection{The Secure Shell Protocol}\label{future_sec:popular_protocols:ssh}
+
+\subsection{Popular Applications of Cryptography}\label{future_sec:popular_applications}
+\subsubsection{Blockchain}\label{future_sec:popular_applications:blockchain}
+
+\subsection{Other Topics}
+\subsubsection{Re-Encryption}\label{future_sec:re_encryption}
+\subsubsection{Post-Quantum Cryptography}\label{future_sec:post_quantum_cryptography}
+\subsubsection{Secret Sharing and Threshold Schemes}\label{future_sec:secret_sharing_and_threshold_schemes}
+\subsubsection{Randomness}\label{future_sec:randomness}
+\subsubsection{Lattice-based Cryptography}\label{future_sec:lattice_based_cryptography}
+\subsubsection{Cryptographic Accumulators}\label{future_sec:cryptographic_accumulators}
+\subsubsection{Cryptographic Ratchets}\label{future_sec:cryptographic_ratchets}
+\subsubsection{Access Control}\label{future_sec:access_control}
+\subsubsection{Post-Quantum Cryptographic Hash Functions}\label{future_sec:hash_functions:cryptographic_hash_function:post_quantum}
+
+\vspace{-1.5mm}
+\newpage
+
+%\end{notocblock}
+
+
+
+
 
 
 
@@ -927,16 +965,666 @@ se è disponbile il DOI, aggiorna la reference \cite{kumar_demystifying_2025}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %	\sbnote{To decide what to do with the following sections of 
 	%	key management; interesting but section on key management
 	%	is already long, I would like to keep it short}
-%	\input{sections/key_management/further_aspects}
-%	\input{sections/key_management/cloud}
+\subsection{Further Aspects of Key Management}\label{sec:further:key_management}
+
+The security of cryptographic keys is not limited to just a proper definition of the functional aspects of key management (i.e., those described in \Cref{sec:key_management}) and the choice of the most suitable Cloud-based \gls{kms} services (see \Cref{sec:cloud}). Therefore, below we identify and briefly discuss further aspects relevant to the secure development and deployment of key management and \glspl{kms}.
 
 
 
-* add transparency logs into popular applications examples
+\subsubsection{Policies}\label{sec:further:key_management:policies}
 
-wireguard VPN
-% vedi nel progetto CC la deliverable R3-CSC-D1-def
+The management of cryptographic keys involves the definition, enforcement, and continuous revision of various policies --- a policy can be seen as a set of rules pertaining to a specific aspect of a system (e.g., a \gls{kms}). Organizations usually structure policies in a hierarchy, where each policy in a certain layer details the enforcement and implementation of the rules specified in the policies of the higher layer(s) \cite{barker_framework_2013}. In other words, top-level policies define security, business, and regulatory requirements deriving from the organizations themselves, best practices, and relevant standards (e.g., \gls{nist}'s), while intermediate- and low-level policies describe --- in greater detail --- suitable strategies and procedures to achieve such requirements. For instance, a high-level policy requiring to ``protect sensitive data'' may be linked to an intermediate-level policy requiring to ``encrypt sensitive data in transit and at rest'' which, in turn, may be linked to a low-level policy requiring to ``encrypt data in transit using \gls{tls} and data at rest using \gls{aes}-128 in a validated \gls{fips} 140-3 Hardware-based cryptographic module''. Policies at higher levels should be easily understandable by users (e.g., textual documents, tables, flow charts), while policies at lower levels may also be directly enforceable by automated systems. In any case, policies should always be written in a formal language for unambiguous meaning. In the context of key management, \gls{nist} defines a hierarchy of policies consisting of 3 layers \cite{barker_framework_2013}:
+
+\begin{itemize}
+	\item \textbf{information management policy}: this high-level policy expresses the security, business, and regulatory requirements of the organization on the use of (various categories of) sensitive data, the definition of responsibilities and management roles, and the need for security properties such as confidentiality, integrity, and availability. The information management policy also considers industrial best practices, relevant standards, and regulatory frameworks, and it is often complemented with a risk assessment \cite{joint_guide_2012};
+	\item \textbf{information security policy}: this intermediate-level policy refines the aforementioned requirements by specifying how data is categorized, the sensitivity levels assigned to data, eventual access constraints, and the permissions to distribute to the management roles. The information security policy also identifies protections for data (e.g., encryption), taking into account the threats identified in the risk assessment previously conducted;
+	\item \textbf{\gls{ckmssp}}: this low-level policy --- previously known as ``Key Management Policy'' --- specifies rules for the management of keys and metadata in each phase of the lifecycle shown in \Cref{fig:lifecycle} (e.g., installation/registration, generation, utilization, rotation), with the final goal to preserve the confidentiality, integrity, availability, and authenticity of keys and metadata \cite{barker_recommendation_2019_p2}. Intuitively, the rules within the \gls{ckmssp} need to be consistent with higher-level policies and have a clear mapping with the requirements defined by the organization. Moreover, the chosen \gls{kms} --- regardless of whether it was developed by the organization itself or an external party --- should be able to enforce the \gls{ckmssp}. Usually, a \gls{ckmssp} is composed of a policy for each phase of the key management lifecycle (e.g., key generation policy, key usage policy, key recovery policy). Furthermore, a \gls{ckmssp} is usually complemented with (at least) the following policies:
+	\begin{itemize}
+		\item \textbf{certificate policy}: this policy regulates all aspects associated with the management (e.g., issuance, distribution, revocation, renewal) of digital certificates, including details related to their types, lifecycle, and domains of applicability. Furthermore, a certificate policy defines the architecture and the entities that compose the \gls{pki} (e.g., accredited \glspl{ca}), their roles, and their duties. Finally, a certificate policy identifies which cryptographic ciphers to use (and their configuration) for digital certificates. For more details on certificate policies, we refer the interested reader to \cite{ford_internet_2003};
+		\item \textbf{key-inventory policy}: this policy outlines guidelines and procedures for managing and maintaining an inventory of cryptographic keys (see \Cref{sec:key_management:inventory}). A key-inventory policy defines what keys and metadata should be stored in the inventory management system \cite{barker_recommendation_2020_p1}, including information on responsibilities, monitoring (e.g., for expired keys and insecure cryptographic parameters), and any specific requirements imposed by legal or regulatory frameworks. For more details on key-inventory policies, we refer the interested reader to \cite{barker_recommendation_2019_p2};
+		\item \textbf{\gls{ac} policy}: this policy --- usually part of \gls{iam} (see S8-CSC-D1 in \Cref{sec:intro:scope}) --- comprises rules stating which agents can perform which actions (e.g., call for key rotation, encryption) on which of the resources (e.g., keys) maintained by the \gls{kms}. A formal representation of these rules is provided by the \gls{ac} model --- e.g., \gls{rbac} \cite{sandhu_access_1998} and \gls{abac} \cite{horwitz_toward_2002} are two models --- giving the semantics for granting or denying agents’ requests. The hardware and software entities that enforce the \gls{ac} policy based on the chosen model compose the so-called ``enforcement''. The enforcement may be either centralized --- e.g., based on a standard like \gls{xacml}\footnote{OASIS eXtensible Access Control Markup Language (XACML) TC (\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xacml})} or monitors like the \gls{opa}\footnote{Open Policy Agent (\url{https://www.openpolicyagent.org/})} --- or decentralized --- hence, enforced directly through cryptographic with a \gls{cac} scheme like those in \cite{berlato_formal_2022,berlato_end_2022}. For more details on \gls{ac} policies, we refer the interested reader to \cite{nist_security_2020};
+		\item \textbf{cryptographic algorithm policy}: this policy selects cryptographic algorithms, ciphers, and cryptosystems, as well as key lengths approved for use in the \gls{kms}. This selection is usually based on the requirements of the organization, industrial standards, and best practices. For more details on the cryptographic algorithm policy, see \Cref{app:ciphers};
+	\end{itemize}
+\end{itemize}
+
+As a final remark, organizations operating in different scenarios (e.g., financial services, pharmaceuticals, government bodies) are likely to have different policies and rules. Furthermore, cross-organizational scenarios may expect the definition of cross-domain security policies for interoperability \cite{barker_framework_2013}.
+
+
+
+\subsubsection{Authentication and Authorization}\label{sec:further:key_management:authn}
+
+In line with the Zero Trust security model\footnote{Zero Trust - Glossary | CSRC (\url{https://csrc.nist.gov/glossary/term/zero\_trust})} (``never trust, always verify''), any entity performing any operation within the key management lifecycle should be properly authenticated and authorized \cite{chandramouli_cryptographic_2013}. Authentication is the process of verifying --- after having previously registered --- the (digital) identity of users, processes, devices, and agents in general when attempting to access a resource or perform a digital transaction (for more details on authentication, see S8-CSC-D1 in \Cref{sec:intro:scope}), while authorization is the process of verifying to what resources (and actions) a (usually authenticated) agent has access \cite{samarati_access_2001}; the authorization process often consists of evaluating \gls{ac} rules contained in a policy to make and then enforce \gls{ac} decisions --- e.g., grant or deny an access request. In the context of cryptographic key management, authentication and authorization are of fundamental importance. For instance, the association between a digital identity and its owner is crucial for maintaining a record of activities and data access history (see \Cref{sec:further:key_management:logging}) to guarantee accountability and identify malicious activities. Moreover, the assignment of permissions to agents --- where a permission represents the ability to perform an action over a resource (e.g., rotate a cryptographic key) --- allows for regulating (and preventing unauthorized) access, checking that all applicable constraints are satisfied, and enforcing the least privilege principle;\footnote{least privilege - Glossary | CSRC (\url{https://csrc.nist.gov/glossary/term/least\_privilege})} \gls{cac} is the natural combination of cryptographic and \gls{ac} \cite{berlato_formal_2022,berlato_end_2022}.
+
+\sbnote{TODO talk also about SoD
+	%Separation of Duties: Separation of duties 
+	%By creating distinct duties or user types, that can only perform certain operations, there is an additional layer of security applied, since multiple users would need to be in collusion for key material to be stolen or manipulated in an inappropriate manner, and the audit trail to be erased
+}
+
+\subsubsection{Logging and Auditing}\label{sec:further:key_management:logging}
+
+In a \gls{kms} --- and key management in general --- any event concerning or relevant to cryptographic keys (i.e., creation, access, use, transmission, creation of backups, transition among key states and phases) should be properly recorded in a log and, when necessary, in the metadata of keys as well \cite{barker_profile_2015}. Logs are usually collected in a distributed fashion but then stored in a centralized way; this approach implies both the ability to integrate logs coming from different sources (e.g., the Cloud, multiple \glspl{kms}) and also filter and review logs --- which may be voluminous --- with automated assistance \cite{csa_key_2020}. Of course, the ability to preserve and demonstrate the integrity of logs is of the utmost importance for the following use; indeed, an organization can use logs for several purposes:
+
+\begin{itemize}
+	\item \textbf{security monitoring}: analyze events and operations (preferably in real-time) to detect anomalies (e.g., unusual patterns or suspicious activities) and attacks (e.g., unauthorized access, multiple failed login attempts);
+	\item \textbf{incident response}: review logs to identify the root cause of security incidents, conduct forensic analyses, reconstruct the sequence of actions leading to security incidents, and develop new effective security measures;
+	\item \textbf{compliance}: demonstrate compliance with regulations --- e.g., \gls{gdpr},\footnote{GDPR compliance (\url{https://gdpr.eu/})} \gls{hipaa},\footnote{HIPAA Home | HHS.gov (\url{https://www.hhs.gov/hipaa/index.html})} and \gls{picdss}\footnote{PCI Security Standards Council (\url{https://www.pcisecuritystandards.org/})} --- by allowing third-party auditors to review the activities of a system and identify behaviors not compliant with the established operational policies and procedures (see \Cref{sec:further:key_management:policies});	
+	\item \textbf{performance monitoring}: examine metrics in logs to assess the performance of the system (e.g., encryption time, latency, utilization of computational resources).
+\end{itemize}
+
+The availability of logs also enables internal auditing. In the context of \glspl{kms}, organizations should periodically conduct at least the following 3 types of audit \cite{barker_recommendation_2020_p1}:
+
+\begin{itemize}
+	\item \textbf{operational audit}: an organization should ensure that its \gls{kms} is properly configured to operate or continue to operate in compliance with the defined key management policy (see \Cref{sec:further:key_management:policies}). This audit may include:
+	\begin{itemize}
+		\item verifying the efficacy of the adopted security plan and the corresponding procedures put in place to respond to security incidents;
+		\item confirm that suitable \gls{ac} policies are properly defined and enforced;
+		\item ensure that users are properly trained and educated;
+		\item check the functionality of the components of the \gls{kms} (e.g., see inventory management for keys and metadata in \Cref{sec:key_management:inventory});
+	\end{itemize}
+	\item \textbf{security audit}: an organization should check that the security mechanisms employed (e.g., see authentication and authorization in \Cref{sec:further:key_management:authn}) are effective and provide the expected level of security --- especially in light of new technological developments and attacks;
+	\item \textbf{monitoring audit}: an organization should review the activities concerning the \gls{kms} to detect anomalies, attacks, and activities not compliant with the established operational policies and procedures (see \Cref{sec:further:key_management:policies}).
+\end{itemize}
+
+
+
+\subsubsection{The Key Management Interoperability Protocol}\label{sec:cloud:kmip}
+
+The \gls{kmip}\footnote{OASIS Key Management Interoperability Protocol (KMIP) TC (\url{https://www.oasis-open.org/committees/tc\_home.php?wg\_abbrev=kmip})}$^,$\footnote{OASIS Key Management Interoperability Protocol (KMIP) TC Wiki (\url{https://wiki.oasis-open.org/kmip})} is an \gls{oasis} standard describing an extensible key management protocol that defines message formats for the manipulation of cryptographic keys on \glspl{kms}. The protocol considers the lifecycle proposed by \gls{nist} (see \Cref{sec:key_management}) for both symmetric and asymmetric keys in a variety of formats. Furthermore, the protocol considers operations for handling digital certificates, keys wrapping, provisioning schemes, and cryptographic computations (e.g., encryption) as well as the management metadata associated with the keys. There exist several commercial \glspl{kms} supporting the \gls{kmip} standard, as well as many other \glspl{kms} --- e.g., those offered by Cloud providers --- which do not support the \gls{kmip} standard.\footnote{Key management - Wikipedia (\url{https://en.wikipedia.org/wiki/Key\_management\#Key\_Management\_Interoperability\_Protocol\_(KMIP)})} Organizations should carefully consider whether to employ \glspl{kms} following the \gls{kmip} standard for enabling interoperability across \glspl{kms}.
+
+
+
+\subsubsection{Crypto-Agility}\label{sec:further:key_management:agility}
+
+Crypto-agility --- also known as cryptographic agility --- is a proactive and flexible approach to cryptographic key management that refers to the ability of a system (e.g., a \gls{kms}) to \textbf{rapidly, effortlessly, and seamlessly} change employed cryptographic algorithms, ciphers, and cryptosystems in an \textbf{(at least semi-)automated} fashion, \textbf{without requiring a significant overhaul} of (the design of) the system itself and \textbf{without major service disruptions} \cite{barker_getting_2021}. More concretely, crypto-agility comprises the ability to:
+\begin{itemize}
+	\item switch cryptographic ciphers easily and efficiently;
+	\item update key sizes (and other related parameters) to preserve a sufficient level of security;
+	\item rotate and renew keys in a regularly and, most importantly, efficiently;
+	\item quickly adapt to standards and compliant requirements published by relevant organizations (e.g., \gls{nist});
+	\item continuously monitor the cryptographic landscape for new attacks and vulnerabilities;
+	\item thoroughly test new cryptographic algorithms, ciphers, and cryptosystems to assess their impact on the system and avoid service disruptions.
+\end{itemize}
+
+In other words, the adoption of crypto-agility ensures a rapid response of a system to evolving security threats (e.g., discovery of vulnerabilities in ciphers and breakthroughs in cryptanalysis), updates in standards, and new compliance requirements and regulations. Crypto-agility is especially relevant in light of the advent of quantum computing, which will render many of the most currently used cryptographic ciphers insecure (see \Cref{sec:further:key_management:pq}).
+
+
+
+\subsubsection{Post-Quantum Cryptography}\label{sec:further:key_management:pq}
+
+While traditional computing uses binary transistors to represent states of data through 0's and 1's, quantum computing\footnote{What is Quantum Computing? | IBM (\url{https://www.ibm.com/topics/quantum-computing})} employs the principles of quantum mechanics --- such as superposition and entanglement --- to perform calculations.\footnote{Superposition refers to a combination of states that are ordinarily independently (or exclusive to each other), while entanglement refers to a counter-intuitive quantum phenomenon, where entangled particles behave together as a system in a way that cannot be explained using traditional logic.} Quantum computing uses qubits for representing data in more than 2 states and exploring multiple solutions to a problem at the same time.\footnote{Quantum computing: Some (not so) gruesome details (\url{https://plus.maths.org/content/really-how-do-quantum-computers-work})} This ability grants quantum computers significantly higher computational power, which results in the possibility of executing quantum algorithms (e.g., the Shor's algorithm \cite{shor_algorithms_1994}) capable of quickly solving mathematical problems such as the integer factorization and the discrete logarithm problems --- which are the security foundation of the \gls{rsa}, Paillier, and \gls{ecc} ciphers (see \Cref{app:cryptography:asymmetric:ciphers}). In other words, with the advent of quantum computing, several currently used cryptographic ciphers would become insecure. In particular, quantum computing poses a threat to asymmetric cryptographic ciphers, while currently used symmetric cryptographic ciphers (e.g., \gls{aes}) would still be secure given long enough keys --- although post-quantum symmetric ciphers may still be developed as a precautionary measure.
+
+Quantum computing is still being researched and developed (the main obstacle to building large-scale quantum computers being ``noise'' \cite{fosel_reinforcement_2018}) but, at the time of writing, the most optimists predict that quantum computers capable of breaking current asymmetric cryptographic ciphers will be available in little more than 20 years (i.e., around 2045).\footnote{Post-Quantum Cryptography | CSRC (\url{https://csrc.nist.gov/projects/post-quantum-cryptography})} In any case, to prevent adversaries from storing ciphertexts now and using quantum computing to decrypt them in the future (i.e., ``harvest now, decrypt later'' or ``store-and-break`` attack), the concept of post-quantum cryptography --- also known as quantum-resistant cryptography --- has already emerged. Essentially, post-quantum cryptography concerns with the study of mathematical problems that ($i$) can be used as the basis for new cryptographic algorithms interoperable with existing communications protocols and networks and ($ii$) cannot be (efficiently) solved by either traditional or quantum computers.
+
+In 2016, \gls{nist} initiated a process to solicit, evaluate, and standardize post-quantum asymmetric cryptographic ciphers.\footnote{NIST Asks Public to Help Future-Proof Electronic Information (\url{https://www.nist.gov/news-events/news/2016/12/nist-asks-public-help-future-proof-electronic-information})} That process led to the announcement of 4 post-quantum cryptographic algorithms in 2022 that can be used for either encryption or digital signatures (see \Cref{app:cryptography:asymmetric});\footnote{NIST Announces First Four Quantum-Resistant Cryptographic Algorithms (\url{https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms})} more in detail:
+
+\begin{itemize}
+	\item \textbf{encryption}: CRYSTALS-Kyber algorithm.\footnote{Kyber (\url{https://pq-crystals.org/kyber/index.shtml})};
+	\item \textbf{digital signatures}: CRYSTALS-Dilithium,\footnote{https://pq-crystals.org/dilithium/index.shtml (\url{https://pq-crystals.org/dilithium/index.shtml})}
+	FALCON,\footnote{https://falcon-sign.info/ (\url{https://falcon-sign.info/})}
+	and SPHINCS+.\footnote{https://sphincs.org/ (\url{https://sphincs.org/})} The first algorithm is generally recommended, while the second allows for smaller signatures. Finally, although generally worse than the others, SPHINCS+ is a valuable backup option as it relies on a different mathematical problem. Indeed, CRYSTALS-Dilithium and FALCON (and also CRYSTALS-Kyber) are based on structured lattices, while SPHINCS+ is based on hash functions, and it is thus important in case vulnerabilities or flaws are found in the first 3 algorithms.
+\end{itemize}
+
+In August 2023, \gls{nist} released draft standards for 3 of these algorithms; a draft standard for FALCON is expected to be finalized in 2024. It is worth noting that further algorithms are currently under evaluation by \gls{nist}.\footnote{NIST to Standardize Encryption Algorithms That Can Resist Attack by Quantum Computers (\url{https://www.nist.gov/news-events/news/2023/08/nist-standardize-encryption-algorithms-can-resist-attack-quantum-computers})} 
+
+
+\paragraph*{Relevance of Quantum Computing to Key Management.}
+
+It is important for organizations to start planning for the replacement of hardware, software, and services that employ asymmetric cryptographic ciphers theoretically vulnerable to quantum computing. Indeed, as said in \Cref{sec:further:key_management:pq}, although not currently available, quantum computing still poses a threat to sensitive data in light of the ``harvest now, decrypt later'' attack. Thus, organizations should already reason on whether quantum computing poses a threat to their keys (and data). More in detail, if an organization:
+\begin{itemize}
+	\item requires a certain key (and the corresponding data) to be secure for a number of years {\tt k}, and
+	\item expects to require {\tt i} years to harden its cryptographic infrastructure to be secure against quantum computing, and
+	\item forecasts that a large-scale quantum computer will be available in {\tt q} years,
+\end{itemize} 
+
+then quantum computing is relevant to such an organization --- for the given key --- if {\tt q < k + i}. As intuitive, post-quantum cryptography is therefore also linked to the concept of crypto-agility (see \Cref{sec:further:key_management:agility}. Unfortunately, it is likely that post-quantum cryptographic ciphers will not be easily pluggable in currently used \glspl{kms} due to differences in, e.g., performance, reliability, key size (some post-quantum cryptographic ciphers have very large keys), error handling, and key establishment \cite{newhouse_migration_2023}. 
+
+Organizations are thus encouraged to define a strategy (often called ``quantum-readiness roadmap'') for planning and actuating the migration toward post-quantum cryptography in their \glspl{kms} in a proactive way.\footnote{Quantum-readiness: Migration to Post-Quantum Cryptography (\url{https://www.nccoe.nist.gov/sites/default/files/2023-08/quantum-readiness-fact-sheet.pdf})} The first step of a quantum-readiness roadmap is the --- not trivial --- discovery and identification of cryptographic algorithms, ciphers and cryptosystems (used either in hardware, software or firmware) vulnerable to quantum computing. Indeed, having a complete inventory of quantum-vulnerable assets, along with eventual interdependencies (e.g., with external systems and networks), allows organizations to start a risk assessment process and define a prioritization for the migration; for more details on the topic of post-quantum cryptography and crypto-agility, we refer the interested reader to \cite{barker_getting_2021,newhouse_migration_2023}.
+
+\remarkBlock{Post-quantum cryptography and the cloud}{Some cloud providers offering \glspl{kms} and related services already propose solutions for post-quantum cryptography. For instance, \gls{aws} offers a hybrid post-quantum key exchange option for \gls{tls} connections toward the \gls{aws} Key Management Service.\footnote{Using hybrid post-quantum TLS with AWS KMS - AWS Key Management Service (\url{https://docs.aws.amazon.com/kms/latest/developerguide/pqtls.html})} Nonetheless, it is important to highlight that these solutions are not based on any standards (indeed, \gls{nist} will publish the first standardized post-quantum cryptographic ciphers in 2024, as said in \Cref{sec:further:key_management:pq}) hence not currently meant for being used in production. Instead, these solutions are offered mainly for testing and early feedback.\footnote{Post-Quantum Crypto - Amazon Web Services (AWS) (\url{https://aws.amazon.com/security/post-quantum-cryptography/})} However, as said in \Cref{sec:cloud:providers}, Cloud services change frequently and quickly, hence Cloud providers could soon propose new (and standardized) solutions for post-quantum cryptography.}
+
+
+\subsubsection{Inventory Management for Keys and Metadata}\label{sec:further:key_management:inventory}
+
+Throughout its lifecycle, a key is typically associated with metadata such as key identifier, key type (see \Cref{app:cryptography:keys}), intended purpose and corresponding cipher, owner(s) information, cryptoperiod (see \Cref{sec:key_management:lifecycle:operational}), current key state, key history, location of backups, identifiers of \glspl{kek} applied over the key, integrity information, and other relevant information (e.g., key length, requirements and additional conditions for use). When necessary, these metadata should always be transmitted with the corresponding key in any state \cite{barker_profile_2015}. Moreover, organizations should establish and maintain an inventory of (at least long-term) keys (along with the associated metadata) and digital certificates through a dedicated inventory management system \cite{barker_recommendation_2020_p1} managed under a specific key-inventory policy (see \cref{sec:further:key_management:policies}). Key inventories --- which are usually (at least logically) separated from key backups and archives --- can be used to:
+
+\begin{itemize}
+	\item identify which entities need to be notified in the event of revocation or rotation and which digital certificates need to be revoked;
+	\item monitor the cryptoperiod of keys (and the expiration of digital certificates) for prompt renewal and rotation;
+	\item find configurations of algorithms, ciphers, and cryptosystems that are no longer deemed secure (in this regard, see also the concept of crypto-agility in \Cref{sec:further:key_management:agility});
+\end{itemize}
+
+\sbnote{TODO
+	a
+	%implement key management practices into a \gls{kms} \cite{barker_recommendation_2019_p2})
+}
+
+
+
+
+
+
+\subsection{Cloud-Based Key Management Systems}\label{sec:key_management:cloud}
+
+%Other relevant aspects requiring a careful evaluation are the cryptographic architecture --- intended as the set of hardware and software entities providing cryptographic services within a system --- and the choice of which cryptographic ciphers to employ, their configuration, and key types; 
+%often, all of these aspects are handled by an automated \textbf{\gls{kms}} --- that is, a dedicated system for the management of cryptographic keys and their metadata \cite{barker_recommendation_2019_p2} --- whose usefulness has been widely recognized \cite{barker_framework_2013,barker_profile_2015}. 
+
+
+
+Considering the sensitivity and importance of cryptographic material --- and private and secret keys in particular --- \glspl{kms} have been traditionally developed and used within (the trusted boundaries of) organizations. However, with the advent of Cloud computing and the digitalization of technological infrastructures, the outsourcing of services to the Cloud involved \glspl{kms} as well, mainly due to better scale and performance and reduced costs and complexity \cite{csa_key_2020}, but also the fact that \glspl{kms} offered by well-established Cloud providers usually provide higher security than most on-premises \glspl{kms} \cite{csa_recommendations_2021}. Furthermore, the outsourcing of technical services such as \glspl{kms} allows for more straightforward management and seamless integration with business and Cloud services in general, enabling a wide array of security features such as automatic encryption for data at rest and in transit. Moreover, Cloud-based \glspl{kms} often provide geographic distribution and redundancy, guaranteeing high availability and (almost effortless) disaster recovery.
+
+\remarkBlock{Definition of cloud computing}{Cloud computing is defined by \gls{nist} as ``a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction'' \cite{mell_nist_2011}.}
+
+Fostered by a high demand on the part of organizations, in the last years major Cloud providers have been developing feature-rich \glspl{kms}, suitable for use by a heterogeneous set of organizations ranging from financial services, pharmaceuticals, and government bodies \cite{csa_key_2020}. Besides, the integration of \glspl{kms} with \gls{iam} services (see S8-CSC-D1 in \Cref{sec:intro:scope}) offers a complete and unified solution to (most of) the technological needs of organizations --- such as authentication, authorization, and data protection. Below, we first discuss the 4 main architectures for Cloud-based \glspl{kms}, and then provide a more concrete description of \glspl{kms} --- and other relevant services --- offered by the 3 major Cloud providers (i.e., \gls{aws}, Google, Microsoft).
+
+
+
+\subsubsection{Architectures for Cloud-Based Key Management Systems}\label{sec:cloud:architectures}
+
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{resources/pdf/kms.pdf}
+		\caption{\gls{kms} Architectures in the Cloud}
+		\label{fig:kms}
+	\end{center}
+\end{figure}
+
+As discussed in \cite{csa_key_2020} and shown in \Cref{fig:kms}, there are 4 main architectures with which an organization can interact with Cloud-based \glspl{kms}, which we discuss below (note that the use of \glspl{hsm} is strongly recommended in the context of \glspl{kms}). Intuitively, each architecture has its advantages and drawbacks, which organizations should carefully assess to identify the most suitable architecture for (the security, business, and regulatory requirements of) their scenarios. We report the properties of each architecture in \Cref{table:cloud_based_kms_architectures}, where a full, half, and empty circle (i.e., $\fullcirc$, $\halfcirc$, $\emptycirc$) mean that the corresponding property is fully achieved, partially achieved or not achieved by the corresponding architecture, respectively.
+
+\begin{table}[!b]
+	\centering
+	\small
+	\setlength{\tabcolsep}{1.75pt}
+	\def\arraystretch{1.075}
+	\rowcolors{0}{cloud}{white}
+	\caption{Properties of Cloud-Based Key Management Systems Architectures}
+	\newcolumntype{Y}{>{\centering\arraybackslash}X}
+	\begin{tabularx}{\textwidth}{l|YYYY}
+		
+		\toprule
+		
+		\multicolumn{1}{c|}{\multirow{2}{*}\textbf{Property}} &
+		\multicolumn{4}{c}\textbf{Cloud-based \gls{kms}} \\
+		
+		~ &
+		\multicolumn{1}{c}\textbf{Pure} &
+		\multicolumn{1}{c}\textbf{Combined} &
+		\multicolumn{1}{c}\textbf{Hybrid} &
+		\multicolumn{1}{c}\textbf{Multiple} \\
+		
+		\hline
+		
+		Transparency of the \gls{kms} 				& \emptycirc 	& \halfcirc 	& \fullcirc 	& \halfcirc 	\\
+		Control over the \gls{kms} 					& \emptycirc 	& \halfcirc 	& \fullcirc 	& \halfcirc 	\\
+		Portability (No Lock-In) 					& \emptycirc 	& \emptycirc 	& \fullcirc 	& \fullcirc 	\\
+		Availability								& \halfcirc 	& \halfcirc 	& \halfcirc 	& \fullcirc 	\\
+		Scalability									& \fullcirc 	& \fullcirc 	& \emptycirc 	& \fullcirc 	\\
+		Performance									& \fullcirc 	& \fullcirc 	& \emptycirc 	& \fullcirc 	\\
+		Interoperability with Other Cloud Providers & \emptycirc 	& \emptycirc 	& \emptycirc 	& \fullcirc 	\\
+		Low Latency									& \fullcirc 	& \fullcirc 	& \emptycirc 	& \halfcirc 	\\
+		Low Cost									& \fullcirc 	& \halfcirc 	& \emptycirc 	& \emptycirc 	\\
+		Low Complexity (Fast Adoption)				& \fullcirc 	& \halfcirc 	& \emptycirc 	& \emptycirc 	\\
+		Ease in Management							& \fullcirc 	& \halfcirc 	& \emptycirc 	& \emptycirc 	\\
+		Prone to Satisfy Regulatory Requirements	& \emptycirc 	& \halfcirc 	& \fullcirc 	& \halfcirc 	\\
+		Ease of SLA Definition and Enforcement		& \fullcirc 	& \halfcirc 	& \emptycirc 	& \halfcirc 	\\
+		Seamless Support from Cloud Providers		& \fullcirc 	& \fullcirc 	& \halfcirc 	& \halfcirc 	\\
+		Data Protection from Cloud Providers		& \emptycirc 	& \emptycirc 	& \fullcirc 	& \halfcirc 	\\
+		Low Knowledge on \gls{kms} Required  		& \fullcirc 	& \halfcirc 	& \emptycirc 	& \emptycirc 	\\
+		
+		\bottomrule
+		
+	\end{tabularx}
+	\label{table:cloud_based_kms_architectures}
+\end{table}
+
+
+% description
+% advantages (``On the one hand'')
+% disadvantages (``On the other hand'')
+% when the architecture is recommended (``This architecture is usually recommended when'')
+\paragraph*{Pure Cloud-Based Key Management System.}
+
+\Cref{fig:kms}(a) shows an architecture where the \gls{kms} and the corresponding \gls{hsm} are managed entirely by a single Cloud provider --- ideally, the same provider offering the business services for which the \gls{kms} is used. The pure Cloud-based \gls{kms} is also known as ``Cloud-native \gls{kms}''. On the one hand, this architecture has intrinsically low latency, high performance, and high scalability, and it is the simplest to adopt, as it requires little knowledge on key management on the part of the organizations --- indeed, the Cloud provider manages all (or at least the majority of) aspects of the key management lifecycle. On the other hand, by delegating the \gls{kms} to the Cloud provider, organizations have little or no control over cryptographic keys (e.g., key lengths, cryptoperiod), cryptographic ciphers, or their configuration --- which may sometimes even be opaque to the organizations, complicating the achievement of compliance requirements. Moreover, (the design and functioning of) \gls{kms} offered by Cloud providers usually differ from each other, possibly leading to strong lock-in. This architecture is usually recommended when the organizations lack (or do not desire to acquire) specific expertise on \glspl{kms} and wish to achieve rapid deployment of business services \cite{csa_key_2020}. For a more detailed and concrete discussion on how to choose, plan, and deploy a pure Cloud-based \gls{kms} --- as well as technical, operational, regulatory, legal, and final recommendations --- we refer the interested reader to \cite{csa_recommendations_2021}.
+
+
+\paragraph*{Combined Cloud-Based Key Management System.}
+
+The architecture shown in \Cref{fig:kms}(b) extends the architecture in \Cref{fig:kms}(a) by allowing the exchange of cryptographic material between an on-premise \gls{kms} and a Cloud-based \gls{kms}; typically, cryptographic material (e.g., master keys) is created and exported from the former and then imported onto the latter --- it seldom happens the other way around \cite{csa_key_2020}. The two \glspl{kms} are thus distinct, that is, no integration is expected. The combined Cloud-based \gls{kms} is also known as ``Cloud-native \gls{kms} with an external key origin''. On the one hand, organizations have now some control over how cryptographic material is generated (e.g., what software and hardware are used). Moreover, this architecture has intrinsically low latency, high performance, high scalability, and little impact on \glspl{sla} with the Cloud provider. On the other hand, organizations are still limited by the design and functioning of Cloud-based \glspl{kms}, which requires organizations to configure the on-premise \gls{kms} (and private \gls{hsm}) to preserve compatibility --- while still entailing strong lock-in. Furthermore, organizations need some knowledge of \glspl{kms}. Finally, organizations should be aware of eventual modifications (e.g., addition of critical metadata) that Cloud providers apply on cryptographic material when imported on the Cloud-based \gls{kms} \cite{csa_key_2020} --- hence, transparency is still limited.\footnote{Service encryption with Microsoft Purview Customer Key (\url{https://docs.microsoft.com/en-us/microsoft-365/compliance/customer-key-overview?view=o365-worldwide})} This architecture is usually recommended when organizations want to control (at least the) the generation of cryptographic material or need to fulfill specific regulatory requirements that cannot be achieved by using Cloud-based \gls{kms} only --- such as \gls{byok} (see \Cref{sec:cloud:models}). For a more detailed and concrete discussion on how to choose, plan, and deploy a combined Cloud-based \gls{kms} --- as well as technical, operational, regulatory, legal, and final recommendations --- we refer the interested reader to \cite{csa_recommendations_2021_2}.
+
+
+\paragraph*{Hybrid Cloud-Based Key Management System.}
+
+The architecture in \Cref{fig:kms}(c) shows a \gls{kms} logically spanning from the organization on-premise to the Cloud provider; in other words, functions of the \gls{kms} are used from both on-premise and the Cloud. This architecture follows either the ``Bring-Your-Own-\gls{hsm}'' or the ``\gls{hsm}-as-a-Service'' models:\footnote{The \gls{cla} --- a not-for-profit organization with the mission to educate and promote the use of best practices for security in the Cloud --- is currently working (November 2023) on a white paper tentatively entitled ``\gls{hsm}-as-a-Service: Use Cases, Considerations, and Best Practices''; for more information, see \url{https://cloudsecurityalliance.org/artifacts/hsm-as-a-service-use-cases-considerations-and-best-practices/}} the former means that an organization provides a physical \gls{hsm} that is hosted in the Cloud, while the latter means that the Cloud provider provisions an \gls{hsm} solely for use by the organization \cite{csa_key_2020}. The hybrid Cloud-based \gls{kms} is also known as ``Cloud-native \gls{kms} using external \glspl{kms}''. On the one hand, organizations have full control over the \gls{kms}, the key management lifecycle, and its configuration (recall the concepts explained in \Cref{sec:key_management}) while preventing strong lock-in. On the other hand, this architecture has high cost and limited performance, scalability, and latency. Moreover, this architecture requires the (often complex) definition of \glspl{sla} with the Cloud provider on the use of the \gls{kms} and the \gls{hsm} --- especially in case of incidents. Furthermore, organizations need deep knowledge of \glspl{kms}. This architecture is usually recommended when organizations want full control over the \gls{kms}, need to fulfill specific regulatory requirements that cannot be achieved by adopting other architectures --- such as \gls{cyok} (see \Cref{sec:cloud:models}) --- or must protect their data even from Cloud providers themselves (see \Cref{sec:cloud:models}). As a final remark, note that this architecture is not always supported by Cloud providers (e.g., in 2020, only \gls{aws} and Microsoft provided support for this architecture \cite{csa_key_2020}). For a more detailed and concrete discussion on how to choose, plan, and deploy a hybrid Cloud-based \gls{kms} --- as well as technical, operational, regulatory, legal, and final recommendations --- we refer the interested reader to \cite{csa_recommendations_2022}.
+
+
+\paragraph*{Multiple Cloud-Based Key Management System.}
+
+The architecture shown in \Cref{fig:kms}(d) illustrated a combined \gls{kms} where the Cloud-based \gls{kms} spans two or more Cloud providers. The multiple Cloud-based \gls{kms} is also known as ``Multi-Cloud \glspl{kms}''. On the one hand, this architecture provides high portability, fault tolerance, and scalability --- mainly due to the use of several Cloud providers. On the other hand, organizations need both deep knowledge of both \glspl{kms} and their functioning as offered by multiple Cloud providers. Also, the complexity of the architecture entails higher costs due to longer design and deployment time. This architecture is usually recommended when the business services of organizations already span multiple Cloud providers, or if organizations need to satisfy specific and complex regulatory requirements. 
+
+
+
+\subsubsection{Cloud Providers Offering Key Management Systems Services}\label{sec:cloud:providers}
+
+The first Cloud-based \gls{kms} service was the \gls{aws} Key Management Service, released in late 2014.\footnote{Document history - AWS Key Management Service (\url{https://docs.aws.amazon.com/kms/latest/developerguide/dochistory.html})} Since then, many other Cloud providers implemented and released \glspl{kms}, making proper \glspl{sdk} readily available to organizations. Below, we briefly describe Cloud-based \glspl{kms} and related services offered by 3 major Cloud providers, namely \gls{aws}, Google, and Microsoft.
+
+\remarkBlock{Change velocity of cloud-based \glspl{kms}}{Cloud computing is known for its fast pacing and rapid evolution of products and services; intuitively, this characteristic applies to Cloud-based \glspl{kms} and related services as well. In other words, these often change, and it is therefore recommended to refer to the latest documentation for complete, accurate, and updated information. The content of \Cref{sec:cloud:providers} --- which is to be intended as an overview --- is updated as of December 2023.}
+
+
+\paragraph*{Amazon Web Services.}
+
+\gls{aws} offers two main services related to Cloud-based \gls{kms}:
+
+\begin{itemize}
+	\item \textbf{\gls{aws} Key Management Service}\footnote{Encryption Cryptography Signing - AWS Key Management Service (\url{https://aws.amazon.com/kms/})}: a managed service allowing organizations to handle the key management lifecycle (see \Cref{sec:key_management}) using \glspl{hsm} certified under \gls{fips} 140-2 level 3 (see \Cref{sec:hardware}). The \gls{aws} Key Management Service integrates with most other \gls{aws} services, such as \gls{aws} \gls{s3} --- for encryption of data at rest --- \gls{aws} \gls{iam} --- for authentication and authorization through the definition and enforcement of fine-grained \gls{abac} policies --- and \gls{aws} CloudTrail\footnote{Api Logs - AWS CloudTrail (\url{https://aws.amazon.com/cloudtrail/})} --- for monitoring and auditing key usages. Finally, the \gls{aws} Key Management Service allows organizations to import cryptographic material and synchronize with external \gls{hsm} (i.e., combined Cloud-based \gls{kms}, as discussed in \Cref{sec:cloud:architectures});
+	\item \textbf{\gls{aws} CloudHSM}\footnote{Security HSM - AWS CloudHSM (\url{https://aws.amazon.com/cloudhsm/})}: a managed service offering \glspl{hsm}-as-a-Service (recall the corresponding definition in \Cref{sec:cloud:architectures}), employing \glspl{hsm} certified under \gls{fips} 140-2 level 3. CloudHSM allows organizations to manage cryptographic keys --- accessible only by the organizations themselves --- by creating a cluster of \glspl{hsm} spread across multiple \gls{aws} availability zones in a region for high availability and automatic load balancing. CloudHSM does not interoperate directly with on-premises \glspl{hsm}.
+\end{itemize}
+
+The Custom Key Store feature\footnote{Custom key stores - AWS Key Management Service (\url{https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html})} combines the controls provided by CloudHSM with the integration and ease of use of the \gls{aws} Key Management Service. In other words, an organization can configure its CloudHSM cluster and then use it from the \gls{aws} Key Management Service as a dedicated key store for keys rather than the default key store. Intuitively, the organization is then responsible for the key management lifecycle of keys generated within the CloudHSM cluster (e.g., key rotation should be performed manually).
+
+
+\paragraph*{Google.}
+
+Google offers two main services related to Cloud-based \gls{kms} in the Google Cloud suite of Cloud Services:
+
+\begin{itemize}
+	\item \textbf{Cloud Key Management Service}:\footnote{Cloud Key Management Service overview | Cloud KMS Documentation (\url{https://cloud.google.com/kms/docs/key-management-service})} a managed service allowing organizations to handle the key management lifecycle (see \Cref{sec:key_management}) using either software-based cryptographic modules certified under \gls{fips} 140-2 level 1 or \glspl{hsm} certified under \gls{fips} 140-2 level 3 with Google Cloud \gls{hsm}.\footnote{Cloud HSM | Cloud KMS Documentation (\url{https://cloud.google.com/kms/docs/hsm})} The Cloud Key Management Service integrates with most other Google Cloud services, such as Cloud \gls{iam}\footnote{Identity and Access Management | IAM | Google Cloud (\url{https://cloud.google.com/iam})} --- for authentication and authorization through the definition and enforcement of fine-grained \gls{abac} policies --- and Cloud Audit Logging\footnote{Cloud Audit Logs overview (\url{https://cloud.google.com/logging/docs/audit})} --- for monitoring and auditing key usages; encryption for data at rest is enabled by default. Finally, the Cloud Key Management Service allows organizations to import cryptographic material and synchronize with external \gls{hsm} (i.e., combined Cloud-based \gls{kms}, as discussed in \Cref{sec:cloud:architectures});
+	\item \textbf{Cloud \gls{ekm}}:\footnote{Cloud External Key Manager | Cloud KMS Documentation (\url{https://cloud.google.com/kms/docs/ekm})} a managed service --- released in early access in September 2023 --- allowing to indirectly use cryptographic keys managed by an external \gls{kms} in Google Cloud services (i.e., similar to the combined Cloud-based \gls{kms}, as discussed in \Cref{sec:cloud:architectures}). In other words, keys are never used, cached, or stored within the Google Cloud services, and instead Cloud \gls{ekm} directly invokes the \glspl{api} of the external \gls{kms} --- as it happens in \gls{hyok} models (see \Cref{sec:cloud:models}). This implies that data is always encrypted before being sent to the Cloud, while decryption of data always happens within the external \gls{kms}.
+\end{itemize}
+
+
+\paragraph*{Microsoft Azure.}
+
+Microsoft offers two main services related to Cloud-based \gls{kms} in the Azure Cloud platform:
+
+\begin{itemize}
+	\item \textbf{Key Vault}\footnote{Key Vault | Microsoft Azure (\url{https://azure.microsoft.com/en-us/products/key-vault})}: a managed service for the management of generic secrets --- hence, also cryptographic keys. Key Vault has two service tiers: standard, which encrypts with a software key, and premium, which includes the use of \glspl{hsm} certified under \gls{fips} 140-2 level 3;
+	\item \textbf{Azure Managed, Dedicated, and Payment \gls{hsm}}\footnote{Overview of Key Management in Azure | Microsoft Learn (\url{https://learn.microsoft.com/en-us/azure/security/fundamentals/key-management})}: a set of 3 managed services offering \glspl{hsm}-as-a-Service (recall the corresponding definition in \Cref{sec:cloud:architectures}), employing \glspl{hsm} certified under FIPS 140-2 level 3. Azure Managed \gls{hsm} is managed by Azure, while the organization is responsible for Azure Dedicated and Payment \gls{hsm}; Azure Dedicated \gls{hsm} is general purpose, while Azure Payment \gls{hsm} is specific for applications in financial services.\footnote{How to choose the right key management solution - How to choose between Azure Key Vault, Azure Managed HSM, Azure Dedicated HSM, and Azure Payment HSM | Microsoft Learn (\url{https://learn.microsoft.com/en-us/azure/security/fundamentals/key-management-choose})}
+\end{itemize}
+
+In summary, all 3 Cloud providers offer services related to Cloud-based \gls{kms}. However, \gls{aws} and Google seem to have the most articulated and consolidated services, while Microsoft still lacks a complete \gls{kms}. Note that all 3 Cloud providers claim that no one, including their employees, can retrieve keys from \glspl{hsm}: this may be reasonable by considering that Cloud providers are motivated to avoid legal and reputational damages associated with unauthorized data access and voluntarily allow inspections by third-party auditors.\footnote{Cloud encryption key management: how can Swiss organizations protect their data outside their premises? (\url{https://www2.deloitte.com/ch/en/pages/technology/articles/cloud-encryption-key-management.html})}
+
+
+
+\subsubsection{Key Management Models for the Cloud}\label{sec:cloud:models}
+
+As discussed in \Cref{sec:cloud:architectures,sec:cloud:providers}, cryptographic keys can be managed (e.g., generated, used) differently depending on the chosen Cloud-based \glspl{kms} architecture and \gls{kms} Cloud service. In particular, we identify 3 relevant aspects in this regard: ownership, control, and possession --- which correspond to who owns, controls the lifecycle, and physically keeps cryptographic keys (and data, in general). Although ownership of keys is always of the organization (i.e., the customer of the Cloud for which the keys were created), the level of control and possession may vary. For this reason, in the last years, 3 key management models for the Cloud emerged, based on how organizations manage (some aspects of) the key management lifecycle (e.g., generation) externally with respect to Cloud-based \gls{kms} and related services (e.g., using an on-premise \gls{kms} with a dedicated \gls{hsm}):
+
+\begin{itemize}
+	\item \textbf{\gls{byok}}: in this model (often also called ``customer-supplied encryption keys''), keys are generated by organizations and imported onto the Cloud for use --- as it happens in the combined Cloud-based \gls{kms} architecture (see \Cref{sec:cloud:architectures}) --- resulting in seamless integration with Cloud services but also the loss of ownership over the keys. Indeed, in \gls{byok}, the Cloud provider has access to private and secret keys;
+	\item \textbf{\gls{cyok}}: in this model, keys are generated by organizations and imported onto the Cloud for use --- as it happens in the hybrid Cloud-based \gls{kms} architecture(see \Cref{sec:cloud:architectures}). Although in \gls{byok} cryptographic keys reside within the Cloud, the Cloud provider has no access to private and secret keys (at least theoretically);
+	\item \textbf{\gls{hyok}}: in this model, organizations retain full control and ownership over keys, which are never used, cached, or stored in the Cloud (e.g., as it happens in the Cloud \gls{ekm} described in \Cref{sec:cloud:providers}).
+\end{itemize}
+
+As is usually the case, there is no key management model that is the most suitable for (the security, business, and regulatory requirements of) all scenarios. Instead, the choice of which model to adopt should be taken on a case-by-case basis. For instance, for most Cloud services following the \gls{saas} pattern (e.g., emails, managed database, analytics services), the Cloud provider must have access to plaintext data; therefore, the \gls{cyok} and \gls{hyok} models are hardly compatible with \gls{saas} services. On the other hand, if an organization requires to preserve the confidentiality of its data even with respect to the Cloud provider, the \gls{byok} model may not be a suitable choice --- especially when combined with dedicated cryptographic constructions such as \gls{cac} \cite{berlato_formal_2022,berlato_end_2022}. Other aspects to consider are further regulatory and compliance requirements, existing key management practices, and the level of control and visibility for keys desired by organizations.
+
+\remarkBlock{Debate around key management models for the cloud}{The acronyms \gls{byok}, \gls{cyok}, and \gls{hyok} originated first as marketing terms and, at the time of writing, there is no official standard or widely agreed upon definition for their semantics; therefore, some deem these terms --- and, in particular, their use --- to be pointless or even confusing, and suggest instead to avoid them entirely \cite{csa_key_2020}.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%SE INCLUDI QUESTA APPENDICE, METTI QUESTO BLOCK
+%
+%\remarkBlock{The perspective of efficiency}{For a discussion on programming languages and efficiency --- and the trade-offs with respect to security --- see \Cref{sec:appendix:programming_languages_security_vs_efficiency}}
+%
+%APPENA PRIMA DI "\subsection{Programming Languages for Security}\label{sec:programming_languages_and_software:languages}"
+
+
+
+\section{Security vs Efficiency}\label{sec:appendix:programming_languages_security_vs_efficiency}
+\vspace{7.5cm}
+
+\sbnote{To decide what to do with the following sections of 
+	algorithm security; interesting but section on algorithm security
+	is already long, I would like to keep it short}
+
+
+
+\subsection{On the Efficient Implementation of Cryptographic Algorithms}\label{sec:security_of_cryptographic_algorithms:performance}
+
+
+%\remarkBlock{The many declinations of efficiency}{Efficiency may refer to several aspects of software development and execution, such as performance (measured in time or processor cycles), memory efficiency (measures in bytes stored or number of memory accesses or cache hit/miss ratio), power consumption (measured in Watts or Joules), cost-effectiveness (measure monetarily), and complexity efficiency (measured in expertise and skill required to develop software). In our context, we consider efficiency in terms of performance and memory efficiency.}
+
+%At the same time, efficiency is critical to meet the requirements of real-world applications, ranging from high-speed financial transactions to resource-constrained devices. In this regard, the approach taken in the implementation of cryptographic algorithms greatly influences performance. Finally, it may not always be easy to balance security and efficiency in the implementation of cryptographic algorithms due to their interplay: strong security measures must be evaluated against their computational and operational overhead, while optimized implementations must be analyzed for potential weaknesses. This interplay underscores the importance of systematically ensuring and evaluating both the security and efficiency of cryptographic implementations to build resilient and performant systems.
+
+Below, we discuss efficiency of cryptographic algorithms from software implementation (i.e., program) to hardware execution (i.e., process). In fact, although the efficiency of a program is usually measured asymptotically with respect to the given input (i.e., computational complexity), its actual efficiency ultimately depends on its implementation. First, we present the most relevant best practices for optimizing cryptographic algorithm implementation (\Cref{sec:security_of_cryptographic_algorithms:performance:best_practices}) and compare  different programming languages with respect to their efficiency and the optimizations available in the corresponding compilers and interpreters (\Cref{sec:security_of_cryptographic_algorithms:performance:languages_and_compilers}). Then, we list available hardware-based technologies for improving the efficiency of the execution of cryptographic algorithms (\Cref{sec:security_of_cryptographic_algorithms:performance:hardware}) and how to optimize a cryptographic algorithm implementation for a specific \gls{isa} (\Cref{sec:security_of_cryptographic_algorithms:performance:processors}). Finally, we discuss how profiling and benchmarking allows for identifying performance bottlenecks and consequently improve the overall efficiency of cryptographic algorithm implementation and execution (\Cref{sec:security_of_cryptographic_algorithms:performance:evaluation}).
+
+
+
+\subsubsection{Efficiency Optimization Best Practices}\label{sec:security_of_cryptographic_algorithms:performance:best_practices}
+
+We now discuss the most relevant high-level principles and methods for optimizing the efficiency of cryptography and cryptographic algorithm implementation:
+
+\begin{itemize}
+	
+	\item \textbf{Cryptographic Algorithm Choice.} A basic aspect of efficiency optimization in cryptography is the choice of the most suitable cryptographic algorithm for the task at hand. In particular, when evaluating algorithms for data en/decryption, a fundamental distinction exists between symmetric and asymmetric algorithms:
+	
+	\begin{itemize}
+		
+		\item \textit{symmetric algorithms} such as AES and ChaCha use a single cryptographic key for both encryption and decryption of data. Symmetric algorithms are typically efficient and offer fast processing speeds thanks to their fairly simple mathematical structure. Usually, these algorithms involve computations like substitutions, permutations, XOR operations, and modular additions (over finite fields with order a power of 2) which processors can execute efficiently. Symmetric algorithms are ideal for applications where large volumes of data need to be en/decrypted such as in communications and secure storage;
+		
+		\item \textit{asymmetric algorithms} such as RSA and ECC use a pair of cryptographic keys, one public and one private, which act as a trapdoor to an underlying mathematical hard problem. Asymmetric algorithms are based on complex mathematical operations such as modular exponentiation, elliptic curve computations, and number-theoretic transforms. These operations introduce significant overhead, making asymmetric algorithms less suitable for bulk data encryption. Still, asymmetric algorithms play a crucial role in constructing various cryptographic algorithms, such as key encapsulation mechanisms and digital signatures.
+		
+	\end{itemize}
+	
+	We remark that, in practice, a hybrid approach is often employed to achieve the benefits of both types of encryption. 
+	
+	\item \textbf{Cryptographic Library Choice.} Once a cryptographic algorithm has been selected, chances are that an implementation of that algorithm within a cryptographic library already exists. In this case, the efficiency of such a library should be considered when deciding whether to re-implement the algorithm from scratch.
+	
+	\item \textbf{Memory Management.} Proper memory management can lead to significant efficiency improvements and is often a distinguishing factor between fast and slow implementations for cryptographic algorithms.
+	
+	\remarkBlock{Heap and stack}{The two primary types of memory allocation are stack and heap: the stack is usually used for local variables and function call data, while the heap is usually used for dynamic memory allocation. The stack is typically faster than the heap due to its simpler structure.}
+	
+	In particular, proper memory management expects to:
+	
+	\begin{itemize} 
+		
+		\item \textit{avoid (especially unintentional) data duplication} as it requires additional memory and incurs overhead, especially for large data structures --- such as those used in RSA or for elliptic curve points --- allocated in the heap. Instead, operations should be performed directly on the original data (\textit{in-place computations}) or using pointers to avoid unnecessary duplication;
+		
+		\item \textit{prefer arrays over vectors}, as arrays are typically stored as a contiguous block of memory in the stack, having a fixed size and fast access to data. Conversely, vectors tend to be stored in the heap, having a dynamic size and slow access to data. While offering greater flexibility compared to arrays, vectors come with a higher overhead, especially when their capacity is exceeded;
+		
+		\item \textit{employ suitable data structures} for organizing and accessing data efficiently. Examples of relevant data structures are:
+		
+		\begin{itemize} 
+			
+			\item \textit{linked lists}, which allow efficient insertion and deletion at both ends;
+			
+			\item \textit{hash maps}, which associate each element with a key for fast lookup;
+			
+			\item \textit{(binary) trees}, which allow efficient searching, insertion, and deletion operations.
+			
+		\end{itemize} 
+		
+		In general, complex arithmetic operations in cryptographic algorithm implementations may be more or less (memory) efficient according to how data are represented. For instance, a point on an elliptic curve is often stored as the $x$-coordinate only of an affine point $(x,y)$. However, computations performed on the projective plane $(x,y,z)$ are more efficient as they avoid the costly inversions typically needed in affine coordinates. On top of that, mixed operations between projective and affine coordinates allow for the direct use of large pre-computation tables, further enhancing performance;\footnote{A comprehensive list of formulae for each curve can be found in the Explicit-Formula Database (EFD) available at \url{https://www.hyperelliptic.org/EFD/}}
+		
+		\item \textit{rely on pre-computation}, that is, compute specific values (e.g., lookup tables such as S-boxes in AES) before the execution of cryptographic algorithm implementation. Intuitively, the availability of such values prevents redundant computations and reduces time complexity.
+		
+	\end{itemize}
+	
+\end{itemize}
+
+
+
+
+
+\subsubsection{Languages and Compilers for Efficiency}\label{sec:security_of_cryptographic_algorithms:performance:languages_and_compilers}
+
+Below, we investigate the impact that the choice of the programming language (\Cref{sec:security_of_cryptographic_algorithms:performance:languages_and_compilers:languages}) --- and, consequently, compiler (or interpreter) and configuration options (\Cref{sec:security_of_cryptographic_algorithms:performance:languages_and_compilers:compilers}) --- may potentially have on the efficiency of the implementation of cryptographic algorithms. In other words, we are concerned about whether the choice of the programming language and compiler or interpreter can improve or worsen efficiency.
+
+
+\paragraph*{Programming Languages for Efficiency.}
+
+Compiled languages (like C and C++, Go, and Rust) are generally more performant than both runtime-based (like Java, C\#, and Erlang) and interpreted languages (like Python, JavaScript, and Ruby). In fact, compiled languages produce machine code (see \Cref{sec:security_of_cryptographic_algorithms:performance:processors}), while runtime-based and interpreted languages have notable latency. Moreover, compiled languages allow for fine-tuned control over system resources. Below, we discuss the compiled languages among those already considered in \Cref{sec:security:languages_and_compilers:languages}:
+
+\begin{itemize}
+	
+	\item \textbf{C and C++.} Despite ongoing efforts to replace them with newer languages, C and C++ have proven to be the preferred languages for performance-critical applications --- including cryptography. In fact, many widely used cryptographic libraries (e.g., OpenSSL) are written in C and C++, benefiting from years of continuous optimization and refinement. In detail, C and C++ offer minimal abstractions when compared to higher-level languages (e.g., Java), providing developers with fine-grained control over efficiency;
+	
+	\item \textbf{Rust.} Emerged as a modern alternative to C and C++ for performance-critical applications, Rust provides zero-cost abstractions, powerful concurrency features, and modern tooling (such as the Cargo package manager) enabling developers to write efficient and secure code. In fact, the adoption of Rust for cryptographic algorithm implementation is steadily growing. In terms of efficiency, the main drawback of Rust is slow compilation,\footnote{rust-lang (\url{https://prev.rust-lang.org/en-US/faq.html})} a direct result of the security features provided by its static analysis tools (see \Cref{sec:security:languages_and_compilers:languages});
+	
+	\item \textbf{Go.} Designed at Google for efficiency and ease of use. Go has many built-in tools for parallelizing computations. Go uses a garbage collector to manage memory which, although simplifying software development, hinders performance. Still, Go is often seen as an acceptable choice to develop scalable and efficient applications quickly, especially for back-end software and security-related systems.
+	
+\end{itemize}
+
+A comprehensive and detailed analysis of the efficiency of each of the aforementioned languages (and many more) can be found in \cite{pereira_ranking_2021}.
+
+Besides the aforementioned languages, another language (or, better, type of languages) relevant to efficiency is \textbf{assembly}, which allows for even more precise control over efficiency --- for more details, see Note 3.4.2 in \Cref{sec:security_of_cryptographic_algorithms:performance:processors}. Finally, we also mention \textbf{WebAssembly} (also called Wasm), which is a standard describing a low-level binary instruction format to run high-performance applications across any platform with a web browser. In brief, WebAssembly allows developers to write parts of their program in languages such as C, C++, or Rust. Such parts are then compiled into WebAssembly bytecode and executed within web browsers with little extra overhead. Although WebAssembly bytecode is not as fast as running native code directly on the machine, it provides a way to get near-native performance in the browser, making it a great option for web-based cryptographic applications. Additionally, WebAssembly works in a secure, isolated environment, which helps protect cryptographic code. In other words, WebAssembly is particularly relevant to web applications (at client-side).
+
+
+\paragraph*{Compiler and Interpreters Options for Efficiency.}
+
+Compiler optimization flags are used to improve the efficiency of software by altering how the compiler generates machine code. A general rule of thumb is that, while compiler optimizations can improve the runtime efficiency of a program, they may increase the compile time and the binary size. These optimizations are typically achieved through techniques such as constant folding, dead code elimination, and aggressive optimizations including:
+
+\begin{itemize}
+	
+	\item \textbf{inlining}, which replaces function calls with the actual code of the function, eliminating the overhead of function calls;
+	
+	\item \textbf{vectorization}, which converts loops and operations to use \gls{simd} instructions (see \Cref{sec:security_of_cryptographic_algorithms:performance:processors} for more details on \gls{simd} instructions);
+	
+	\item \textbf{\gls{lto}}, which optimizes the program across multiple translation units during the linking stage, allowing the compiler to perform optimizations that require access to the whole code of the program. \gls{lto} can lead to significant performance improvements, as it allows the compiler to apply optimizations that are not possible when each source file is compiled independently.
+	
+\end{itemize}
+
+The aforementioned are generic optimizations that almost all compilers aim to achieve. However, specific compilers may have specific flags enabling further optimization techniques. For instance:
+
+\begin{itemize}
+	
+	\item \textbf{GCC and Clang}, which are popular compilers for C and C++, allow basic optimization with the flag \texttt{-O}, progressively increasing through \texttt{-O2} and \texttt{-O3}, with the latter being the most aggressive. In GCC and Clang, \gls{lto} can be enabled with the \texttt{-flto} flag. A comprehensive list of all optimizations flags can be found in the GNU Compiler Collection Flags\footnote{GNU Compiler Collection Flags (\url{https://www.spec.org/cpu2017/flags/gcc.2018-02-16.html})} and in the Clang documentation;\footnote{Clang 20.0.0git documentation (\url{https://clang.llvm.org/docs/CommandGuide/clang.html})}
+	
+	\item \textbf{rustc}, which is the compiler of Rust, allows for using optimization flags even though it is usually more common to rely on Cargo (the build system of Rust) for managing optimizations. Rust uses the \texttt{-{}-release} flag to apply the optimizations specified in the \texttt{[profile.release]} section of the \texttt{Cargo.toml} file. Similar to GCC and Clang, there is an \texttt{opt-level} setting that ranges from 1 to 3, with higher levels applying progressively more aggressive optimization strategies. Additionally, setting \texttt{lto = true} enables \gls{lto}. For direct use of \texttt{rustc}, it is possible to specify optimizations with the \texttt{-{}-opt-level} flag, which works similarly to \texttt{cargo}'s configuration. A list of possible optimizations can be found in the rustc documentation\footnote{The rustc book (\url{https://doc.rust-lang.org/rustc/codegen-options/index.html?highlight=opt-level})}.
+	
+\end{itemize}
+
+
+
+\subsubsection{Hardware for Efficiency}\label{sec:security_of_cryptographic_algorithms:performance:hardware}
+
+Hardware-based cryptographic modules (see CSC-D1---§Section 2) and cryptographic accelerators include specialized circuits and instruction sets that significantly (i.e., usually at least one order of magnitude \cite{baldanzi_crypto_2019}) improve performance \cite{meurice_de_dormale_high_2007} and energy efficiency \cite{haas_evaluating_2013} during the execution of cryptographic algorithms --- e.g., by accelerating or parallelizing particular operations. Typically, the more a piece of hardware is tailored for specific operations, the better its performance and energy efficiency. In fact, cryptographic accelerators are often designed for specific cryptographic algorithms (e.g., AES) and are deployed as hardware side components, integrated circuits, or co-processors near general-purpose hardware.\footnote{General-purpose hardware includes both processors (i.e., CPUs) and GPUs. Note that general-purpose GPUs are sometimes used for accelerating cryptographic computations, having often better performance than general-purpose processors in executing arithmetic operations} The main types of cryptographic accelerators include:
+\begin{itemize}
+	\item \textbf{\glspl{asic}}, which are designed for executing specific (sets of) operations, usually supporting hash functions (e.g., in cryptocurrency mining) and en/decryption --- but also other operations such as random numbers generation. \glspl{asic} are not reconfigurable and cannot be supplied with additional instructions after design and manufacturing. The two primary design methods for \glspl{asic} are gate-array design and full-custom design: the former uses predefined components to minimize the design effort and associated costs, while the latter provides better flexibility and performance at the cost of a more complex and costly design. Examples of \glspl{asic} are Intel QuickAssist Technology (QAT) \glspl{asic}\footnote{Intel® QuickAssist Technology (Intel® QAT) (\url{https://www.intel.com/content/www/us/en/architecture-and-technology/intel-quick-assist-technology-overview.html})} and ARM CryptoCell;\footnote{CryptoCell-300: Embedded Security for High-Efficiency SoCs – Arm®  (\url{https://www.arm.com/products/silicon-ip-security/crypto-cell-300})} 
+	
+	\item \textbf{\glspl{fpga}}, which comprise programmable logic blocks (i.e., logic gates, flip-flops, look-up tables) and programmable interconnects (i.e., pathways for signals to travel between logic blocks) allowing for reconfigurable hardware operations. In other words, \glspl{fpga} are not application-specific and can be repeatedly re-programmed through hardware description languages (such as Verilog\footnote{IEEE SA - IEEE 1364-2001 (\url{https://standards.ieee.org/ieee/1364/2052/})} and VHDL\footnote{IEEE SA - IEEE 1076-2019 (\url{https://standards.ieee.org/ieee/1076/5179/})}) to suit different applications after design manufacturing --- as opposed to \glspl{asic}. Hence, \glspl{fpga} bridge the gap between general-purpose hardware and fully specialized hardware like \glspl{asic}. Consequently, \glspl{fpga} offer more performance but less flexibility than general-purpose hardware, and more flexibility but less performance than \gls{asic}. Examples of \glspl{fpga} are Xilinx \glspl{fpga} by AMD\footnote{AMD FPGAs (\url{https://www.amd.com/en/products/adaptive-socs-and-fpgas/fpga.html})} and Intel Stratix 10 series;\footnote{Intel® Stratix® 10 FPGAs Overview - High Performance Intel® FPGA (\url{https://www.intel.com/content/www/us/en/products/details/fpga/stratix/10.html})}
+	
+	\item \textbf{specialized instruction sets}, which are integrated into the design of general-purpose hardware but require dedicated hardware within the processors themselves (i.e., not on a separate co-processor) \cite{cheng_sok_2024}. Examples of specialized instruction sets are Intel AES-NI\footnote{Intel® Advanced Encryption Standard Instructions (AES-NI) (\url{https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html})} and ARMv8 Cryptographic Extension.\footnote{Arm® Cortex-A78 Core Cryptographic Extension Technical Reference Manual (\url{https://developer.arm.com/documentation/101432/r1p2/Functional-description/About-the-Cryptographic-Extension})}
+	
+\end{itemize}
+
+We highlight that, besides efficiency, hardware-based cryptographic modules provide further benefits such as security (see \Cref{sec:security:hardware}) and key management --- which many but not all cryptographic accelerators provide. As a final remark, we note that the need for hardware support increases when considering resource-intensive advanced cryptosystems (e.g., homomorphic encryption) and post-quantum cryptographic algorithms.
+
+
+
+\subsubsection{Optimizing for Instruction Set Architectures}\label{sec:security_of_cryptographic_algorithms:performance:processors}
+
+An \gls{isa} is often defined as an abstract model\footnote{What is Instruction Set Architecture (ISA)? – Arm® (\url{https://www.arm.com/glossary/isa})}$^,$\footnote{Instruction Set Architecture (\url{https://www.intel.com/content/www/us/en/developer/tools/isa-extensions/overview.html})} or interface between software and hardware describing the capabilities of one or more processors and how to control them. In other words, an \gls{isa} can be viewed as a developers' manual and standard to interact with the processors. More in detail, an \gls{isa} defines supported data types, registers, memory management, key features (e.g., virtual memory), input/output model and, especially, instructions and their binary encoding. Being an abstract model, there usually exist multiple implementations (in this case, processors) of an \gls{isa} with different characteristics --- such as performance, physical size, and monetary cost --- capable of running the same instructions. Hence, \glspl{isa} ensure compatibility and portability across different processors. An \gls{isa} can also be extended with further instructions to exploit new hardware (e.g., see \Cref{sec:security_of_cryptographic_algorithms:performance:hardware}), improve performance, and satisfy the needs of a specific application or domain; such extensions are typically backward-compatible. Intuitively, knowing and understanding an \gls{isa} allows developers to write and compile more efficient code. \glspl{isa} are commonly categorized according to how instructions correspond to arithmetic and memory access operations:
+
+\begin{itemize}
+	
+	\item \textbf{\gls{risc}}, which comprises \glspl{isa} where instructions correspond to single low-level operations (e.g., load data from memory, perform an arithmetic operation, store data in memory). As a consequence, \gls{risc} \glspl{isa} typically prioritize simplicity, power efficiency, and performance by expecting (optimized and specialized) instructions with uniform length and predictable execution time, making instruction pipelining easier. Generally, \gls{risc} \glspl{isa} include frequently used instructions (i.e., operations) only, while less common operations need to be implemented as subroutines, resulting in a small (but inherently infrequent) overhead.
+	
+	\remarkBlock{The meaning of ``reduced'' in \gls{risc} \glspl{isa}}{The term ``reduced'' in ``\glsfirst{risc}'' implies that each instruction corresponds to a small and predictable amount of work (e.g., a single data memory cycle) and not that the set of instructions itself is small --- although it is usually the case.}
+	
+	Examples of \gls{risc} \glspl{isa} are those of ARM (e.g., Armv8-A for 64-bit processors only, Armv7-A for 32-bit processors only, Thumb for 16-bit processors only) --- common in mobile and embedded devices --- and RISC-V;
+	
+	\item \textbf{\gls{cisc}}, which comprises \glspl{isa} where single instructions are capable of multi-step operations and can correspond to several low-level operations (e.g., load data from memory, perform an arithmetic operation, and also store the result). Consequently, \gls{cisc} \glspl{isa} typically prioritize flexibility, usability, abstraction, fewer main memory accesses, and compact code. Examples of \gls{cisc} \glspl{isa} are those of Intel and AMD (e.g., x86-64/AMD64 for processors up to 64-bit, x86 for processors up to 32-bit) --- common in servers and desktops.
+	
+\end{itemize}
+
+Finally, we note that some consider further categories such as \gls{misc} and \gls{oisc} and that there exist special \glspl{isa} such as \gls{epic} and \gls{vliw} used for particular applications or domains.
+
+\remarkBlock{\gls{isa} vs. assembly}{Processors execute a stream of binary-encoded instructions called ``machine code'' for which there usually exist a more human-readable rendition called ``assembly code''. The term ``assembly'' identifies a low-level programming language that uses operation codes (or ``opcodes'') --- represented with mnemonics --- to enumerate instructions and symbolic names to refer to registers. Assembly code has an almost direct mapping to machine code, although an assembly language may comprise some higher-level syntactical constructions and allow for inserting developers' comments. Intuitively, there does not exist a single assembly language, but rather multiple assembly languages, each of which corresponds to a specific \gls{isa} --- while each \gls{isa} may have one or more assembly languages; for instance, x86 processors have two assembly languages, the AT\&T syntax (also called GAS) and the Intel syntax (also called NASM). Finally, the translation from assembly code to machine code is done by the assembler.}
+
+One of the simplest and most effective ways to optimize cryptographic algorithms for specific \glspl{isa} is to leverage compilers and interpreters options (see \Cref{sec:security_of_cryptographic_algorithms:performance:languages_and_compilers}) to specify target processors and \glspl{isa} and optimization levels. For instance, the \texttt{gcc} compiler for \texttt{C} has a flag \texttt{march} which, when set to \texttt{native} (i.e., \texttt{-march=native}), asks the compiler to fine-tune the compiled code for the \gls{isa} of the host processor. Similarly, the \texttt{-ffast-math} flag allows the compiler to diverge from the IEEE 754 standard \cite{ieee_754} for floating point operations and improve their performance according to the underlying \gls{isa} (at the cost of accuracy). In general, it is important to rely on compilers and interpreters which consider code optimization for the underlying \gls{isa}; intuitively, this requires deep knowledge of such compilers and interpreters.
+
+Another way to optimize the execution of cryptographic algorithms is to study specific software optimization guides,\footnote{Software optimization resources. C++ and assembly. Windows, Linux, BSD, Mac OS X (\url{https://www.agner.org/optimize/})} official documentation and manuals,\footnote{Intel® 64 and IA-32 Architectures Optimization Reference Manual Volume 1 (\url{https://www.intel.com/content/www/us/en/content-details/814198/intel-64-and-ia-32-architectures-optimization-reference-manual-volume-1.html})} and leverage specialized instructions and extensions (e.g., Intel AES-NI; see \Cref{sec:security_of_cryptographic_algorithms:performance:hardware}) of the underlying \gls{isa}; intuitively, this requires deep knowledge of the \gls{isa}. An instance of such specialized instructions are the \gls{simd} instructions which --- by suitably placing distinct small pieces of data (usually, vectors) into the same registers --- perform the same (e.g., arithmetic) operation on each piece of data in parallel, yielding an almost proportional increase in performance (net of downclocking); this practice is often called vectorization. For instance, ARM \glspl{isa} have the \texttt{NEON} extension which groups \gls{simd} instructions operating on vectors; Intel \glspl{isa} have a similar extension called \texttt{AVX2}. Specialized instructions can be leveraged either automatically by compilers and interpreters --- e.g., with the \texttt{pragma} directive in \texttt{gcc} or by specialized compilers such as the \gls{ispc}\footnote{Intel® Implicit SPMD Program Compiler (\url{https://ispc.github.io/})} --- or manually by developers which can use:
+
+\begin{itemize}
+	
+	\item \textbf{compiler intrinsics}, which allows for accessing \gls{isa} instructions without delving into assembly code, and are thus a convenient way to exploit specialized instructions and \gls{isa} extensions in high-level code. In brief, intrinsic allows for using functions which are high-level language representations of machine instructions. For example, in C++, it is possible to use an intrinsic function that corresponds to a vector addition machine instruction, eliminating the need for inlining assembly code. With intrinsics, the compiler handles most of the optimizations, enabling the developers to focus on algorithm design and data organization;
+	
+	\item \textbf{inline assembly}, which is embedded directly in the program, allowing the developers to fine-tune specific parts of the software near the high-level language. Inline assembly is useful in presence of particular instructions that the compiler may not handle efficiently on its own, or when optimizations based on a specific \gls{isa} are needed;
+	
+	\item \textbf{external assembly}, which is assembly code written in separate files with respect to the rest of the program. External assembly is the most flexible but also requires the most effort and expertise. However, note that, when using external assembly, the compiler may not be able to fully optimize the surrounding high-level code, as the external assembly code is often opaque to the compiler. As a result, programmers may lose the benefits of some automatic optimizations, which can ultimately negate, if not worsen, the performance gain.
+	
+\end{itemize}
+
+Intuitively, all of the aforementioned three approaches require deep knowledge of the assembly language. It is worth noticing that there may already exist libraries implementing arithmetic operations and mathematical routines (e.g., linear algebra\footnote{OpenBLAS (\url{http://www.openmathlib.org/OpenBLAS/})}) strongly optimized for a specific \gls{isa}.
+
+Finally, the efficiency of cryptographic algorithms can be improved by optimizing memory access and alignment, pre-fetching (to reduce cache misses), and minimizing cache contention (to reduce cache thrashing) to decrease memory latency and maximize data throughput. In this regard, it is particularly important to avoid data hazards, i.e., situations where the execution of an instruction relies on the outcome of a preceding instruction that is still in progress. Memory access optimization requires deep knowledge of the latency and throughput of each instruction,\footnote{Latency and throughput for a specific \gls{isa} are usually described in instruction tables such as those available in \url{https://www.agner.org/optimize/instruction_tables.pdf}} their interaction with other instructions, the pipeline functioning, and the memory management of the \gls{isa}. 
+
+\remarkBlock{The importance of profiling and benchmarking}{Profiling and Benchmarking --- which are discussed in \Cref{sec:security_of_cryptographic_algorithms:performance:evaluation} --- are of the utmost importance to identify performance bottlenecks and determine whether certain compiler and interpreter options, \gls{simd} instructions, or memory access optimization techniques actually improve the efficiency of cryptographic algorithm implementation.}
+
+To conclude, we remark that --- besides the \gls{isa} abstract model --- the efficiency of cryptographic algorithm implementation heavily depends on the characteristics of the underlying processor (clock frequency, multi-threading, support for parallel and distributed computing, instruction pipelining, out-of-order execution, speculative execution, dedicated hardware for supporting \gls{isa} extensions). 
+
+
+
+\subsubsection{Evaluation and Benchmarking of Efficiency}\label{sec:security_of_cryptographic_algorithms:performance:evaluation}
+
+Benchmarking the efficiency of cryptographic algorithm implementation offers several benefits. In particular, benchmarking allows for comparing different implementation approaches and, more importantly, helps identify performance bottlenecks, revealing what portions of the code need to be refined.
+
+
+\paragraph*{Efficiency Metrics for Comparing cryptographic algorithm implementation.}
+
+When benchmarking cryptographic algorithm implementation, there are several important metrics to consider. Intuitively, the relevance of those metrics may vary according to the underlying application and domain in which cryptographic algorithms are employed. The most important metrics that are often collected through benchmarking are:\footnote{eBACS: ECRYPT Benchmarking of Cryptographic Systems (\url{https://bench.cr.yp.to/})})
+
+\begin{itemize}
+	
+	\item \textbf{latency}, which is the (time) interval between the start and completion of a cryptographic computation. Latency is usually measured either in time (e.g., milliseconds) or processor cycles per operation. Both measurements are valuable: time provides real-world user-friendly benchmark results and comprises factors such as processor speed, memory availability, and other computational resources; processor cycles focus on the number of instructions executed by the processor, which is useful for low-level optimization. Latency is typically the most important metric for asymmetric cryptography, as the amount of data to process is usually small and fixed;
+	
+	\item \textbf{throughput}, which is the rate at which data are elaborated. Throughput is typically measured as operations per second (ops/sec) or processor cycles per byte (cycles/byte). Throughput is particularly useful when the size of the input data varies significantly. Also, throughput is especially relevant to symmetric cryptography and hashing, where large amounts of data may need to be elaborated;
+	
+	\item \textbf{initialization}, which refers to the setup phase of a cryptographic algorithm before executing its first cryptographic computation. Initialization is measured similarly to latency, i.e., in time or processor cycles. Concretely, initialization often involves tasks such as key generation, loading and parsing of configuration parameters, and data structure initialization. Although initialization is usually a one-time cost, its relevance increases when re-keying is frequently required (e.g., during a TLS handshake) and it is a key factor in determining key agility;
+	
+	\item \textbf{size}, which refers to the length --- or, more generally, dimensions --- of private, public, and secret keys, as well as the size of the output of cryptographic computations (e.g., ciphertexts, digital signatures). Size is an important metric for evaluating the efficiency of cryptographic algorithm implementation in terms of memory usage and network bandwidth. Hence, size is particularly relevant when information needs to be transmitted or stored for a long time;
+	
+	\item \textbf{scalability}. which measures the efficiency of cryptographic algorithm implementation under varying parameters. Scalability includes testing efficiency with different data sizes (e.g., larger payloads to encrypt) and varying levels of security (e.g., key size), which typically results in some sort of performance degradation. Scalability is an essential metric for assessing how well cryptographic algorithm implementation performs as the workload increases.
+	
+\end{itemize}
+
+Measuring the aforementioned metrics (and making results public\footnote{SUPERCOP (\url{https://bench.cr.yp.to/supercop.html})}) allows for determining which cryptographic algorithm and implementation is the most suitable according to the efficiency requirements of the considered application and domain. Additionally, benchmarking helps in identifying unexpected slowdowns and performance bottlenecks, guiding advanced analysis and fine-tuned improvements. Intuitively, benchmarking is the most useful when measurements are accurate, which is not trivial and instead requires considering several challenges. In fact, performance on a specific machine (e.g., server, smartphone) can vary significantly due to, e.g., process scheduling, concurrency, and caching. In other words, simply measuring the time required for a specific function to complete is not often enough to produce reliable benchmarking results. Additionally, cryptographic computations often involve complex arithmetic, and the time taken may vary considerably depending on the specific key used, even when the key size is the same.
+
+To address these challenges and promote accurate measurements, several strategies can be taken. Using a large sample size, implementing a warm-up phase, and repeating benchmarks multiple times are all strategies commonly adopted for reducing statistical noise in the measurements and averaging the results obtained. However, we note that an even more effective strategy consists of relying on benchmarking frameworks that already handle these challenges and implement the aforementioned strategies. Examples of well-established benchmarking frameworks are the Google benchmark\footnote{Google benchmark (\url{https://github.com/google/benchmark})} for C and C++, Criterion-rs\footnote{Criterion-rs (\url{https://bheisler.github.io/criterion.rs/book/})} for Rust, and the standard library\footnote{Go standard-library (\url{https://pkg.go.dev/testing})} for Go.
+
+
+\paragraph*{Efficiency Metrics for Resource Utilization.}
+
+When optimizing the implementation of cryptographic algorithms, it is often useful to focus on resource utilization, i.e., how efficiently the implementation uses available resources such as processor, memory, and cache:
+
+\begin{itemize}
+	
+	\item \textbf{processor usage}, that is, in which portions of the code the processor is spending the most time. Analyzing processor usage can identify which code paths consume excessive processing capacity and steer optimization efforts accordingly;
+	
+	\item \textbf{cache misses}, that is, data required by the process is not available in the processor cache and need therefore to be fetched from slower memory (e.g., the main memory). Cache misses can introduce significant performance bottlenecks, as accessing the main memory is much slower than accessing the processor cache. Hence, monitoring for cache misses can help in identifying inefficient memory access patterns;
+	
+	\item \textbf{memory footprint}, which is the overall amount of memory used by the process, including keys, buffers, and temporary variables. Memory footprint is relevant as, in some contexts, memory consumption might be even more critical than raw performance, particularly in resource-constrained devices (e.g., embedded systems), where limited memory availability can directly affect performance and stability.
+	
+\end{itemize}
+
+\paragraph*{Profiling.} Resource utilization is often analyzed through profiling, a form of dynamic analysis aimed at gathering process events. Profilers can be broadly divided into two categories:
+
+\begin{itemize} 
+	
+	\item \textbf{statistical profilers} which operate by sampling the process call stack at regular intervals using system interrupts. The data collected provides a statistical approximation and can offer an accurate depiction of the performance of the process. An example of a statistical profiler is the Linux perf tool;\footnote{perf (\url{https://www.brendangregg.com/overview.html})}
+	
+	\item \textbf{instrumentation-based profilers} which inject instructions into the target process to gather process events. These profilers allow for obtaining precise data but may themselves alter the performance of the process due to the overhead introduced by the injected instructions. An example of an instrumentation-based profiler is Valgrind;\footnote{Valgrind (\url{https://valgrind.org/})}
+	
+\end{itemize}
+
+Usually, statistical profilers are used first while instrumentation-based profilers are used for very precise and targeted analysis only. In both cases, the data gathered by a profiler is often difficult to interpret. Some visualization tools that can help are flame-graphs\footnote{flame-graphs (\url{https://www.brendangregg.com/overview.html})} and KCachegrind.\footnote{KCachegrind (\url{https://kcachegrind.sourceforge.net/html/Home.html})}
+
+
+
+
+
+
+\subsection{Security and Efficiency Trade-Offs}\label{sec:security_of_cryptographic_algorithms:trade_offs}
+
+
+%Moreover, it may not always be easy to \textbf{balance security and efficiency} in the implementation and use of cryptographic algorithms due to their interplay: strong security measures must be evaluated against their computational and operational overhead, while optimized implementations must be analyzed for potential weaknesses. This interplay underscores the importance of systematically ensuring and evaluating both the security and efficiency of cryptographic implementations to build resilient and performant systems.
+
+
+As is often the case in many applications and domains (e.g., \cite{centenaro_safety_2021,berlato_multi_2024}), implementing cryptographic algorithms requires considering several trade-offs between security and efficiency. Typically, strong security measures impose efficiency costs, while optimizing code for efficiency introduces security vulnerabilities (although not necessarily, e.g., see bitslicing in \Cref{sec:security_of_cryptographic_algorithms:best_practices:bitslicing}). Below, we discuss the most relevant of these trade-offs by focusing on cryptographic algorithm implementation --- and not on design or configuration choices such as the choice of cryptographic key lengths.
+
+
+\subsubsection{Constant-Time Cryptography and Optimizations}\label{sec:security_of_cryptographic_algorithms:trade_offs:constant_time_and_optimization}
+
+One of the clearest examples of security and efficiency trade-offs is constant-time cryptography (security --- see \Cref{sec:security_of_cryptographic_algorithms:best_practices:constant_time}) versus optimizations (efficiency). In fact, making the execution time of instructions constant regardless of their input prevents developers from applying efficiency optimizations like conditional branches for early exits.
+
+
+\subsubsection{Noise Injection and Performance}\label{sec:security_of_cryptographic_algorithms:trade_offs:noise_injection_and_performance}
+
+Noise injection lowers the \gls{snr} and improves robustness against side-channel attacks such as power analysis (security --- see Note 2.2.3 in \Cref{sec:security_of_cryptographic_algorithms:attacks:sca}) while, however, worsening performance (efficiency). In fact, employing methods like masking, blinding techniques, and dummy procedures (see \Cref{sec:security_of_cryptographic_algorithms:best_practices}) requires executing additional operations (e.g., generating and processing random values), increasing latency and computational overhead.
+
+
+\subsubsection{Pre-Computation and Timing Attacks}\label{sec:security_of_cryptographic_algorithms:trade_offs:pre_computation_and_timing_attacks}
+
+Pre-computation (efficiency --- see \Cref{sec:security_of_cryptographic_algorithms:performance:best_practices}) may introduce timing attacks (security --- see \Cref{sec:security_of_cryptographic_algorithms:attacks:sca}). In fact, relying on pre-computed values such as lookup tables (e.g., S-boxes in AES), although preventing redundant computations and reducing latency, often introduces memory access patterns that may be exploitable by an attacker to infer (portion of) secret data.
+
+
+\subsubsection{Memory Management and Performance}\label{sec:security_of_cryptographic_algorithms:trade_offs:memory_management_and_performance}
+
+Proper memory management (security) prevents secret data leakage and memory-related vulnerabilities such as buffer overflows while impacting performance (efficiency). In fact, techniques like memory zeroization and memory inspection (see \Cref{sec:security_of_cryptographic_algorithms:best_practices:zeroization,sec:security_of_cryptographic_algorithms:best_practices:safety}) require additional checks yielding runtime overhead.
+
+
+\subsubsection{Compilers and Interpreters and Optimizations}\label{sec:security_of_cryptographic_algorithms:trade_offs:compilers_and_interpreters_and_optimizations}
+
+As already discussed in \Cref{sec:security_of_cryptographic_algorithms:languages_and_compilers:compilers,sec:security_of_cryptographic_algorithms:performance:languages_and_compilers:compilers}, compilers and interpreters can greatly optimize the efficiency of cryptographic algorithm implementations (efficiency) while, however, introducing vulnerabilities and even nullifying security measures \cite{schneider_breaking_2024} (security).
+
+
+\subsubsection{Error Handling and Performance}\label{sec:security_of_cryptographic_algorithms:trade_offs:error_handling_and_performance}
+
+Handling runtime errors without leaking sensitive information (security) may sometimes add computational overhead (efficiency). In fact, preventing unintended behavior from uncaught or mishandled exceptions and signals (see \Cref{sec:security_of_cryptographic_algorithms:languages_and_compilers:languages}) requires developing additional (and possibly complex) logic within cryptographic algorithm implementation.
+
+
+
+%https://dud.inf.tu-dresden.de/literatur/Anon_Terminology_v0.22.pdf
+
+
+
+
+
+\vspace{-1.5mm}
+\newpage
+
 
